@@ -56,48 +56,48 @@ body {
   }
 
   .dark {
-    --background: 210 100% 10%; /* Dark Blue */
-    --foreground: 210 60% 93%; /* Light Blue */
+    --background: 224 71% 4%; /* Very Dark Blue */
+    --foreground: 210 40% 98%; /* Almost White */
 
-    --card: 210 100% 12%; /* Darker Blue Card */
-    --card-foreground: 210 60% 93%; /* Light Blue */
+    --card: 224 71% 9%; /* Slightly Lighter Dark Blue for Cards */
+    --card-foreground: 210 40% 98%; /* Almost White */
 
-    --popover: 210 100% 12%;
-    --popover-foreground: 210 60% 93%;
+    --popover: 224 71% 9%; /* Slightly Lighter Dark Blue for Popovers */
+    --popover-foreground: 210 40% 98%; /* Almost White */
 
-    --primary: 210 100% 55%; /* Lighter Vibrant Blue for Dark Mode */
-    --primary-foreground: 210 100% 10%; /* Dark Blue */
+    --primary: 198 93% 60%; /* Electric Cyan */
+    --primary-foreground: 224 71% 4%; /* Very Dark Blue (for text on primary buttons) */
 
-    --secondary: 210 100% 20%; /* Darker Secondary Blue */
-    --secondary-foreground: 210 60% 93%; /* Light Blue */
+    --secondary: 224 71% 15%; /* Darker Blue for Secondary elements */
+    --secondary-foreground: 198 93% 70%; /* Brighter Electric Cyan for secondary text */
 
-    --muted: 210 100% 15%;
-    --muted-foreground: 210 60% 60%;
+    --muted: 224 71% 12%; /* Dark Muted Blue */
+    --muted-foreground: 210 40% 60%; /* Greyish Light Blue */
 
-    --accent: 196 100% 55%; /* Lighter Cyan for Dark Mode */
-    --accent-foreground: 210 100% 5%; /* Very Dark Blue/Black */
+    --accent: 260 100% 70%; /* Vibrant Violet */
+    --accent-foreground: 210 40% 98%; /* Almost White (for text on accent elements) */
 
-    --destructive: 0 72.2% 50.6%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%; /* Darker Red for Destructive */
+    --destructive-foreground: 0 0% 98%; /* Near White */
 
-    --border: 210 100% 25%;
-    --input: 210 100% 15%;
-    --ring: 210 100% 55%;
+    --border: 224 71% 15%; /* Dark Blue Border */
+    --input: 224 71% 12%; /* Dark Input Background */
+    --ring: 198 93% 60%; /* Electric Cyan for Focus Rings */
     
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --chart-1: 198 93% 60%; /* Electric Cyan */
+    --chart-2: 260 100% 70%; /* Vibrant Violet */
+    --chart-3: 210 100% 75%; /* Bright Blue */
+    --chart-4: 180 80% 50%; /* Teal */
+    --chart-5: 300 70% 65%; /* Pink/Magenta */
 
-    --sidebar-background: 210 100% 8%;
-    --sidebar-foreground: 210 60% 93%;
-    --sidebar-primary: 210 100% 55%;
-    --sidebar-primary-foreground: 210 100% 10%;
-    --sidebar-accent: 196 100% 55%;
-    --sidebar-accent-foreground: 210 100% 5%;
-    --sidebar-border: 210 100% 25%;
-    --sidebar-ring: 210 100% 55%;
+    --sidebar-background: 224 71% 6%; /* Darker sidebar background */
+    --sidebar-foreground: 210 40% 90%; /* Lighter foreground for sidebar */
+    --sidebar-primary: 198 93% 60%; /* Electric Cyan for sidebar primary */
+    --sidebar-primary-foreground: 224 71% 4%; /* Very Dark Blue for sidebar primary text */
+    --sidebar-accent: 260 100% 70%; /* Vibrant Violet for sidebar accent */
+    --sidebar-accent-foreground: 210 40% 98%; /* Almost White for sidebar accent text */
+    --sidebar-border: 224 71% 12%; /* Darker sidebar border */
+    --sidebar-ring: 198 93% 60%; /* Electric Cyan for sidebar ring */
   }
 }
 

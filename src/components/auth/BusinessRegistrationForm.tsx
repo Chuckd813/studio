@@ -17,22 +17,26 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useToast } from '@/hooks/use-toast';
-import { businessCategories } from '@/lib/mock-data'; // Using existing categories for simplicity
-import { UserPlus, Loader2 } from 'lucide-react';
+import { businessCategories } from '@/lib/mock-data';
+import { UserPlus, Loader2, Mail } from 'lucide-react';
+
+const ADMIN_EMAIL = "admin@whatisintampa.com"; // Admin email for notifications
 
 const formSchema = z.object({
   businessName: z.string().min(2, { message: 'Business name must be at least 2 characters.' }),
   email: z.string().email({ message: 'Invalid email address.' }),
-  password: z.string().min(8, { message: 'Password must be at least 8 characters.' }),
-  confirmPassword: z.string(),
+  // Password fields removed as per "I'll be the only one adding businesses"
+  // password: z.string().min(8, { message: 'Password must be at least 8 characters.' }),
+  // confirmPassword: z.string(),
   category: z.string().min(1, { message: 'Please select a category.' }),
   address: z.string().min(5, { message: 'Address must be at least 5 characters.' }),
   phone: z.string().optional(),
   description: z.string().min(20, {message: "Description must be at least 20 characters."}).max(500, {message: "Description must be at most 500 characters."}),
-}).refine(data => data.password === data.confirmPassword, {
-  message: "Passwords don't match",
-  path: ["confirmPassword"],
 });
+// .refine(data => data.password === data.confirmPassword, { // Password confirmation removed
+//   message: "Passwords don't match",
+//   path: ["confirmPassword"],
+// });
 
 type BusinessRegistrationFormValues = z.infer<typeof formSchema>;
 
@@ -43,8 +47,8 @@ export function BusinessRegistrationForm() {
     defaultValues: {
       businessName: '',
       email: '',
-      password: '',
-      confirmPassword: '',
+      // password: '', // Removed
+      // confirmPassword: '', // Removed
       category: '',
       address: '',
       phone: '',
@@ -55,13 +59,22 @@ export function BusinessRegistrationForm() {
   async function onSubmit(values: BusinessRegistrationFormValues) {
     // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1500));
+    
     console.log('Business registration submitted:', values);
+    console.log(`Simulating email notification to ${ADMIN_EMAIL} for new business: ${values.businessName}`);
+    
     toast({
-      title: 'Registration Successful!',
-      description: `Welcome, ${values.businessName}! Your business profile is ready to be set up.`,
+      title: 'Registration Submitted!',
+      description: `${values.businessName}'s registration has been sent for review. An email notification would typically be sent to ${ADMIN_EMAIL}.`,
+      action: (
+        <div className="flex items-center text-xs text-muted-foreground">
+          <Mail className="h-4 w-4 mr-1" /> (Simulated Email Sent)
+        </div>
+      )
     });
     form.reset();
-    // In a real app, redirect to login or dashboard
+    // In a real app, you might redirect or show a success message.
+    // Since this is admin-driven, perhaps no redirect, or to a "pending businesses" list.
   }
 
   const categoriesWithoutAll = businessCategories.filter(c => c !== 'All');
@@ -87,14 +100,18 @@ export function BusinessRegistrationForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Business Email</FormLabel>
+              <FormLabel>Business Contact Email</FormLabel>
               <FormControl>
                 <Input type="email" placeholder="contact@mybusiness.com" {...field} />
               </FormControl>
+              <FormDescription>
+                This email will be used for communication regarding the listing.
+              </FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
+        {/* Password fields removed
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <FormField
             control={form.control}
@@ -123,6 +140,7 @@ export function BusinessRegistrationForm() {
             )}
           />
         </div>
+        */}
         <FormField
           control={form.control}
           name="category"
@@ -185,7 +203,7 @@ export function BusinessRegistrationForm() {
                 />
               </FormControl>
               <FormDescription>
-                This will be shown on your business profile.
+                This will be shown on the business profile once approved.
               </FormDescription>
               <FormMessage />
             </FormItem>
@@ -195,12 +213,12 @@ export function BusinessRegistrationForm() {
           {form.formState.isSubmitting ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Registering...
+              Submitting Registration...
             </>
           ) : (
             <>
               <UserPlus className="mr-2 h-4 w-4" />
-              Register Business
+              Submit Business Registration
             </>
           )}
         </Button>

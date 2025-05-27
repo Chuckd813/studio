@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, X, Briefcase, CalendarDays, Sparkles, UserPlus, LogIn } from 'lucide-react';
+import { Menu, X, Briefcase, CalendarDays, Sparkles, UserPlus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { AISearch } from '@/components/features/AISearch';
@@ -18,7 +18,7 @@ const navLinks = [
 
 const authLinks = [
   { href: '/auth/register', label: 'Register Business', icon: UserPlus },
-  { href: '/auth/login', label: 'Business Login', icon: LogIn },
+  // { href: '/auth/login', label: 'Business Login', icon: LogIn }, // Removed login link
 ];
 
 export function Header() {
@@ -68,6 +68,12 @@ export function Header() {
                 </Link>
               </Button>
             ))}
+             {/* Link to dashboard for admin, assuming admin path is /dashboard/profile */}
+             {pathname !== '/dashboard/profile' && (
+              <Button variant="default" asChild className="rounded-full">
+                <Link href="/dashboard/profile">Admin Dashboard</Link>
+              </Button>
+            )}
           </div>
         </div>
 
@@ -111,6 +117,16 @@ export function Header() {
                        </Button>
                     </SheetClose>
                   ))}
+                   {/* Link to dashboard for admin in mobile menu */}
+                  {pathname !== '/dashboard/profile' && (
+                     <SheetClose asChild>
+                        <Button variant="default" asChild className="w-full justify-start rounded-md">
+                           <Link href="/dashboard/profile" className="flex items-center gap-2 py-2 px-3">
+                              Admin Dashboard
+                           </Link>
+                        </Button>
+                     </SheetClose>
+                  )}
                 </div>
               </div>
             </SheetContent>

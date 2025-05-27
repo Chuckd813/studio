@@ -1,7 +1,7 @@
 import { BusinessRegistrationForm } from '@/components/auth/BusinessRegistrationForm';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { UserPlus } from 'lucide-react';
-import Link from 'next/link';
+// import Link from 'next/link'; // Link to login removed
 
 export default function RegisterPage() {
   return (
@@ -13,10 +13,8 @@ export default function RegisterPage() {
           </div>
           <CardTitle className="text-3xl">Register Your Business</CardTitle>
           <CardDescription>
-            Join What's In Tampa to connect with more customers. Already have an account?{' '}
-            <Link href="/auth/login" className="font-medium text-primary hover:underline">
-              Log in here.
-            </Link>
+            Join What's In Tampa to connect with more customers.
+            {/* "Already have an account? <Link href="/auth/login" className="font-medium text-primary hover:underline">Log in here.</Link>" removed */}
           </CardDescription>
         </CardHeader>
         <CardContent>
