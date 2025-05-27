@@ -1,10 +1,10 @@
 
 'use client'; 
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ArrowRight, Sparkles, CalendarDays, Building2, Users, Loader2, Zap, ShoppingBag, Palette } from 'lucide-react';
+import { ArrowRight, Sparkles, CalendarDays, Building2, Users, Loader2, Zap, ShoppingBag, Palette, Lightbulb } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { mockDeals, mockEvents, mockBusinesses, mockCommunityLeaders } from '@/lib/mock-data';
@@ -14,6 +14,7 @@ import { BusinessCard } from '@/components/features/BusinessCard';
 import { PersonCard } from '@/components/features/PersonCard';
 import { AdSlideshow } from '@/components/features/AdSlideshow';
 import { HomepageWitWheel } from '@/components/features/HomepageWitWheel';
+import { generateTampaTip, type GenerateTampaTipOutput } from '@/ai/flows/generate-tampa-tip';
 import {
   Carousel,
   CarouselContent,
@@ -27,6 +28,8 @@ import Autoplay from "embla-carousel-autoplay";
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
+  const [dailyTip, setDailyTip] = useState<string | null>(null);
+  const [isLoadingTip, setIsLoadingTip] = useState(true);
 
   const [dealsApi, setDealsApi] = useState<CarouselApi>();
   const [dealsCurrent, setDealsCurrent] = useState(0);
@@ -51,6 +54,20 @@ export default function Home() {
 
   useEffect(() => {
     setIsMounted(true);
+    fetchDailyTip();
+  }, []);
+
+  const fetchDailyTip = useCallback(async () => {
+    setIsLoadingTip(true);
+    try {
+      const tipResult: GenerateTampaTipOutput = await generateTampaTip();
+      setDailyTip(tipResult.tip);
+    } catch (error) {
+      console.error("Error fetching daily tip:", error);
+      setDailyTip("Could not fetch a tip today. Explore Tampa and discover your own!");
+    } finally {
+      setIsLoadingTip(false);
+    }
   }, []);
 
   useEffect(() => {
@@ -96,7 +113,6 @@ export default function Home() {
       setLeadersCurrent(leadersApi.selectedScrollSnap() + 1);
     });
   }, [leadersApi]);
-
 
   const renderLoadingPlaceholder = (title: string, icon: React.ElementType) => {
     const IconComponent = icon;
@@ -155,6 +171,36 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Tampa Tip of the Day Section */}
+      {isMounted && (
+        <section className="py-12 bg-secondary/50 dark:bg-secondary/20">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <Card className="shadow-lg border-2 border-primary/30 bg-gradient-to-r from-primary/5 to-accent/5 dark:from-primary/10 dark:to-accent/10">
+              <CardHeader className="text-center pb-3">
+                <CardTitle className="text-2xl flex items-center justify-center gap-2">
+                  <Lightbulb className="h-7 w-7 text-primary" />
+                  Tampa Tip of the Day!
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                {isLoadingTip ? (
+                  <div className="flex items-center justify-center py-4">
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin text-primary" />
+                    <p className="text-muted-foreground">Fetching today's tip...</p>
+                  </div>
+                ) : (
+                  <p className="text-lg italic text-foreground">"{dailyTip}"</p>
+                )}
+                <Button variant="link" onClick={fetchDailyTip} disabled={isLoadingTip} className="mt-3 text-primary hover:text-accent">
+                  {isLoadingTip ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> :  <Zap className="mr-2 h-4 w-4"/>}
+                  Get Another Tip
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+      )}
       
       <HomepageWitWheel />
       <AdSlideshow />
@@ -204,22 +250,22 @@ export default function Home() {
       
       <section className="py-8 bg-muted/30 dark:bg-muted/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <Card className="p-6 md:p-8 rounded-lg shadow-md text-center border-2 border-dashed border-primary/30 bg-gradient-to-br from-accent/5 to-primary/5">
-            <div className="relative w-full h-32 sm:h-40 mb-4">
+           <Card className="p-4 md:p-6 rounded-lg shadow-md text-center border-2 border-dashed border-primary/30 bg-gradient-to-br from-accent/5 to-primary/5">
+            <div className="relative w-full h-32 sm:h-40 mb-3 rounded-md overflow-hidden">
               <Image src="https://placehold.co/728x90.png?text=Your+Business+Ad+Here" alt="Advertise your business on What's In Tampa" layout="fill" objectFit="contain" data-ai-hint="advertisement banner" />
             </div>
-            <CardHeader className="p-0 pb-4">
-              <ShoppingBag className="mx-auto h-10 w-10 text-primary mb-2" />
-              <CardTitle className="text-2xl font-semibold text-primary">Advertise Your Business Here!</CardTitle>
+            <CardHeader className="p-0 pb-3">
+              <ShoppingBag className="mx-auto h-8 w-8 text-primary mb-2" />
+              <CardTitle className="text-xl font-semibold text-primary">Advertise Your Business Here!</CardTitle>
             </CardHeader>
-            <CardContent className="p-0 space-y-3 text-foreground">
+            <CardContent className="p-0 space-y-2 text-sm text-foreground">
               <p>Want to be seen by thousands of Tampa locals and visitors? Feature your business prominently!</p>
-              <ul className="list-disc list-inside text-left inline-block text-sm space-y-1">
+              <ul className="list-disc list-inside text-left inline-block text-xs space-y-0.5">
                 <li>Prime placement on our homepage.</li>
                 <li>Increased brand visibility and awareness.</li>
                 <li>Drive targeted traffic to your offerings.</li>
               </ul>
-               <Button asChild className="mt-4 rounded-full bg-tertiary text-tertiary-foreground hover:bg-tertiary/90">
+               <Button asChild className="mt-3 rounded-full bg-tertiary text-tertiary-foreground hover:bg-tertiary/90">
                 <Link href="/auth/register">Learn About Advertising</Link>
               </Button>
             </CardContent>
@@ -356,22 +402,22 @@ export default function Home() {
       
       <section className="py-8 bg-muted/30 dark:bg-muted/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-           <Card className="p-6 md:p-8 rounded-lg shadow-md text-center border-2 border-dashed border-accent/30 bg-gradient-to-br from-primary/5 to-accent/5">
-            <div className="relative w-full h-32 sm:h-40 mb-4">
+           <Card className="p-4 md:p-6 rounded-lg shadow-md text-center border-2 border-dashed border-accent/30 bg-gradient-to-br from-primary/5 to-accent/5">
+            <div className="relative w-full h-32 sm:h-40 mb-3 rounded-md overflow-hidden">
                 <Image src="https://placehold.co/728x90.png?text=Your+Event+Ad+Here" alt="Advertise your event or venue" layout="fill" objectFit="contain" data-ai-hint="advertisement banner" />
             </div>
-            <CardHeader className="p-0 pb-4">
-              <Palette className="mx-auto h-10 w-10 text-accent mb-2" />
-              <CardTitle className="text-2xl font-semibold text-accent">Showcase Your Event or Venue!</CardTitle>
+            <CardHeader className="p-0 pb-3">
+              <Palette className="mx-auto h-8 w-8 text-accent mb-2" />
+              <CardTitle className="text-xl font-semibold text-accent">Showcase Your Event or Venue!</CardTitle>
             </CardHeader>
-            <CardContent className="p-0 space-y-3 text-foreground">
+            <CardContent className="p-0 space-y-2 text-sm text-foreground">
               <p>Got an event Tampa needs to know about? Feature your venue and attract more attendees!</p>
-              <ul className="list-disc list-inside text-left inline-block text-sm space-y-1">
+              <ul className="list-disc list-inside text-left inline-block text-xs space-y-0.5">
                 <li>Boost event visibility and ticket sales.</li>
                 <li>Highlight your venue’s unique features.</li>
                 <li>Connect with an engaged local audience.</li>
               </ul>
-              <Button asChild className="mt-4 rounded-full bg-tertiary text-tertiary-foreground hover:bg-tertiary/90">
+              <Button asChild className="mt-3 rounded-full bg-tertiary text-tertiary-foreground hover:bg-tertiary/90">
                 <Link href="/auth/register">Promote Your Listing</Link>
               </Button>
             </CardContent>
