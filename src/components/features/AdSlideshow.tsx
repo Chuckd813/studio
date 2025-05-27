@@ -89,8 +89,8 @@ export function AdSlideshow() {
                       <Image
                         src={business.imageUrl}
                         alt={business.name}
-                        layout="fill"
-                        objectFit="cover"
+                        fill
+                        style={{ objectFit: 'cover' }}
                         data-ai-hint={business.dataAiHint || 'business storefront'}
                       />
                     </div>

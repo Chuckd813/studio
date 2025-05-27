@@ -43,8 +43,8 @@ export const DealCard = React.memo(function DealCard({ deal }: DealCardProps) {
           <Image
             src={deal.imageUrl}
             alt={deal.title}
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: 'cover' }}
             data-ai-hint={deal.dataAiHint}
           />
         </div>

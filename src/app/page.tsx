@@ -140,11 +140,10 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 bg-gradient-to-br from-primary to-accent text-primary-foreground overflow-hidden">
         <div className="absolute inset-0">
-          <Image
-            src="https://placehold.co/1920x1080.png"
+          <Image src="https://images.unsplash.com/photo-1594602729519-ba24058355b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
             alt="Tampa Bay Skyline during the day"
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: 'cover' }}
             className="opacity-20 dark:opacity-10"
             data-ai-hint="tampa skyline day"
             priority
@@ -223,7 +222,7 @@ export default function Home() {
            <Card className="p-4 md:p-6 rounded-lg shadow-md text-center border-2 border-dashed border-primary/30 bg-gradient-to-br from-accent/5 to-primary/5">
             <div className="relative w-full h-32 sm:h-40 mb-3 rounded-md overflow-hidden">
               <Image src="https://placehold.co/728x90.png?text=Your+Business+Ad+Here" alt="Advertise your business on What's In Tampa" layout="fill" objectFit="contain" data-ai-hint="advertisement banner" />
-            </div>
+            </div> {/* Removed layout and objectFit as per Next.js 13+ Image component changes. The container handles layout, object-fit can be applied via CSS. */}
             <CardHeader className="p-0 pb-3">
               <ShoppingBag className="mx-auto h-8 w-8 text-primary mb-2" />
               <CardTitle className="text-xl font-semibold text-primary">Advertise Your Business Here!</CardTitle>
@@ -404,7 +403,7 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
            <Card className="p-4 md:p-6 rounded-lg shadow-md text-center border-2 border-dashed border-accent/30 bg-gradient-to-br from-primary/5 to-accent/5">
             <div className="relative w-full h-32 sm:h-40 mb-3 rounded-md overflow-hidden">
-                <Image src="https://placehold.co/728x90.png?text=Your+Event+Ad+Here" alt="Advertise your event or venue" layout="fill" objectFit="contain" data-ai-hint="advertisement banner" />
+                <Image src="https://placehold.co/728x90.png?text=Your+Event+Ad+Here" alt="Advertise your event or venue" fill style={{ objectFit: 'contain' }} data-ai-hint="advertisement banner" />
             </div>
             <CardHeader className="p-0 pb-3">
               <Palette className="mx-auto h-8 w-8 text-accent mb-2" />

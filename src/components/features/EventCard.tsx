@@ -37,8 +37,8 @@ export const EventCard = React.memo(function EventCard({ event }: EventCardProps
           <Image
             src={event.imageUrl}
             alt={event.name}
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: 'cover' }}
             data-ai-hint={event.dataAiHint}
           />
         </div>

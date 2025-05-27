@@ -20,8 +20,8 @@ export const PersonCard = React.memo(function PersonCard({ leader }: PersonCardP
           <Image
             src={leader.imageUrl || 'https://placehold.co/300x300.png'} // Fallback src
             alt={leader.name}
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: 'cover' }}
             data-ai-hint={leader.imageUrl ? (leader.dataAiHint || "person portrait") : "placeholder image"}
           />
         </div>
