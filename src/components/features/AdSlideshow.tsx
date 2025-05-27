@@ -12,11 +12,11 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-  CarouselDots, // Assuming CarouselDots is part of your ShadCN Carousel
+  CarouselDots, 
   type CarouselApi
 } from '@/components/ui/carousel';
 import Autoplay from "embla-carousel-autoplay";
-import { mockBusinesses, industries } from '@/lib/mock-data'; // Assuming industries is exported
+import { mockBusinesses, industries } from '@/lib/mock-data'; 
 import type { Business } from '@/types';
 import { ArrowRight } from 'lucide-react';
 
@@ -24,14 +24,19 @@ export function AdSlideshow() {
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)
+  const [isMounted, setIsMounted] = React.useState(false);
 
   const plugin = React.useRef(
     Autoplay({ delay: 5000, stopOnInteraction: true, stopOnMouseEnter: true })
   );
 
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const businessesToShow: Business[] = industries.map(industry => {
     return mockBusinesses.find(business => business.category === industry) as Business;
-  }).filter(Boolean); // Filter out any undefined if an industry has no business
+  }).filter(Boolean); 
 
   React.useEffect(() => {
     if (!api) {
@@ -43,10 +48,14 @@ export function AdSlideshow() {
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap() + 1)
     })
+    api.on("reInit", () => { // Also update count on reInit
+      setCount(api.scrollSnapList().length)
+      setCurrent(api.selectedScrollSnap() + 1)
+    })
   }, [api])
 
   if (businessesToShow.length === 0) {
-    return null; // Don't render anything if no businesses are found
+    return null; 
   }
 
   return (
@@ -102,11 +111,13 @@ export function AdSlideshow() {
           </CarouselContent>
           <CarouselPrevious className="hidden sm:flex" />
           <CarouselNext className="hidden sm:flex" />
-          <CarouselDots className="mt-6" />
+          {isMounted && count > 0 && <CarouselDots className="mt-6" />}
         </Carousel>
-        <div className="py-2 text-center text-sm text-muted-foreground">
-          Slide {current} of {count}
-        </div>
+        {isMounted && count > 0 && (
+            <div className="py-2 text-center text-sm text-muted-foreground">
+            Slide {current} of {count}
+            </div>
+        )}
       </div>
     </section>
   );

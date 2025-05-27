@@ -25,6 +25,8 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 
 export default function Home() {
+  const [isMounted, setIsMounted] = useState(false);
+
   const [dealsApi, setDealsApi] = useState<CarouselApi>();
   const [dealsCurrent, setDealsCurrent] = useState(0);
   const [dealsCount, setDealsCount] = useState(0);
@@ -39,6 +41,10 @@ export default function Home() {
   const [bizCurrent, setBizCurrent] = useState(0);
   const [bizCount, setBizCount] = useState(0);
   const bizAutoplayPlugin = useRef(Autoplay({ delay: 6000, stopOnInteraction: true, stopOnMouseEnter: true }));
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     if (!dealsApi) return;
@@ -91,7 +97,7 @@ export default function Home() {
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-md">
-            <span className="title-gradient-wave dark:title-gradient-wave-dark">Discover What's In Tampa</span>
+            Discover What's In Tampa
           </h1>
           <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto drop-shadow-sm">
             Your ultimate guide to the best businesses, exciting events, and unbeatable deals in Tampa Bay.
@@ -144,9 +150,9 @@ export default function Home() {
             </CarouselContent>
             <CarouselPrevious className="hidden sm:flex -left-4" />
             <CarouselNext className="hidden sm:flex -right-4" />
-            {dealsCount > 0 && <CarouselDots className="mt-6" />}
+            {isMounted && dealsCount > 0 && <CarouselDots className="mt-6" />}
           </Carousel>
-           {dealsCount > 0 && (
+           {isMounted && dealsCount > 0 && (
             <div className="py-2 text-center text-sm text-muted-foreground">
               Slide {dealsCurrent} of {dealsCount}
             </div>
@@ -195,9 +201,9 @@ export default function Home() {
             </CarouselContent>
             <CarouselPrevious className="hidden sm:flex -left-4" />
             <CarouselNext className="hidden sm:flex -right-4" />
-            {eventsCount > 0 && <CarouselDots className="mt-6" />}
+            {isMounted && eventsCount > 0 && <CarouselDots className="mt-6" />}
           </Carousel>
-          {eventsCount > 0 && (
+          {isMounted && eventsCount > 0 && (
             <div className="py-2 text-center text-sm text-muted-foreground">
               Slide {eventsCurrent} of {eventsCount}
             </div>
@@ -235,9 +241,9 @@ export default function Home() {
             </CarouselContent>
             <CarouselPrevious className="hidden sm:flex -left-4" />
             <CarouselNext className="hidden sm:flex -right-4" />
-            {bizCount > 0 && <CarouselDots className="mt-6" />}
+            {isMounted && bizCount > 0 && <CarouselDots className="mt-6" />}
           </Carousel>
-           {bizCount > 0 && (
+           {isMounted && bizCount > 0 && (
             <div className="py-2 text-center text-sm text-muted-foreground">
               Slide {bizCurrent} of {bizCount}
             </div>
