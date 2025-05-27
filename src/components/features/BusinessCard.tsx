@@ -12,7 +12,7 @@ interface BusinessCardProps {
 
 export function BusinessCard({ business }: BusinessCardProps) {
   return (
-    <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg">
+    <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 rounded-lg">
       <CardHeader className="p-0">
         <div className="relative w-full h-48">
           <Image
@@ -26,33 +26,32 @@ export function BusinessCard({ business }: BusinessCardProps) {
       </CardHeader>
       <CardContent className="p-6 flex-grow">
         <Badge variant="secondary" className="mb-2">{business.category}</Badge>
-        <CardTitle className="text-xl mb-2">{business.name}</CardTitle>
+        <CardTitle className="text-xl mb-2 line-clamp-1">{business.name}</CardTitle>
         <p className="text-muted-foreground text-sm mb-3 line-clamp-3">{business.description}</p>
         <div className="space-y-1 text-sm text-muted-foreground">
-          <div className="flex items-center">
-            <MapPin className="h-4 w-4 mr-2 shrink-0" />
-            <span>{business.address}</span>
+          <div className="flex items-start">
+            <MapPin className="h-4 w-4 mr-2 mt-0.5 shrink-0 text-primary/80" />
+            <span className="line-clamp-2">{business.address}</span>
           </div>
           {business.phone && (
             <div className="flex items-center">
-              <Phone className="h-4 w-4 mr-2 shrink-0" />
+              <Phone className="h-4 w-4 mr-2 shrink-0 text-primary/80" />
               <span>{business.phone}</span>
             </div>
           )}
         </div>
       </CardContent>
       <CardFooter className="p-6 pt-0">
-        <div className="flex items-center justify-between w-full">
+        <div className="flex items-center justify-between w-full space-x-2">
            {business.website && (
-            <Button variant="outline" size="sm" asChild className="rounded-full">
-              <a href={business.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
-                <Globe className="h-4 w-4" /> Visit Website
+            <Button variant="outline" size="sm" asChild className="rounded-full flex-1 min-w-0">
+              <a href={business.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 truncate">
+                <Globe className="h-4 w-4" /> <span className="truncate">Visit Website</span>
               </a>
             </Button>
           )}
-          {/* Placeholder for a future "View Details" button */}
-          <Button size="sm" asChild className="rounded-full">
-            <Link href={`/businesses/${business.id}`}>View Details</Link>
+          <Button size="sm" asChild className="rounded-full flex-1 min-w-0">
+            <Link href={`/businesses/${business.id}`} className="truncate">View Details</Link>
           </Button>
         </div>
       </CardFooter>

@@ -80,7 +80,7 @@ export default function DealsPage() {
      return (
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 className="text-3xl font-bold mb-8 text-primary flex items-center">
-          <Sparkles className="mr-3 h-8 w-8 text-accent" /> Today's Hot Deals
+          <Sparkles className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Today's Hot Deals</span>
         </h1>
         <p>Loading deals...</p>
       </div>
@@ -91,7 +91,7 @@ export default function DealsPage() {
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <header className="mb-12 text-center">
         <h1 className="text-4xl lg:text-5xl font-extrabold text-primary mb-4 flex items-center justify-center">
-          <Sparkles className="mr-3 h-10 w-10 text-accent" /> Today's Hot Deals
+          <Sparkles className="mr-3 h-10 w-10 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Today's Hot Deals</span>
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Discover AI-curated promotions and special offers from businesses across Tampa.
@@ -143,7 +143,7 @@ export default function DealsPage() {
           <p className="text-xl text-muted-foreground">Curating the best deals for you...</p>
         </div>
       ) : filteredDeals.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
           {filteredDeals.map(deal => (
             <DealCard key={deal.id} deal={deal} />
           ))}

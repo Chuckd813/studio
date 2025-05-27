@@ -3,7 +3,7 @@ export interface Business {
   name: string;
   category: string;
   imageUrl: string;
-  dataAiHint?: string; // Added to ensure all cards can have hints
+  dataAiHint?: string;
   description: string;
   address: string;
   phone?: string;
@@ -17,7 +17,7 @@ export interface Event {
   time: string;
   venue: string;
   imageUrl: string;
-  dataAiHint?: string; // Added to ensure all cards can have hints
+  dataAiHint?: string;
   description: string;
   ticketUrl?: string;
   category: string;
@@ -29,8 +29,22 @@ export interface Deal {
   businessName: string;
   description: string;
   imageUrl: string;
-  dataAiHint?: string; // Added to ensure all cards can have hints
+  dataAiHint?: string;
   confidence?: number; // For AI curated deals
   category: string;
   expiryDate?: string;
+}
+
+export interface CommunityLeader {
+  id: string;
+  name: string;
+  title: string;
+  imageUrl: string;
+  dataAiHint?: string;
+  bio: string;
+  socialLinks?: {
+    twitter?: string;
+    linkedin?: string;
+    website?: string;
+  };
 }

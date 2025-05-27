@@ -12,7 +12,7 @@ interface EventCardProps {
 
 export function EventCard({ event }: EventCardProps) {
   return (
-    <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 rounded-lg">
+    <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 rounded-lg">
       <CardHeader className="p-0">
         <div className="relative w-full h-48">
           <Image
@@ -26,35 +26,34 @@ export function EventCard({ event }: EventCardProps) {
       </CardHeader>
       <CardContent className="p-6 flex-grow">
         <Badge variant="secondary" className="mb-2">{event.category}</Badge>
-        <CardTitle className="text-xl mb-2">{event.name}</CardTitle>
+        <CardTitle className="text-xl mb-2 line-clamp-2">{event.name}</CardTitle>
         <p className="text-muted-foreground text-sm mb-3 line-clamp-3">{event.description}</p>
-        <div className="space-y-1 text-sm text-muted-foreground">
+        <div className="space-y-1.5 text-sm text-muted-foreground">
           <div className="flex items-center">
-            <CalendarDays className="h-4 w-4 mr-2 shrink-0" />
-            <span>{new Date(event.date).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
+            <CalendarDays className="h-4 w-4 mr-2 shrink-0 text-primary/80" />
+            <span>{new Date(event.date).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}</span>
           </div>
           <div className="flex items-center">
-            <Clock className="h-4 w-4 mr-2 shrink-0" />
+            <Clock className="h-4 w-4 mr-2 shrink-0 text-primary/80" />
             <span>{event.time}</span>
           </div>
-          <div className="flex items-center">
-            <MapPin className="h-4 w-4 mr-2 shrink-0" />
-            <span>{event.venue}</span>
+          <div className="flex items-start">
+            <MapPin className="h-4 w-4 mr-2 mt-0.5 shrink-0 text-primary/80" />
+            <span className="line-clamp-2">{event.venue}</span>
           </div>
         </div>
       </CardContent>
       <CardFooter className="p-6 pt-0">
-        <div className="flex items-center justify-between w-full">
+        <div className="flex items-center justify-between w-full space-x-2">
           {event.ticketUrl && (
-            <Button variant="outline" size="sm" asChild className="rounded-full">
-              <a href={event.ticketUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5">
-                <Ticket className="h-4 w-4" /> Get Tickets
+            <Button variant="outline" size="sm" asChild className="rounded-full flex-1 min-w-0">
+              <a href={event.ticketUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 truncate">
+                <Ticket className="h-4 w-4" /> <span className="truncate">Get Tickets</span>
               </a>
             </Button>
           )}
-          {/* Placeholder for a future "View Details" button */}
-          <Button size="sm" asChild className="rounded-full">
-            <Link href={`/events/${event.id}`}>View Details</Link>
+          <Button size="sm" asChild className={`rounded-full flex-1 min-w-0 ${!event.ticketUrl ? 'w-full' : ''}`}>
+            <Link href={`/events/${event.id}`} className="truncate">View Details</Link>
           </Button>
         </div>
       </CardFooter>

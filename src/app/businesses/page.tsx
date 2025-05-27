@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Search, Filter, Building2 } from 'lucide-react';
+import Image from 'next/image';
 
 export default function BusinessesPage() {
   const [businesses, setBusinesses] = useState<Business[]>([]);
@@ -45,7 +46,7 @@ export default function BusinessesPage() {
     return (
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 className="text-3xl font-bold mb-8 text-primary flex items-center">
-          <Building2 className="mr-3 h-8 w-8" /> Discover Tampa's Businesses
+          <Building2 className="mr-3 h-8 w-8" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Discover Tampa's Businesses</span>
         </h1>
         <p>Loading businesses...</p>
       </div>
@@ -56,10 +57,10 @@ export default function BusinessesPage() {
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <header className="mb-12 text-center">
         <h1 className="text-4xl lg:text-5xl font-extrabold text-primary mb-4 flex items-center justify-center">
-          <Building2 className="mr-3 h-10 w-10" /> Discover Tampa's Businesses
+          <Building2 className="mr-3 h-10 w-10" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Discover Tampa's Businesses</span>
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Find the best local spots, services, and attractions Tampa has to offer.
+          Find the best local spots, services, and attractions Tampa has to offer from our extensive directory.
         </p>
       </header>
 
@@ -102,8 +103,16 @@ export default function BusinessesPage() {
         </div>
       </div>
 
+      {/* Advertisement Placeholder */}
+      <div className="my-8 p-6 bg-muted/30 dark:bg-muted/10 rounded-lg text-center">
+        <div className="border-2 border-dashed border-border p-4 rounded-lg text-muted-foreground">
+          <p className="text-sm font-semibold">Advertisement</p>
+          <Image src="https://placehold.co/728x90.png?text=Business+Listing+Ad" alt="Advertisement" width={728} height={90} className="mx-auto mt-2 opacity-60" data-ai-hint="advertisement banner" />
+        </div>
+      </div>
+
       {filteredBusinesses.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-8">
           {filteredBusinesses.map(business => (
             <BusinessCard key={business.id} business={business} />
           ))}

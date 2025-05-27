@@ -56,48 +56,48 @@ body {
   }
 
   .dark {
-    --background: 224 71% 4%; /* Very Dark Blue */
+    --background: 222 84% 4.9%; /* Darker futuristic background */
     --foreground: 210 40% 98%; /* Almost White */
 
-    --card: 224 71% 9%; /* Slightly Lighter Dark Blue for Cards */
-    --card-foreground: 210 40% 98%; /* Almost White */
+    --card: 222 80% 9%; /* Dark card background */
+    --card-foreground: 210 40% 98%;
 
-    --popover: 224 71% 9%; /* Slightly Lighter Dark Blue for Popovers */
-    --popover-foreground: 210 40% 98%; /* Almost White */
+    --popover: 222 80% 9%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 198 93% 60%; /* Electric Cyan */
-    --primary-foreground: 224 71% 4%; /* Very Dark Blue (for text on primary buttons) */
+    --primary: 198 93% 60%; /* Electric Cyan for primary */
+    --primary-foreground: 222 84% 4.9%; /* Dark for text on primary */
 
-    --secondary: 224 71% 15%; /* Darker Blue for Secondary elements */
-    --secondary-foreground: 198 93% 70%; /* Brighter Electric Cyan for secondary text */
+    --secondary: 222 75% 15%; /* Darker secondary */
+    --secondary-foreground: 198 85% 70%; /* Lighter cyan for secondary text */
 
-    --muted: 224 71% 12%; /* Dark Muted Blue */
-    --muted-foreground: 210 40% 60%; /* Greyish Light Blue */
+    --muted: 222 70% 12%; /* Dark muted */
+    --muted-foreground: 210 40% 60%;
 
-    --accent: 260 100% 70%; /* Vibrant Violet */
-    --accent-foreground: 210 40% 98%; /* Almost White (for text on accent elements) */
+    --accent: 260 100% 70%; /* Vibrant Violet for accent */
+    --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 62.8% 30.6%; /* Darker Red for Destructive */
-    --destructive-foreground: 0 0% 98%; /* Near White */
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 224 71% 15%; /* Dark Blue Border */
-    --input: 224 71% 12%; /* Dark Input Background */
-    --ring: 198 93% 60%; /* Electric Cyan for Focus Rings */
+    --border: 222 70% 20%; /* Darker border */
+    --input: 222 70% 12%;
+    --ring: 198 93% 60%; /* Electric Cyan for focus rings */
     
-    --chart-1: 198 93% 60%; /* Electric Cyan */
-    --chart-2: 260 100% 70%; /* Vibrant Violet */
-    --chart-3: 210 100% 75%; /* Bright Blue */
-    --chart-4: 180 80% 50%; /* Teal */
-    --chart-5: 300 70% 65%; /* Pink/Magenta */
+    --chart-1: 198 93% 60%;
+    --chart-2: 260 100% 70%;
+    --chart-3: 210 100% 75%;
+    --chart-4: 180 80% 50%;
+    --chart-5: 300 70% 65%;
 
-    --sidebar-background: 224 71% 6%; /* Darker sidebar background */
-    --sidebar-foreground: 210 40% 90%; /* Lighter foreground for sidebar */
-    --sidebar-primary: 198 93% 60%; /* Electric Cyan for sidebar primary */
-    --sidebar-primary-foreground: 224 71% 4%; /* Very Dark Blue for sidebar primary text */
-    --sidebar-accent: 260 100% 70%; /* Vibrant Violet for sidebar accent */
-    --sidebar-accent-foreground: 210 40% 98%; /* Almost White for sidebar accent text */
-    --sidebar-border: 224 71% 12%; /* Darker sidebar border */
-    --sidebar-ring: 198 93% 60%; /* Electric Cyan for sidebar ring */
+    --sidebar-background: 222 80% 7%;
+    --sidebar-foreground: 210 40% 90%;
+    --sidebar-primary: 198 93% 60%;
+    --sidebar-primary-foreground: 222 84% 4.9%;
+    --sidebar-accent: 260 100% 70%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 222 70% 15%;
+    --sidebar-ring: 198 93% 60%;
   }
 }
 
@@ -115,4 +115,24 @@ body {
   h2 { @apply text-3xl lg:text-4xl; }
   h3 { @apply text-2xl lg:text-3xl; }
   p { @apply leading-relaxed; }
+}
+
+/* Gradient Wave Animation */
+@layer utilities {
+  .title-gradient-wave {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-secondary;
+    background-size: 200% auto;
+    animation: gradient-wave-animation 5s linear infinite;
+  }
+  .title-gradient-wave-dark {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-accent to-secondary; /* Primary, Accent, Secondary are already defined for dark mode */
+    background-size: 200% auto;
+    animation: gradient-wave-animation 5s linear infinite;
+  }
+
+  @keyframes gradient-wave-animation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
 }

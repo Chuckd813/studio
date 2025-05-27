@@ -56,7 +56,7 @@ export default function EventsPage() {
     return (
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
          <h1 className="text-3xl font-bold mb-8 text-primary flex items-center">
-            <CalendarDays className="mr-3 h-8 w-8" /> Tampa Event Calendar
+            <CalendarDays className="mr-3 h-8 w-8" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Tampa Event Calendar</span>
           </h1>
         <p>Loading events...</p>
       </div>
@@ -67,7 +67,7 @@ export default function EventsPage() {
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <header className="mb-12 text-center">
         <h1 className="text-4xl lg:text-5xl font-extrabold text-primary mb-4 flex items-center justify-center">
-          <CalendarDays className="mr-3 h-10 w-10" /> Tampa Event Calendar
+          <CalendarDays className="mr-3 h-10 w-10" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Tampa Event Calendar</span>
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Stay updated with the latest happenings, parties, and gatherings in Tampa.
@@ -149,7 +149,7 @@ export default function EventsPage() {
       </div>
 
       {filteredEvents.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
           {filteredEvents.map(event => (
             <EventCard key={event.id} event={event} />
           ))}

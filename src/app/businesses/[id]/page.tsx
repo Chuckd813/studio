@@ -3,7 +3,7 @@ import { mockBusinesses } from '@/lib/mock-data';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, MapPin, Phone, Globe } from 'lucide-react';
+import { ArrowLeft, MapPin, Phone, Globe, Building2 } from 'lucide-react';
 import Link from 'next/link';
 
 export async function generateStaticParams() {
@@ -35,50 +35,91 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
           <ArrowLeft className="mr-2 h-4 w-4" /> Back to All Businesses
         </Link>
       </Button>
-      <Card className="overflow-hidden shadow-xl">
-        <div className="relative w-full h-64 md:h-96">
-          <Image
-            src={business.imageUrl}
-            alt={business.name}
-            layout="fill"
-            objectFit="cover"
-            data-ai-hint={business.dataAiHint}
-          />
-        </div>
-        <CardHeader className="p-6">
-          <CardTitle className="text-3xl lg:text-4xl mb-2">{business.name}</CardTitle>
-          <CardDescription className="text-lg text-muted-foreground">{business.category}</CardDescription>
-        </CardHeader>
-        <CardContent className="p-6 grid md:grid-cols-2 gap-6">
-          <div>
-            <h3 className="text-xl font-semibold mb-3">About {business.name}</h3>
-            <p className="text-foreground leading-relaxed">{business.description}</p>
-          </div>
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold mb-3">Contact & Location</h3>
-            <div className="flex items-start">
-              <MapPin className="h-5 w-5 mr-3 mt-1 text-primary shrink-0" />
-              <p>{business.address}</p>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-2">
+          <Card className="overflow-hidden shadow-xl transition-all duration-300 ease-in-out">
+            <div className="relative w-full h-64 md:h-96">
+              <Image
+                src={business.imageUrl}
+                alt={business.name}
+                layout="fill"
+                objectFit="cover"
+                data-ai-hint={business.dataAiHint}
+                priority
+              />
             </div>
-            {business.phone && (
-              <div className="flex items-center">
-                <Phone className="h-5 w-5 mr-3 text-primary shrink-0" />
-                <p>{business.phone}</p>
+            <CardHeader className="p-6">
+              <CardTitle className="text-3xl lg:text-4xl mb-2">
+                <span className="title-gradient-wave dark:title-gradient-wave-dark">{business.name}</span>
+              </CardTitle>
+              <CardDescription className="text-lg text-muted-foreground flex items-center">
+                <Building2 className="h-5 w-5 mr-2 shrink-0 text-primary/80" />
+                {business.category}
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="p-6 grid md:grid-cols-1 gap-6">
+              <div>
+                <h3 className="text-xl font-semibold mb-3 text-primary">About {business.name}</h3>
+                <p className="text-foreground leading-relaxed whitespace-pre-line">{business.description}</p>
               </div>
-            )}
-            {business.website && (
-              <div className="flex items-center">
-                <Globe className="h-5 w-5 mr-3 text-primary shrink-0" />
-                <a href={business.website} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-                  Visit Website
-                </a>
+              <div className="space-y-4 pt-4 border-t border-border">
+                <h3 className="text-xl font-semibold mb-3 text-primary">Contact & Location</h3>
+                <div className="flex items-start">
+                  <MapPin className="h-5 w-5 mr-3 mt-1 text-accent shrink-0" />
+                  <p>{business.address}</p>
+                </div>
+                {business.phone && (
+                  <div className="flex items-center">
+                    <Phone className="h-5 w-5 mr-3 text-accent shrink-0" />
+                    <p>{business.phone}</p>
+                  </div>
+                )}
+                {business.website && (
+                  <div className="flex items-center">
+                    <Globe className="h-5 w-5 mr-3 text-accent shrink-0" />
+                    <a href={business.website} target="_blank" rel="noopener noreferrer" className="text-accent hover:underline hover:text-primary transition-colors">
+                      Visit Website
+                    </a>
+                  </div>
+                )}
               </div>
-            )}
+            </CardContent>
+          </Card>
+        </div>
+        <aside className="lg:col-span-1 space-y-6">
+          {/* Ad Placeholder */}
+          <div className="p-4 bg-card rounded-lg shadow-md text-center border border-dashed border-border">
+            <p className="text-sm font-medium text-muted-foreground mb-2">Advertisement</p>
+            <Image src="https://placehold.co/300x250.png?text=Side+Ad" alt="Advertisement" width={300} height={250} className="mx-auto opacity-70" data-ai-hint="sidebar ad" />
           </div>
-        </CardContent>
-      </Card>
-      {/* Placeholder for reviews, gallery, deals from this business etc. */}
+
+          {/* Potentially related businesses or deals from this business */}
+          <Card className="shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-lg">More from {business.category}</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2">
+                {mockBusinesses
+                  .filter(b => b.category === business.category && b.id !== business.id)
+                  .slice(0, 3)
+                  .map(relatedBusiness => (
+                    <li key={relatedBusiness.id}>
+                      <Button variant="link" asChild className="p-0 h-auto text-left">
+                        <Link href={`/businesses/${relatedBusiness.id}`} className="text-primary hover:underline">
+                          {relatedBusiness.name}
+                        </Link>
+                      </Button>
+                    </li>
+                ))}
+                 {mockBusinesses.filter(b => b.category === business.category && b.id !== business.id).length === 0 && (
+                    <p className="text-sm text-muted-foreground">No other businesses found in this category.</p>
+                 )}
+              </ul>
+            </CardContent>
+          </Card>
+        </aside>
+      </div>
     </div>
   );
 }
-
