@@ -18,11 +18,11 @@ export const PersonCard = React.memo(function PersonCard({ leader }: PersonCardP
       <CardHeader className="items-center text-center p-6">
         <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-primary/50 mb-4">
           <Image
-            src={leader.imageUrl}
+            src={leader.imageUrl || 'https://placehold.co/300x300.png'} // Fallback src
             alt={leader.name}
             layout="fill"
             objectFit="cover"
-            data-ai-hint={leader.dataAiHint || "person portrait"}
+            data-ai-hint={leader.imageUrl ? (leader.dataAiHint || "person portrait") : "placeholder image"}
           />
         </div>
         <CardTitle className="text-xl">{leader.name}</CardTitle>

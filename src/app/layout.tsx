@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}> {/* Removed GeistMono variable for now */}
+    <html lang="en" className={`${GeistSans.variable}`}> {/* Removed GeistMono variable */}
       <head>
         <meta name="application-name" content="What's In Tampa" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
