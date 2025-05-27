@@ -14,7 +14,7 @@ interface DealCardProps {
   deal: Deal;
 }
 
-export function DealCard({ deal }: DealCardProps) {
+export const DealCard = React.memo(function DealCard({ deal }: DealCardProps) {
   const [formattedExpiryDate, setFormattedExpiryDate] = useState<string | null>(null);
   const [confidencePercentage, setConfidencePercentage] = useState<string | null>(null);
 
@@ -85,4 +85,5 @@ export function DealCard({ deal }: DealCardProps) {
       </CardFooter>
     </Card>
   );
-}
+});
+DealCard.displayName = 'DealCard';

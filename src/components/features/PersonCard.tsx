@@ -1,5 +1,8 @@
+
+'use client';
+import React from 'react'; // Import React
 import Image from 'next/image';
-import { CommunityLeader } from '@/types';
+import type { CommunityLeader } from '@/types';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Linkedin, Twitter, Globe } from 'lucide-react';
@@ -9,7 +12,7 @@ interface PersonCardProps {
   leader: CommunityLeader;
 }
 
-export function PersonCard({ leader }: PersonCardProps) {
+export const PersonCard = React.memo(function PersonCard({ leader }: PersonCardProps) {
   return (
     <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 rounded-lg">
       <CardHeader className="items-center text-center p-6">
@@ -55,4 +58,5 @@ export function PersonCard({ leader }: PersonCardProps) {
       </CardContent>
     </Card>
   );
-}
+});
+PersonCard.displayName = 'PersonCard';

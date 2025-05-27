@@ -1,6 +1,9 @@
+
+'use client';
+import React from 'react'; // Import React
 import Image from 'next/image';
 import Link from 'next/link';
-import { Business } from '@/types';
+import type { Business } from '@/types';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -10,7 +13,7 @@ interface BusinessCardProps {
   business: Business;
 }
 
-export function BusinessCard({ business }: BusinessCardProps) {
+export const BusinessCard = React.memo(function BusinessCard({ business }: BusinessCardProps) {
   return (
     <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 rounded-lg">
       <CardHeader className="p-0">
@@ -57,4 +60,5 @@ export function BusinessCard({ business }: BusinessCardProps) {
       </CardFooter>
     </Card>
   );
-}
+});
+BusinessCard.displayName = 'BusinessCard';

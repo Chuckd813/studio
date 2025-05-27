@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -13,7 +14,7 @@ interface EventCardProps {
   event: Event;
 }
 
-export function EventCard({ event }: EventCardProps) {
+export const EventCard = React.memo(function EventCard({ event }: EventCardProps) {
   const [formattedEventDate, setFormattedEventDate] = useState<string | null>(null);
 
   useEffect(() => {
@@ -77,4 +78,5 @@ export function EventCard({ event }: EventCardProps) {
       </CardFooter>
     </Card>
   );
-}
+});
+EventCard.displayName = 'EventCard';
