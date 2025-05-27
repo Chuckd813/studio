@@ -1,3 +1,4 @@
+
 'use client';
 import { useState, useEffect } from 'react';
 import { BusinessCard } from '@/components/features/BusinessCard';
@@ -6,8 +7,10 @@ import type { Business } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Search, Filter, Building2 } from 'lucide-react';
-import Image from 'next/image';
+import { Search, Filter, Building2, ShoppingBag } from 'lucide-react';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import Link from 'next/link';
+
 
 export default function BusinessesPage() {
   const [businesses, setBusinesses] = useState<Business[]>([]);
@@ -104,12 +107,25 @@ export default function BusinessesPage() {
       </div>
 
       {/* Advertisement Placeholder */}
-      <div className="my-8 p-6 bg-muted/30 dark:bg-muted/10 rounded-lg text-center">
-        <div className="border-2 border-dashed border-border p-4 rounded-lg text-muted-foreground">
-          <p className="text-sm font-semibold">Advertisement</p>
-          <Image src="https://placehold.co/728x90.png?text=Business+Listing+Ad" alt="Advertisement" width={728} height={90} className="mx-auto mt-2 opacity-60" data-ai-hint="advertisement banner" />
-        </div>
-      </div>
+      <section className="my-8">
+        <Card className="p-6 md:p-8 rounded-lg shadow-md text-center border-2 border-dashed border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5">
+            <CardHeader className="p-0 pb-4">
+              <ShoppingBag className="mx-auto h-10 w-10 text-primary mb-2" />
+              <CardTitle className="text-2xl font-semibold text-primary">Feature Your Business!</CardTitle>
+            </CardHeader>
+            <CardContent className="p-0 space-y-3 text-foreground">
+              <p>Get your Tampa business in front of thousands of engaged locals and visitors.</p>
+              <ul className="list-disc list-inside text-left inline-block text-sm space-y-1">
+                <li>Prime placement on business listings.</li>
+                <li>Enhanced visibility and brand awareness.</li>
+                <li>Attract more customers directly.</li>
+              </ul>
+               <Button asChild className="mt-4 rounded-full">
+                <Link href="/auth/register">Learn About Advertising</Link>
+              </Button>
+            </CardContent>
+          </Card>
+      </section>
 
       {filteredBusinesses.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-6 gap-y-8">

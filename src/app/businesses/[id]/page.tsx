@@ -1,9 +1,10 @@
+
 // Placeholder for individual business detail page
 import { mockBusinesses } from '@/lib/mock-data';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, MapPin, Phone, Globe, Building2 } from 'lucide-react';
+import { ArrowLeft, MapPin, Phone, Globe, Building2, Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
 export async function generateStaticParams() {
@@ -88,10 +89,23 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
         </div>
         <aside className="lg:col-span-1 space-y-6">
           {/* Ad Placeholder */}
-          <div className="p-4 bg-card rounded-lg shadow-md text-center border border-dashed border-border">
-            <p className="text-sm font-medium text-muted-foreground mb-2">Advertisement</p>
-            <Image src="https://placehold.co/300x250.png?text=Side+Ad" alt="Advertisement" width={300} height={250} className="mx-auto opacity-70" data-ai-hint="sidebar ad" />
-          </div>
+          <Card className="p-4 text-center border-2 border-dashed border-accent/30 shadow-lg bg-gradient-to-br from-accent/5 to-primary/5">
+            <CardHeader className="p-0 pb-3">
+               <Sparkles className="mx-auto h-8 w-8 text-accent mb-2" />
+              <CardTitle className="text-lg font-semibold text-accent">Want to Stand Out?</CardTitle>
+            </CardHeader>
+            <CardContent className="p-0 space-y-2 text-sm text-foreground">
+              <p>Feature your business on this page and attract more attention!</p>
+              <ul className="list-disc list-inside text-left inline-block text-xs space-y-0.5">
+                <li>Top placement on detail pages.</li>
+                <li>Highlight special promotions.</li>
+                <li>Reach highly interested customers.</li>
+              </ul>
+              <Button variant="outline" size="sm" asChild className="mt-3 rounded-full border-accent text-accent hover:bg-accent/10">
+                <Link href="/auth/register">Advertise With Us</Link>
+              </Button>
+            </CardContent>
+          </Card>
 
           {/* Potentially related businesses or deals from this business */}
           <Card className="shadow-lg">
