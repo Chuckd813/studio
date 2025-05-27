@@ -30,6 +30,9 @@ body {
     --accent: 196 100% 45%; /* #00A0E9 */
     --accent-foreground: 0 0% 100%; /* White */
 
+    --tertiary: 24 96% 53%; /* Orange: hsl(24, 96%, 53%) approx #F97316 */
+    --tertiary-foreground: 0 0% 98%; /* White/Almost White for text on orange */
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
@@ -76,6 +79,9 @@ body {
 
     --accent: 260 100% 70%; /* Vibrant Violet for accent */
     --accent-foreground: 210 40% 98%;
+
+    --tertiary: 30 90% 55%; /* Slightly brighter orange for dark: hsl(30, 90%, 55%) approx #FA8A2E */
+    --tertiary-foreground: 222 84% 4.9%; /* Dark for text on orange */
 
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;

@@ -89,6 +89,9 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
         </div>
         <aside className="lg:col-span-1 space-y-6">
           <Card className="p-4 text-center border-2 border-dashed border-accent/30 shadow-lg bg-gradient-to-br from-accent/5 to-primary/5">
+            <div className="relative w-full h-40 sm:h-48 mb-3 rounded-md overflow-hidden">
+                <Image src="https://placehold.co/300x250.png?text=Your+Ad+Here" alt="Advertise your business" layout="fill" objectFit="cover" data-ai-hint="advertisement placeholder" />
+            </div>
             <CardHeader className="p-0 pb-3">
                <Sparkles className="mx-auto h-8 w-8 text-accent mb-2" />
               <CardTitle className="text-lg font-semibold text-accent">Your Business Here?</CardTitle>
@@ -100,7 +103,7 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
                 <li>Showcase your unique selling points.</li>
                 <li>Convert page visitors into customers.</li>
               </ul>
-              <Button variant="outline" size="sm" asChild className="mt-3 rounded-full border-accent text-accent hover:bg-accent/10">
+              <Button variant="outline" size="sm" asChild className="mt-3 rounded-full border-tertiary text-tertiary hover:bg-tertiary/10 hover:text-tertiary">
                 <Link href="/auth/register">Advertise With Us</Link>
               </Button>
             </CardContent>

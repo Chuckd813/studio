@@ -10,6 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Search, Filter, Building2, ShoppingBag, Sparkles } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
+import Image from 'next/image';
 
 
 export default function BusinessesPage() {
@@ -108,6 +109,9 @@ export default function BusinessesPage() {
 
       <section className="my-8">
         <Card className="p-6 md:p-8 rounded-lg shadow-md text-center border-2 border-dashed border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5">
+            <div className="relative w-full h-32 sm:h-40 mb-4">
+              <Image src="https://placehold.co/728x90.png?text=Your+Business+Ad+Here" alt="Advertise your business on What's In Tampa" layout="fill" objectFit="contain" data-ai-hint="advertisement banner" />
+            </div>
             <CardHeader className="p-0 pb-4">
               <Sparkles className="mx-auto h-10 w-10 text-primary mb-2" />
               <CardTitle className="text-2xl font-semibold text-primary">Want Your Business to Shine?</CardTitle>
@@ -119,7 +123,7 @@ export default function BusinessesPage() {
                 <li>Enhanced visibility to drive more leads.</li>
                 <li>Showcase your unique offerings and promotions.</li>
               </ul>
-               <Button asChild className="mt-4 rounded-full">
+               <Button asChild className="mt-4 rounded-full bg-tertiary text-tertiary-foreground hover:bg-tertiary/90">
                 <Link href="/auth/register">Advertise With Us</Link>
               </Button>
             </CardContent>

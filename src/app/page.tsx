@@ -3,7 +3,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { ArrowRight, Sparkles, CalendarDays, Building2, Users, Loader2, Zap, ShoppingBag, Palette } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -43,6 +43,12 @@ export default function Home() {
   const [bizCount, setBizCount] = useState(0);
   const bizAutoplayPlugin = useRef(Autoplay({ delay: 6000, stopOnInteraction: true, stopOnMouseEnter: true }));
 
+  const [leadersApi, setLeadersApi] = useState<CarouselApi>();
+  const [leadersCurrent, setLeadersCurrent] = useState(0);
+  const [leadersCount, setLeadersCount] = useState(0);
+  const leadersAutoplayPlugin = useRef(Autoplay({ delay: 6500, stopOnInteraction: true, stopOnMouseEnter: true }));
+
+
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -79,6 +85,17 @@ export default function Home() {
       setBizCurrent(bizApi.selectedScrollSnap() + 1);
     });
   }, [bizApi]);
+
+  useEffect(() => {
+    if (!leadersApi) return;
+    setLeadersCount(leadersApi.scrollSnapList().length);
+    setLeadersCurrent(leadersApi.selectedScrollSnap() + 1);
+    leadersApi.on("select", () => setLeadersCurrent(leadersApi.selectedScrollSnap() + 1));
+    leadersApi.on("reInit", () => {
+      setLeadersCount(leadersApi.scrollSnapList().length);
+      setLeadersCurrent(leadersApi.selectedScrollSnap() + 1);
+    });
+  }, [leadersApi]);
 
 
   const renderLoadingPlaceholder = (title: string, icon: React.ElementType) => {
@@ -188,6 +205,9 @@ export default function Home() {
       <section className="py-8 bg-muted/30 dark:bg-muted/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <Card className="p-6 md:p-8 rounded-lg shadow-md text-center border-2 border-dashed border-primary/30 bg-gradient-to-br from-accent/5 to-primary/5">
+            <div className="relative w-full h-32 sm:h-40 mb-4">
+              <Image src="https://placehold.co/728x90.png?text=Your+Business+Ad+Here" alt="Advertise your business" layout="fill" objectFit="contain" data-ai-hint="advertisement banner" />
+            </div>
             <CardHeader className="p-0 pb-4">
               <ShoppingBag className="mx-auto h-10 w-10 text-primary mb-2" />
               <CardTitle className="text-2xl font-semibold text-primary">Advertise Your Business Here!</CardTitle>
@@ -199,7 +219,7 @@ export default function Home() {
                 <li>Increased brand visibility and awareness.</li>
                 <li>Drive targeted traffic to your offerings.</li>
               </ul>
-               <Button asChild className="mt-4 rounded-full">
+               <Button asChild className="mt-4 rounded-full bg-tertiary text-tertiary-foreground hover:bg-tertiary/90">
                 <Link href="/auth/register">Learn About Advertising</Link>
               </Button>
             </CardContent>
@@ -293,31 +313,53 @@ export default function Home() {
         </section>
       )}
 
-      <section className="py-16 bg-secondary/50 dark:bg-secondary/20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-10">
-            <h2 className="text-3xl font-bold text-primary flex items-center">
-              <Users className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Featured Community Leaders</span>
-            </h2>
+      {!isMounted ? renderLoadingPlaceholder("Featured Community Leaders", Users) : (
+        <section className="py-16 bg-secondary/50 dark:bg-secondary/20">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center mb-10">
+              <h2 className="text-3xl font-bold text-primary flex items-center">
+                <Users className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Featured Community Leaders</span>
+              </h2>
+              {/* Optionally, add a "View All Leaders" link if you plan a dedicated page */}
+            </div>
+            <Carousel
+              opts={{ align: "start", loop: mockCommunityLeaders.length > 1 }} // Loop if more than 1 leader
+              plugins={[leadersAutoplayPlugin.current]}
+              setApi={setLeadersApi}
+              className="w-full"
+              onMouseEnter={leadersAutoplayPlugin.current.stop}
+              onMouseLeave={leadersAutoplayPlugin.current.reset}
+            >
+              <CarouselContent>
+                {mockCommunityLeaders.map(leader => (
+                  <CarouselItem key={leader.id} className="basis-full xs:basis-1/2 sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
+                    <div className="p-1 h-full">
+                      <PersonCard leader={leader} />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              {isMounted && leadersCount > 0 && (
+                <>
+                  <CarouselPrevious className="hidden sm:flex -left-4" />
+                  <CarouselNext className="hidden sm:flex -right-4" />
+                  <CarouselDots className="mt-6" />
+                  <div className="py-2 text-center text-sm text-muted-foreground">
+                    Slide {leadersCurrent} of {leadersCount}
+                  </div>
+                </>
+              )}
+            </Carousel>
           </div>
-          {isMounted ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {mockCommunityLeaders.slice(0, 4).map(leader => (
-                <PersonCard key={leader.id} leader={leader} />
-              ))}
-            </div>
-          ) : (
-             <div className="flex items-center justify-center py-10 text-muted-foreground">
-              <Loader2 className="mr-2 h-6 w-6 animate-spin" />
-              Loading community leaders...
-            </div>
-          )}
-        </div>
-      </section>
+        </section>
+      )}
       
       <section className="py-8 bg-muted/30 dark:bg-muted/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
            <Card className="p-6 md:p-8 rounded-lg shadow-md text-center border-2 border-dashed border-accent/30 bg-gradient-to-br from-primary/5 to-accent/5">
+            <div className="relative w-full h-32 sm:h-40 mb-4">
+                <Image src="https://placehold.co/728x90.png?text=Your+Event+Ad+Here" alt="Advertise your event or venue" layout="fill" objectFit="contain" data-ai-hint="advertisement banner" />
+            </div>
             <CardHeader className="p-0 pb-4">
               <Palette className="mx-auto h-10 w-10 text-accent mb-2" />
               <CardTitle className="text-2xl font-semibold text-accent">Showcase Your Event or Venue!</CardTitle>
@@ -329,7 +371,7 @@ export default function Home() {
                 <li>Highlight your venue’s unique features.</li>
                 <li>Connect with an engaged local audience.</li>
               </ul>
-              <Button variant="outline" asChild className="mt-4 rounded-full border-accent text-accent hover:bg-accent/10">
+              <Button asChild className="mt-4 rounded-full bg-tertiary text-tertiary-foreground hover:bg-tertiary/90">
                 <Link href="/auth/register">Promote Your Listing</Link>
               </Button>
             </CardContent>

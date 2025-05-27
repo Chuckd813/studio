@@ -15,7 +15,7 @@ const navLinks = [
   { href: '/businesses', label: 'Businesses', icon: Briefcase },
   { href: '/events', label: 'Events', icon: CalendarDays },
   { href: '/deals', label: 'Deals', icon: Sparkles },
-  { href: '/adventure-wheel', label: 'WIT Wheel', icon: Zap, labelClassName: 'text-xs' },
+  { href: '/adventure-wheel', label: 'WIT Wheel', icon: Zap, labelClassName: 'text-xs', iconClassName: 'text-tertiary' },
 ];
 
 const authLinks = [
@@ -47,7 +47,7 @@ export function Header() {
     );
   }
 
-  const NavLinkItem: React.FC<{ href: string, label: string, icon: React.ElementType, onClick?: () => void, labelClassName?: string }> = ({ href, label, icon: Icon, onClick, labelClassName }) => (
+  const NavLinkItem: React.FC<{ href: string, label: string, icon: React.ElementType, onClick?: () => void, labelClassName?: string, iconClassName?: string }> = ({ href, label, icon: Icon, onClick, labelClassName, iconClassName }) => (
     <Link
       href={href}
       onClick={onClick}
@@ -56,7 +56,7 @@ export function Header() {
         pathname === href && "bg-primary/10 text-primary font-medium"
       )}
     >
-      <Icon className="h-5 w-5" />
+      <Icon className={cn("h-5 w-5", iconClassName)} />
       <span className={cn(labelClassName)}>{label}</span>
     </Link>
   );
