@@ -1,3 +1,4 @@
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, Sparkles, CalendarDays, Building2, Users } from 'lucide-react';
@@ -7,7 +8,8 @@ import { mockDeals, mockEvents, mockBusinesses, mockCommunityLeaders } from '@/l
 import { DealCard } from '@/components/features/DealCard';
 import { EventCard } from '@/components/features/EventCard';
 import { BusinessCard } from '@/components/features/BusinessCard';
-import { PersonCard } from '@/components/features/PersonCard'; // New import
+import { PersonCard } from '@/components/features/PersonCard';
+import { AdSlideshow } from '@/components/features/AdSlideshow'; // New import
 
 export default function Home() {
   return (
@@ -17,11 +19,11 @@ export default function Home() {
         <div className="absolute inset-0">
           <Image
             src="https://placehold.co/1920x1080.png"
-            alt="Tampa Bay Skyline"
+            alt="Tampa Bay Skyline during the day"
             layout="fill"
             objectFit="cover"
             className="opacity-20 dark:opacity-10"
-            data-ai-hint="city skyline night"
+            data-ai-hint="tampa skyline day"
             priority
           />
         </div>
@@ -46,6 +48,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Ad Slideshow Section */}
+      <AdSlideshow />
 
       {/* Hot Deals Preview */}
       <section className="py-16 bg-background">
