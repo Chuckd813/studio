@@ -1,4 +1,7 @@
 
+'use client'; // Required for using React hooks for carousels
+
+import React, { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, Sparkles, CalendarDays, Building2, Users } from 'lucide-react';
@@ -9,9 +12,68 @@ import { DealCard } from '@/components/features/DealCard';
 import { EventCard } from '@/components/features/EventCard';
 import { BusinessCard } from '@/components/features/BusinessCard';
 import { PersonCard } from '@/components/features/PersonCard';
-import { AdSlideshow } from '@/components/features/AdSlideshow'; // New import
+import { AdSlideshow } from '@/components/features/AdSlideshow';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  CarouselDots,
+  type CarouselApi
+} from '@/components/ui/carousel';
+import Autoplay from "embla-carousel-autoplay";
 
 export default function Home() {
+  const [dealsApi, setDealsApi] = useState<CarouselApi>();
+  const [dealsCurrent, setDealsCurrent] = useState(0);
+  const [dealsCount, setDealsCount] = useState(0);
+  const dealsAutoplayPlugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true, stopOnMouseEnter: true }));
+
+  const [eventsApi, setEventsApi] = useState<CarouselApi>();
+  const [eventsCurrent, setEventsCurrent] = useState(0);
+  const [eventsCount, setEventsCount] = useState(0);
+  const eventsAutoplayPlugin = useRef(Autoplay({ delay: 5500, stopOnInteraction: true, stopOnMouseEnter: true }));
+
+  const [bizApi, setBizApi] = useState<CarouselApi>();
+  const [bizCurrent, setBizCurrent] = useState(0);
+  const [bizCount, setBizCount] = useState(0);
+  const bizAutoplayPlugin = useRef(Autoplay({ delay: 6000, stopOnInteraction: true, stopOnMouseEnter: true }));
+
+  useEffect(() => {
+    if (!dealsApi) return;
+    setDealsCount(dealsApi.scrollSnapList().length);
+    setDealsCurrent(dealsApi.selectedScrollSnap() + 1);
+    dealsApi.on("select", () => setDealsCurrent(dealsApi.selectedScrollSnap() + 1));
+    dealsApi.on("reInit", () => {
+      setDealsCount(dealsApi.scrollSnapList().length);
+      setDealsCurrent(dealsApi.selectedScrollSnap() + 1);
+    });
+  }, [dealsApi]);
+
+  useEffect(() => {
+    if (!eventsApi) return;
+    setEventsCount(eventsApi.scrollSnapList().length);
+    setEventsCurrent(eventsApi.selectedScrollSnap() + 1);
+    eventsApi.on("select", () => setEventsCurrent(eventsApi.selectedScrollSnap() + 1));
+     eventsApi.on("reInit", () => {
+      setEventsCount(eventsApi.scrollSnapList().length);
+      setEventsCurrent(eventsApi.selectedScrollSnap() + 1);
+    });
+  }, [eventsApi]);
+
+  useEffect(() => {
+    if (!bizApi) return;
+    setBizCount(bizApi.scrollSnapList().length);
+    setBizCurrent(bizApi.selectedScrollSnap() + 1);
+    bizApi.on("select", () => setBizCurrent(bizApi.selectedScrollSnap() + 1));
+    bizApi.on("reInit", () => {
+      setBizCount(bizApi.scrollSnapList().length);
+      setBizCurrent(bizApi.selectedScrollSnap() + 1);
+    });
+  }, [bizApi]);
+
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -26,7 +88,6 @@ export default function Home() {
             data-ai-hint="tampa skyline day"
             priority
           />
-          {/* Removed the "TAMPA" text overlay div from here */}
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-md">
@@ -64,11 +125,32 @@ export default function Home() {
               <Link href="/deals">View All Deals <ArrowRight className="ml-1 h-4 w-4" /></Link>
             </Button>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mockDeals.slice(0, 3).map(deal => (
-              <DealCard key={deal.id} deal={deal} />
-            ))}
-          </div>
+          <Carousel
+            opts={{ align: "start", loop: true }}
+            plugins={[dealsAutoplayPlugin.current]}
+            setApi={setDealsApi}
+            className="w-full"
+            onMouseEnter={dealsAutoplayPlugin.current.stop}
+            onMouseLeave={dealsAutoplayPlugin.current.reset}
+          >
+            <CarouselContent>
+              {mockDeals.slice(0, 6).map(deal => (
+                <CarouselItem key={deal.id} className="basis-full sm:basis-1/2 lg:basis-1/3">
+                  <div className="p-1 h-full">
+                    <DealCard deal={deal} />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden sm:flex -left-4" />
+            <CarouselNext className="hidden sm:flex -right-4" />
+            {dealsCount > 0 && <CarouselDots className="mt-6" />}
+          </Carousel>
+           {dealsCount > 0 && (
+            <div className="py-2 text-center text-sm text-muted-foreground">
+              Slide {dealsCurrent} of {dealsCount}
+            </div>
+          )}
         </div>
       </section>
       
@@ -94,11 +176,32 @@ export default function Home() {
               <Link href="/events">View Full Calendar <ArrowRight className="ml-1 h-4 w-4" /></Link>
             </Button>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mockEvents.slice(0, 3).map(event => (
-              <EventCard key={event.id} event={event} />
-            ))}
-          </div>
+          <Carousel
+            opts={{ align: "start", loop: true }}
+            plugins={[eventsAutoplayPlugin.current]}
+            setApi={setEventsApi}
+            className="w-full"
+            onMouseEnter={eventsAutoplayPlugin.current.stop}
+            onMouseLeave={eventsAutoplayPlugin.current.reset}
+          >
+            <CarouselContent>
+              {mockEvents.slice(0, 6).map(event => (
+                <CarouselItem key={event.id} className="basis-full sm:basis-1/2 lg:basis-1/3">
+                  <div className="p-1 h-full">
+                    <EventCard event={event} />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden sm:flex -left-4" />
+            <CarouselNext className="hidden sm:flex -right-4" />
+            {eventsCount > 0 && <CarouselDots className="mt-6" />}
+          </Carousel>
+          {eventsCount > 0 && (
+            <div className="py-2 text-center text-sm text-muted-foreground">
+              Slide {eventsCurrent} of {eventsCount}
+            </div>
+          )}
         </div>
       </section>
 
@@ -113,11 +216,32 @@ export default function Home() {
               <Link href="/businesses">Explore All Businesses <ArrowRight className="ml-1 h-4 w-4" /></Link>
             </Button>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mockBusinesses.slice(0, 3).map(business => (
-              <BusinessCard key={business.id} business={business} />
-            ))}
-          </div>
+          <Carousel
+            opts={{ align: "start", loop: true }}
+            plugins={[bizAutoplayPlugin.current]}
+            setApi={setBizApi}
+            className="w-full"
+            onMouseEnter={bizAutoplayPlugin.current.stop}
+            onMouseLeave={bizAutoplayPlugin.current.reset}
+          >
+            <CarouselContent>
+              {mockBusinesses.slice(0, 9).map(business => (
+                <CarouselItem key={business.id} className="basis-full sm:basis-1/2 lg:basis-1/3">
+                  <div className="p-1 h-full">
+                    <BusinessCard business={business} />
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious className="hidden sm:flex -left-4" />
+            <CarouselNext className="hidden sm:flex -right-4" />
+            {bizCount > 0 && <CarouselDots className="mt-6" />}
+          </Carousel>
+           {bizCount > 0 && (
+            <div className="py-2 text-center text-sm text-muted-foreground">
+              Slide {bizCurrent} of {bizCount}
+            </div>
+          )}
         </div>
       </section>
 
@@ -154,7 +278,7 @@ export default function Home() {
 
       {/* Call to Action for Businesses */}
       <section className="relative py-20 bg-primary text-primary-foreground overflow-hidden">
-         <div className="absolute inset-0 opacity-10" style={{backgroundImage: "url('https://placehold.co/1920x400.png')", backgroundSize: 'cover', backgroundPosition: 'center', filter: 'grayscale(50%)'}}></div>
+         <div className="absolute inset-0 opacity-10" style={{backgroundImage: "url('https://placehold.co/1920x400.png')", backgroundSize: 'cover', backgroundPosition: 'center', filter: 'grayscale(50%)'}} data-ai-hint="abstract pattern"></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Are you a Tampa Business Owner?
