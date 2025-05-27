@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 bg-gradient-to-br from-primary to-accent text-primary-foreground">
+      <section className="relative py-20 md:py-32 bg-gradient-to-br from-primary to-accent text-primary-foreground overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="https://placehold.co/1920x1080.png"
@@ -26,6 +26,12 @@ export default function Home() {
             data-ai-hint="tampa skyline day"
             priority
           />
+          {/* Text overlay for "TAMPA" */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <span className="text-8xl md:text-9xl lg:text-[12rem] font-extrabold text-white opacity-10 dark:opacity-[0.07] select-none transform -rotate-3">
+              TAMPA
+            </span>
+          </div>
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-md">
@@ -152,8 +158,8 @@ export default function Home() {
       </section>
 
       {/* Call to Action for Businesses */}
-      <section className="py-20 bg-primary text-primary-foreground">
-         <div className="absolute inset-0 opacity-10" style={{backgroundImage: "url('https://placehold.co/1920x400.png?text=Subtle+Pattern')", backgroundSize: 'cover', backgroundPosition: 'center', filter: 'grayscale(50%)'}}></div>
+      <section className="relative py-20 bg-primary text-primary-foreground overflow-hidden">
+         <div className="absolute inset-0 opacity-10" style={{backgroundImage: "url('https://placehold.co/1920x400.png')", backgroundSize: 'cover', backgroundPosition: 'center', filter: 'grayscale(50%)'}}></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Are you a Tampa Business Owner?
