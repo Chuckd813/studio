@@ -26,12 +26,7 @@ export default function Home() {
             data-ai-hint="tampa skyline day"
             priority
           />
-          {/* Text overlay for "TAMPA" */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <span className="text-8xl md:text-9xl lg:text-[12rem] font-extrabold text-white opacity-10 dark:opacity-[0.07] select-none transform -rotate-3">
-              TAMPA
-            </span>
-          </div>
+          {/* Removed the "TAMPA" text overlay div from here */}
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-md">
