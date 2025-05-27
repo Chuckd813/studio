@@ -4,7 +4,7 @@
 import Link from 'next/link';
 import { Menu, X, Briefcase, CalendarDays, Sparkles, UserPlus, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { AISearch } from '@/components/features/AISearch';
 import { Logo } from './Logo';
 import { useState, useEffect } from 'react';
@@ -102,6 +102,12 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right" className="w-full max-w-xs bg-background p-6">
+              <SheetHeader className="sr-only"> {/* Visually hidden header */}
+                <SheetTitle>Main Navigation Menu</SheetTitle>
+                <SheetDescription>
+                  Navigate to different sections of What's In Tampa.
+                </SheetDescription>
+              </SheetHeader>
               <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between mb-6">
                   <Logo />
