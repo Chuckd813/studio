@@ -4,7 +4,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Sparkles, CalendarDays, Building2, Users, Loader2 } from 'lucide-react';
+import { ArrowRight, Sparkles, CalendarDays, Building2, Users, Loader2, Zap } from 'lucide-react'; // Added Zap
 import Link from 'next/link';
 import Image from 'next/image';
 import { mockDeals, mockEvents, mockBusinesses, mockCommunityLeaders } from '@/lib/mock-data';
@@ -142,6 +142,35 @@ export default function Home() {
       {/* Ad Slideshow Section */}
       <AdSlideshow />
 
+      {/* WIT Wheel Promo Section */}
+      <section className="py-16 bg-secondary/50 dark:bg-secondary/20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <Zap className="mx-auto h-12 w-12 text-primary mb-4" />
+          <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+             <span className="title-gradient-wave dark:title-gradient-wave-dark">Spin the WIT Wheel!</span>
+          </h2>
+          <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+            Can't decide what to eat or do? Let the WIT Wheel choose your next Tampa adventure!
+          </p>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <Button size="lg" asChild className="rounded-full text-lg px-8 py-6 shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out">
+              <Link href="/adventure-wheel?mode=food">
+                Spin for a Bite!
+              </Link>
+            </Button>
+            <span className="text-muted-foreground font-semibold">OR</span>
+            <Button size="lg" variant="outline" asChild className="rounded-full text-lg px-8 py-6 shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out">
+              <Link href="/adventure-wheel?mode=fun">
+                Spin for Fun!
+              </Link>
+            </Button>
+          </div>
+           <Button variant="link" asChild className="mt-6 text-primary hover:text-accent">
+            <Link href="/adventure-wheel">Go to the WIT Wheel <ArrowRight className="ml-1 h-4 w-4" /></Link>
+          </Button>
+        </div>
+      </section>
+
       {/* Hot Deals Preview */}
       {!isMounted ? renderLoadingPlaceholder("Hot Deals", Sparkles) : (
         <section className="py-16 bg-background">
@@ -171,7 +200,7 @@ export default function Home() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              {dealsCount > 0 && (
+              {isMounted && dealsCount > 0 && (
                 <>
                   <CarouselPrevious className="hidden sm:flex -left-4" />
                   <CarouselNext className="hidden sm:flex -right-4" />
@@ -226,7 +255,7 @@ export default function Home() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-               {eventsCount > 0 && (
+               {isMounted && eventsCount > 0 && (
                 <>
                   <CarouselPrevious className="hidden sm:flex -left-4" />
                   <CarouselNext className="hidden sm:flex -right-4" />
@@ -270,7 +299,7 @@ export default function Home() {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              {bizCount > 0 && (
+              {isMounted && bizCount > 0 && (
                 <>
                   <CarouselPrevious className="hidden sm:flex -left-4" />
                   <CarouselNext className="hidden sm:flex -right-4" />

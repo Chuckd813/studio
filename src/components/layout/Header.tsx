@@ -2,7 +2,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, X, Briefcase, CalendarDays, Sparkles, UserPlus, ChefHat } from 'lucide-react';
+import { Menu, X, Briefcase, CalendarDays, Sparkles, UserPlus, Zap } from 'lucide-react'; // Changed ChefHat to Zap
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { AISearch } from '@/components/features/AISearch';
@@ -15,7 +15,7 @@ const navLinks = [
   { href: '/businesses', label: 'Businesses', icon: Briefcase },
   { href: '/events', label: 'Events', icon: CalendarDays },
   { href: '/deals', label: 'Deals', icon: Sparkles },
-  { href: '/food-randomizer', label: 'Food Randomizer', icon: ChefHat },
+  { href: '/adventure-wheel', label: 'WIT Wheel', icon: Zap }, // Updated label and icon
 ];
 
 const authLinks = [
