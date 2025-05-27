@@ -27,6 +27,7 @@ export interface Deal {
   id: string;
   title: string;
   businessName: string;
+  businessId?: string; // Added to link to business profile
   description: string;
   imageUrl: string;
   dataAiHint?: string;
@@ -47,4 +48,13 @@ export interface CommunityLeader {
     linkedin?: string;
     website?: string;
   };
+}
+
+// Added for the Fun Adventure Wheel
+export interface ActivitySuggestion {
+  name: string;
+  category: string;
+  description: string;
+  location?: string; // e.g., "Ybor City" or a specific venue
+  details?: string; // Any other useful info
 }

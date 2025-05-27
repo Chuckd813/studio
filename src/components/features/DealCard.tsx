@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
@@ -59,7 +60,13 @@ export function DealCard({ deal }: DealCardProps) {
         <CardTitle className="text-xl mb-2 line-clamp-2">{deal.title}</CardTitle>
         <div className="flex items-center text-sm text-muted-foreground mb-1">
           <Building className="h-4 w-4 mr-2 shrink-0 text-primary/80" />
-          <span className="line-clamp-1">{deal.businessName}</span>
+          {deal.businessId ? (
+            <Link href={`/businesses/${deal.businessId}`} className="hover:underline text-primary/90 hover:text-primary font-medium line-clamp-1 transition-colors">
+              {deal.businessName}
+            </Link>
+          ) : (
+            <span className="line-clamp-1">{deal.businessName}</span>
+          )}
         </div>
         <p className="text-muted-foreground text-sm mb-3 line-clamp-3">{deal.description}</p>
         {deal.expiryDate && (

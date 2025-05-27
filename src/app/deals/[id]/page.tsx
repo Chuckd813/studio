@@ -1,3 +1,4 @@
+
 // Placeholder for individual deal detail page
 import { mockDeals } from '@/lib/mock-data';
 import Image from 'next/image';
@@ -57,7 +58,14 @@ export default function DealDetailPage({ params }: { params: { id: string } }) {
           <CardTitle className="text-3xl lg:text-4xl mb-2">{deal.title}</CardTitle>
           <CardDescription className="text-lg text-muted-foreground flex items-center">
             <Building className="h-5 w-5 mr-2 shrink-0" />
-            Offered by: {deal.businessName}
+            Offered by:
+            {deal.businessId && deal.businessName ? (
+              <Link href={`/businesses/${deal.businessId}`} className="text-accent hover:underline hover:text-primary transition-colors ml-1 font-medium">
+                {deal.businessName}
+              </Link>
+            ) : (
+              <span className="ml-1 font-medium">{deal.businessName}</span>
+            )}
           </CardDescription>
         </CardHeader>
         <CardContent className="p-6 grid md:grid-cols-2 gap-6">

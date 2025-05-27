@@ -130,9 +130,14 @@ export const mockEvents: Event[] = [
   },
 ];
 
-const getBusinessForDeal = (industry: string): string => {
-  const business = mockBusinesses.find(b => b.category === industry);
-  return business ? business.name : `A Great ${industry} Business`;
+const getBusinessDetailsForDeal = (industry: string): { name: string; id: string | undefined } => {
+  const businessesInIndustry = mockBusinesses.filter(b => b.category === industry);
+  if (businessesInIndustry.length === 0) {
+    return { name: `A Great ${industry} Business`, id: undefined };
+  }
+  // Pick a random business from the industry for variety
+  const business = businessesInIndustry[Math.floor(Math.random() * businessesInIndustry.length)];
+  return { name: business.name, id: business.id };
 };
 
 const generateDealDataAiHint = (category: string): string => {
@@ -152,118 +157,46 @@ const generateDealDataAiHint = (category: string): string => {
   return categoryHints.join(' ');
 };
 
-export const mockDeals: Deal[] = [
-  {
-    id: 'dtech1',
-    title: '15% Off Custom Software Development',
-    businessName: getBusinessForDeal("Technology"),
-    description: 'Get 15% off your first custom software development project with us. Boost your business with cutting-edge tech!',
-    imageUrl: `https://placehold.co/600x400.png?text=Tech+Deal`,
-    dataAiHint: generateDealDataAiHint("Technology"),
-    confidence: 0.91,
-    category: 'Technology',
-    expiryDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-  },
-  {
-    id: 'dhealth1',
-    title: 'Free Wellness Check-up This Month',
-    businessName: getBusinessForDeal("Healthcare"),
-    description: 'Book a free wellness check-up with our experienced practitioners. Offer valid for new patients only.',
-    imageUrl: `https://placehold.co/600x400.png?text=Healthcare+Deal`,
-    dataAiHint: generateDealDataAiHint("Healthcare"),
-    confidence: 0.92,
-    category: 'Healthcare',
-    expiryDate: new Date(Date.now() + 25 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-  },
-  {
-    id: 'dfood1',
-    title: 'Two-for-One Entrees on Tuesdays',
-    businessName: getBusinessForDeal("Food & Beverage"),
-    description: 'Bring a friend and enjoy two entrees for the price of one every Tuesday evening at our restaurant.',
-    imageUrl: `https://placehold.co/600x400.png?text=Food+Deal`,
-    dataAiHint: generateDealDataAiHint("Food & Beverage"),
-    confidence: 0.95,
-    category: 'Food & Beverage',
-    expiryDate: new Date(Date.now() + 40 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-  },
-  {
-    id: 'dretail1',
-    title: 'End of Season Sale - Up to 50% Off',
-    businessName: getBusinessForDeal("Retail"),
-    description: 'Huge discounts on selected items in our end-of-season sale. While stocks last!',
-    imageUrl: `https://placehold.co/600x400.png?text=Retail+Sale`,
-    dataAiHint: generateDealDataAiHint("Retail"),
-    confidence: 0.88,
-    category: 'Retail',
-    expiryDate: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-  },
-  {
-    id: 'dprof1',
-    title: 'Free Initial Consultation for Businesses',
-    businessName: getBusinessForDeal("Professional Services"),
-    description: 'Get a free 30-minute initial consultation to discuss your business needs and how we can help you grow.',
-    imageUrl: `https://placehold.co/600x400.png?text=Services+Deal`,
-    dataAiHint: generateDealDataAiHint("Professional Services"),
-    confidence: 0.90,
-    category: 'Professional Services',
-    expiryDate: new Date(Date.now() + 50 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-  },
-  {
-    id: 'darts1',
-    title: '20% Off Tickets to "Tampa Impressions" Exhibit',
-    businessName: getBusinessForDeal("Arts & Culture"),
-    description: 'Experience the stunning "Tampa Impressions" art exhibit and get 20% off your ticket price this week.',
-    imageUrl: `https://placehold.co/600x400.png?text=Art+Exhibit+Deal`,
-    dataAiHint: generateDealDataAiHint("Arts & Culture"),
-    confidence: 0.89,
-    category: 'Arts & Culture',
-    expiryDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-  },
-  {
-    id: 'dedu1',
-    title: 'Early Bird Discount for Coding Bootcamp',
-    businessName: getBusinessForDeal("Education"),
-    description: 'Sign up early for our next coding bootcamp and receive a $200 discount on the course fee.',
-    imageUrl: `https://placehold.co/600x400.png?text=Education+Deal`,
-    dataAiHint: generateDealDataAiHint("Education"),
-    confidence: 0.93,
-    category: 'Education',
-    expiryDate: new Date(Date.now() + 60 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-  },
-  {
-    id: 'drealestate1',
-    title: 'Valuation Discount for Home Sellers!',
-    businessName: getBusinessForDeal("Real Estate"),
-    description: 'List your home with us and receive a discount on your property valuation. Limited time offer for new clients.',
-    imageUrl: `https://placehold.co/600x400.png?text=Real+Estate+Deal`,
-    dataAiHint: generateDealDataAiHint("Real Estate"),
-    confidence: 0.87,
-    category: 'Real Estate',
-    expiryDate: new Date(Date.now() + 45 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-  },
-  {
-    id: 'dauto1',
-    title: 'Free Tire Rotation with Any Major Service',
-    businessName: getBusinessForDeal("Automotive"),
-    description: 'Get a complimentary tire rotation when you book any major service for your vehicle this month.',
-    imageUrl: `https://placehold.co/600x400.png?text=Auto+Service+Deal`,
-    dataAiHint: generateDealDataAiHint("Automotive"),
-    confidence: 0.94,
-    category: 'Automotive',
-    expiryDate: new Date(Date.now() + 20 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-  },
-  {
-    id: 'dtravel1',
-    title: 'Stay 3 Nights, Get 4th Night Free',
-    businessName: getBusinessForDeal("Travel & Hospitality"),
-    description: 'Book a 3-night stay at our hotel and enjoy the 4th night completely free. Perfect for your Tampa getaway.',
-    imageUrl: `https://placehold.co/600x400.png?text=Hotel+Stay+Deal`,
-    dataAiHint: generateDealDataAiHint("Travel & Hospitality"),
-    confidence: 0.96,
-    category: 'Travel & Hospitality',
-    expiryDate: new Date(Date.now() + 75 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-  },
-];
+export const mockDeals: Deal[] = industries.map((industry, index) => {
+  const businessInfo = getBusinessDetailsForDeal(industry);
+  const dealTitles: Record<string, string> = {
+    "Technology": "15% Off Custom Software Development",
+    "Healthcare": "Free Wellness Check-up This Month",
+    "Food & Beverage": "Two-for-One Entrees on Tuesdays",
+    "Retail": "End of Season Sale - Up to 50% Off",
+    "Professional Services": "Free Initial Consultation",
+    "Arts & Culture": "20% Off Exhibit Tickets",
+    "Education": "Early Bird Discount for Bootcamp",
+    "Real Estate": "Home Valuation Discount",
+    "Automotive": "Free Tire Rotation with Service",
+    "Travel & Hospitality": "Stay 3 Nights, Get 4th Free"
+  };
+  const dealDescriptions: Record<string, string> = {
+    "Technology": "Boost your business with cutting-edge tech! Get 15% off your first custom software project.",
+    "Healthcare": "Book a free wellness check-up. Offer valid for new patients.",
+    "Food & Beverage": "Bring a friend and enjoy two entrees for the price of one every Tuesday.",
+    "Retail": "Huge discounts on selected items in our end-of-season sale. While stocks last!",
+    "Professional Services": "Free 30-min consultation to discuss your business needs and growth strategies.",
+    "Arts & Culture": "Experience stunning local art and get 20% off your ticket price this week.",
+    "Education": "Sign up early for our next coding bootcamp and receive a $200 discount.",
+    "Real Estate": "List your home with us and receive a discount on your property valuation.",
+    "Automotive": "Complimentary tire rotation when you book any major service this month.",
+    "Travel & Hospitality": "Book a 3-night hotel stay and enjoy the 4th night completely free."
+  };
+
+  return {
+    id: `d${industry.toLowerCase().replace(/[^a-z]/g, '')}${index + 1}`,
+    title: dealTitles[industry] || `Special Offer from ${industry}`,
+    businessName: businessInfo.name,
+    businessId: businessInfo.id,
+    description: dealDescriptions[industry] || `An amazing deal from a local ${industry.toLowerCase()} business. Don't miss out!`,
+    imageUrl: `https://placehold.co/600x400.png?text=${encodeURIComponent(industry)}+Deal`,
+    dataAiHint: generateDealDataAiHint(industry),
+    confidence: Math.random() * 0.2 + 0.8, // Random confidence between 0.8 and 1.0
+    category: industry,
+    expiryDate: new Date(Date.now() + (10 + index * 5) * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+  };
+});
 
 
 export const mockCommunityLeaders: CommunityLeader[] = [
@@ -323,3 +256,4 @@ export const dealCategories = ['All', ...new Set(mockDeals.map(d => d.category))
 
 
     
+
