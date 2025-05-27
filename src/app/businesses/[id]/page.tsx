@@ -4,7 +4,7 @@ import { mockBusinesses } from '@/lib/mock-data';
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { ArrowLeft, MapPin, Phone, Globe, Building2, Sparkles } from 'lucide-react';
+import { ArrowLeft, MapPin, Phone, Globe, Building2, Sparkles, Info } from 'lucide-react';
 import Link from 'next/link';
 
 export async function generateStaticParams() {
@@ -88,18 +88,17 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
           </Card>
         </div>
         <aside className="lg:col-span-1 space-y-6">
-          {/* Ad Placeholder */}
           <Card className="p-4 text-center border-2 border-dashed border-accent/30 shadow-lg bg-gradient-to-br from-accent/5 to-primary/5">
             <CardHeader className="p-0 pb-3">
                <Sparkles className="mx-auto h-8 w-8 text-accent mb-2" />
-              <CardTitle className="text-lg font-semibold text-accent">Want to Stand Out?</CardTitle>
+              <CardTitle className="text-lg font-semibold text-accent">Your Business Here?</CardTitle>
             </CardHeader>
             <CardContent className="p-0 space-y-2 text-sm text-foreground">
-              <p>Feature your business on this page and attract more attention!</p>
+              <p>Spotlight your business on pages like this and connect with highly interested customers!</p>
               <ul className="list-disc list-inside text-left inline-block text-xs space-y-0.5">
-                <li>Top placement on detail pages.</li>
-                <li>Highlight special promotions.</li>
-                <li>Reach highly interested customers.</li>
+                <li>Top placement on relevant detail pages.</li>
+                <li>Showcase your unique selling points.</li>
+                <li>Convert page visitors into customers.</li>
               </ul>
               <Button variant="outline" size="sm" asChild className="mt-3 rounded-full border-accent text-accent hover:bg-accent/10">
                 <Link href="/auth/register">Advertise With Us</Link>
@@ -107,7 +106,6 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
             </CardContent>
           </Card>
 
-          {/* Potentially related businesses or deals from this business */}
           <Card className="shadow-lg">
             <CardHeader>
               <CardTitle className="text-lg">More from {business.category}</CardTitle>

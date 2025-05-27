@@ -1,5 +1,5 @@
 
-'use client'; // Required for using React hooks for carousels and WIT Wheel
+'use client'; 
 
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -13,7 +13,7 @@ import { EventCard } from '@/components/features/EventCard';
 import { BusinessCard } from '@/components/features/BusinessCard';
 import { PersonCard } from '@/components/features/PersonCard';
 import { AdSlideshow } from '@/components/features/AdSlideshow';
-import { HomepageWitWheel } from '@/components/features/HomepageWitWheel'; // New WIT Wheel for homepage
+import { HomepageWitWheel } from '@/components/features/HomepageWitWheel';
 import {
   Carousel,
   CarouselContent,
@@ -139,14 +139,9 @@ export default function Home() {
         </div>
       </section>
       
-      {/* Homepage WIT Wheel Section */}
       <HomepageWitWheel />
-
-      {/* Ad Slideshow Section / Business Spotlight */}
       <AdSlideshow />
 
-
-      {/* Hot Deals Preview */}
       {!isMounted ? renderLoadingPlaceholder("Hot Deals", Sparkles) : (
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -190,7 +185,6 @@ export default function Home() {
         </section>
       )}
       
-      {/* Advertisement Placeholder 1 */}
       <section className="py-8 bg-muted/30 dark:bg-muted/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <Card className="p-6 md:p-8 rounded-lg shadow-md text-center border-2 border-dashed border-primary/30 bg-gradient-to-br from-accent/5 to-primary/5">
@@ -199,21 +193,20 @@ export default function Home() {
               <CardTitle className="text-2xl font-semibold text-primary">Advertise Your Business Here!</CardTitle>
             </CardHeader>
             <CardContent className="p-0 space-y-3 text-foreground">
-              <p>Reach thousands of Tampa locals and visitors actively looking for businesses like yours.</p>
+              <p>Want to be seen by thousands of Tampa locals and visitors? Feature your business prominently!</p>
               <ul className="list-disc list-inside text-left inline-block text-sm space-y-1">
-                <li>Increase brand visibility in Tampa.</li>
-                <li>Promote your special offers and events.</li>
-                <li>Drive targeted traffic to your website.</li>
+                <li>Prime placement on our homepage.</li>
+                <li>Increased brand visibility and awareness.</li>
+                <li>Drive targeted traffic to your offerings.</li>
               </ul>
                <Button asChild className="mt-4 rounded-full">
-                <Link href="/auth/register">Get Started Today</Link>
+                <Link href="/auth/register">Learn About Advertising</Link>
               </Button>
             </CardContent>
           </Card>
         </div>
       </section>
 
-      {/* Upcoming Events Preview */}
       {!isMounted ? renderLoadingPlaceholder("Upcoming Events", CalendarDays) : (
         <section className="py-16 bg-secondary/50 dark:bg-secondary/20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -257,7 +250,6 @@ export default function Home() {
         </section>
       )}
 
-      {/* Featured Businesses Preview */}
       {!isMounted ? renderLoadingPlaceholder("Featured Businesses", Building2) : (
         <section className="py-16 bg-background">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -301,7 +293,6 @@ export default function Home() {
         </section>
       )}
 
-      {/* Featured Community Leaders */}
       <section className="py-16 bg-secondary/50 dark:bg-secondary/20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-10">
@@ -324,7 +315,6 @@ export default function Home() {
         </div>
       </section>
       
-      {/* Advertisement Placeholder 2 */}
       <section className="py-8 bg-muted/30 dark:bg-muted/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
            <Card className="p-6 md:p-8 rounded-lg shadow-md text-center border-2 border-dashed border-accent/30 bg-gradient-to-br from-primary/5 to-accent/5">
@@ -333,21 +323,20 @@ export default function Home() {
               <CardTitle className="text-2xl font-semibold text-accent">Showcase Your Event or Venue!</CardTitle>
             </CardHeader>
             <CardContent className="p-0 space-y-3 text-foreground">
-              <p>Got an event Tampa needs to know about? Want to highlight your unique venue?</p>
+              <p>Got an event Tampa needs to know about? Feature your venue and attract more attendees!</p>
               <ul className="list-disc list-inside text-left inline-block text-sm space-y-1">
-                <li>Attract a wider audience to your events.</li>
-                <li>Feature your venue's unique offerings.</li>
-                <li>Connect with engaged local event-goers.</li>
+                <li>Boost event visibility and ticket sales.</li>
+                <li>Highlight your venue’s unique features.</li>
+                <li>Connect with an engaged local audience.</li>
               </ul>
               <Button variant="outline" asChild className="mt-4 rounded-full border-accent text-accent hover:bg-accent/10">
-                <Link href="/auth/register">Promote Your Event</Link>
+                <Link href="/auth/register">Promote Your Listing</Link>
               </Button>
             </CardContent>
           </Card>
         </div>
       </section>
 
-      {/* Call to Action for Businesses */}
       <section className="relative py-20 bg-primary text-primary-foreground overflow-hidden">
          <div className="absolute inset-0 opacity-10" style={{backgroundImage: "url('https://placehold.co/1920x400.png')", backgroundSize: 'cover', backgroundPosition: 'center', filter: 'grayscale(50%)'}} data-ai-hint="abstract pattern"></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">

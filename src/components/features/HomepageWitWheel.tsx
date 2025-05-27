@@ -79,7 +79,7 @@ export function HomepageWitWheel() {
   }, [toast]);
 
   const handleSpinAndSuggest = (type: SuggestionType) => {
-    setSuggestion(null); // Clear previous suggestion
+    setSuggestion(null); 
     if (type === 'food') {
       const randomCraving = cravingsWheelOptions[Math.floor(Math.random() * cravingsWheelOptions.length)];
       toast({ title: "Spinning for a Bite!", description: `Looking for something for your craving: ${randomCraving}!`});
@@ -109,7 +109,7 @@ export function HomepageWitWheel() {
             disabled={isLoading}
             className="rounded-full text-lg px-8 py-6 shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out w-full"
           >
-            {isLoading && suggestionType === 'food' ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <ChefHat className="mr-2 h-5 w-5" />}
+            {isLoading && suggestionType === 'food' ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <RotateCw className="mr-2 h-5 w-5" />}
             Spin for a Bite!
           </Button>
           <Button
@@ -119,7 +119,7 @@ export function HomepageWitWheel() {
             disabled={isLoading}
             className="rounded-full text-lg px-8 py-6 shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out w-full"
           >
-            {isLoading && suggestionType === 'activity' ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <Smile className="mr-2 h-5 w-5" />}
+            {isLoading && suggestionType === 'activity' ? <Loader2 className="mr-2 h-5 w-5 animate-spin" /> : <RotateCw className="mr-2 h-5 w-5" />}
             Spin for Fun!
           </Button>
         </div>
@@ -168,7 +168,6 @@ export function HomepageWitWheel() {
             </CardContent>
           </Card>
         )}
-         {/* Link to the full WIT Wheel page if no suggestion is active but not loading */}
         {!isLoading && !suggestion && (
             <div className="mt-8">
                 <Button variant="link" asChild className="text-primary hover:text-accent">

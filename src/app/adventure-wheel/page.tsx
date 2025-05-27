@@ -5,12 +5,12 @@ import { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { Loader2, ChefHat, Zap, HelpCircle, RotateCw, Lightbulb, MapPin, Sailboat, Palette, Beer, Smile } from 'lucide-react'; // Added more icons
+import { Loader2, ChefHat, Zap, HelpCircle, RotateCw, Lightbulb, MapPin, Sailboat, Palette, Beer, Smile } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import Link from 'next/link';
 import { suggestRandomRestaurant, type SuggestRandomRestaurantInput, type SuggestRandomRestaurantOutput } from '@/ai/flows/suggest-random-restaurant';
-import { suggestRandomActivity, type SuggestRandomActivityInput, type SuggestRandomActivityOutput } from '@/ai/flows/suggest-random-activity'; // New import
-import type { ActivitySuggestion } from '@/types'; // New import
+import { suggestRandomActivity, type SuggestRandomActivityInput, type SuggestRandomActivityOutput } from '@/ai/flows/suggest-random-activity';
+import type { ActivitySuggestion } from '@/types';
 
 const cravingsWheelOptions = [
   "Italian", "Seafood", "Mexican", "Burgers & Fries", "Healthy & Fresh",
@@ -40,15 +40,18 @@ export default function WITWheelPage() {
 
   useEffect(() => {
     setIsMounted(true);
-    // Check for query params to set initial mode if any
     const queryParams = new URLSearchParams(window.location.search);
     const mode = queryParams.get('mode');
-    if (mode === 'food') {
-      // Optionally trigger a food spin or set focus
-    } else if (mode === 'fun') {
-      // Optionally trigger an activity spin or set focus
+    if (mode === 'food' && !suggestion) {
+        const randomCraving = cravingsWheelOptions[Math.floor(Math.random() * cravingsWheelOptions.length)];
+        setSpunFoodCraving(randomCraving);
+        handleGetRestaurantSuggestion(randomCraving);
+    } else if (mode === 'fun' && !suggestion) {
+        const randomActivityType = activityTypeWheelOptions[Math.floor(Math.random() * activityTypeWheelOptions.length)];
+        setSpunActivityType(randomActivityType);
+        handleGetActivitySuggestion(randomActivityType);
     }
-  }, []);
+  }, []); // Added suggestion to dependency array to avoid re-spin on suggestion update
 
   const handleGetRestaurantSuggestion = useCallback(async (craving?: string) => {
     setIsLoading(true);
@@ -94,7 +97,7 @@ export default function WITWheelPage() {
     const randomIndex = Math.floor(Math.random() * cravingsWheelOptions.length);
     const newSpunCraving = cravingsWheelOptions[randomIndex];
     setSpunFoodCraving(newSpunCraving);
-    setCustomFoodCraving(''); // Clear custom input
+    setCustomFoodCraving(''); 
     setSuggestion(null);
     toast({
         title: "Craving Spun!",
@@ -106,7 +109,7 @@ export default function WITWheelPage() {
     const randomIndex = Math.floor(Math.random() * activityTypeWheelOptions.length);
     const newSpunType = activityTypeWheelOptions[randomIndex];
     setSpunActivityType(newSpunType);
-    setCustomActivityWish(''); // Clear custom input
+    setCustomActivityWish(''); 
     setSuggestion(null);
     toast({
         title: "Activity Type Spun!",
@@ -115,25 +118,24 @@ export default function WITWheelPage() {
   };
 
   const handleSurpriseMe = () => {
-    const coinFlip = Math.random() < 0.5; // 50/50 chance
+    setSuggestion(null); 
+    const coinFlip = Math.random() < 0.5; 
     if (coinFlip) {
-        // Surprise with food
         const randomCraving = cravingsWheelOptions[Math.floor(Math.random() * cravingsWheelOptions.length)];
         setSpunFoodCraving(randomCraving);
         setCustomFoodCraving('');
         setSpunActivityType(null);
         setCustomActivityWish('');
-        handleGetRestaurantSuggestion(randomCraving);
         toast({ title: "Surprise Bite!", description: `We're finding a tasty spot for: ${randomCraving}!`});
+        handleGetRestaurantSuggestion(randomCraving);
     } else {
-        // Surprise with activity
         const randomActivityType = activityTypeWheelOptions[Math.floor(Math.random() * activityTypeWheelOptions.length)];
         setSpunActivityType(randomActivityType);
         setCustomActivityWish('');
         setSpunFoodCraving(null);
         setCustomFoodCraving('');
-        handleGetActivitySuggestion(randomActivityType);
         toast({ title: "Surprise Adventure!", description: `Let's find some fun for: ${randomActivityType}!`});
+        handleGetActivitySuggestion(randomActivityType);
     }
   };
 
@@ -161,7 +163,7 @@ export default function WITWheelPage() {
         </p>
       </header>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 items-start"> {/* Added items-start */}
         {/* Food Adventure Wheel */}
         <Card className="shadow-lg hover:shadow-xl transition-shadow">
           <CardHeader>
@@ -171,10 +173,15 @@ export default function WITWheelPage() {
             </CardTitle>
             <CardDescription>Spin for a craving or tell us what you want.</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-            <Button onClick={handleSpinFoodCraving} className="w-full rounded-full" size="lg" variant="outline">
-              <RotateCw className="mr-2 h-5 w-5" /> Spin for a Craving!
-            </Button>
+          <CardContent className="space-y-6 text-center">
+            <Card
+              onClick={handleSpinFoodCraving}
+              className="w-52 h-52 sm:w-60 sm:h-60 rounded-full flex flex-col items-center justify-center cursor-pointer hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200 border-4 border-primary/30 hover:border-primary/70 mx-auto group bg-background/70"
+            >
+              <RotateCw className="h-12 w-12 sm:h-16 sm:w-16 text-primary mb-2 sm:mb-3 group-hover:animate-spin-slow" />
+              <p className="text-md sm:text-lg font-semibold text-primary">Spin for Craving!</p>
+              <p className="text-xs text-muted-foreground">(Click the Wheel)</p>
+            </Card>
             {spunFoodCraving && (
               <div className="text-center p-3 bg-secondary/50 dark:bg-secondary/20 rounded-md">
                 <p className="text-sm text-muted-foreground">You spun:</p>
@@ -209,15 +216,20 @@ export default function WITWheelPage() {
         <Card className="shadow-lg hover:shadow-xl transition-shadow">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-xl">
-              <Smile className="h-6 w-6 text-accent" /> {/* Changed Icon */}
+              <Smile className="h-6 w-6 text-accent" />
               Fun Adventure
             </CardTitle>
             <CardDescription>Spin for an activity or share your wish.</CardDescription>
           </CardHeader>
-          <CardContent className="space-y-4">
-             <Button onClick={handleSpinActivityType} className="w-full rounded-full" size="lg" variant="outline">
-              <RotateCw className="mr-2 h-5 w-5" /> Spin for an Activity Type!
-            </Button>
+          <CardContent className="space-y-6 text-center">
+            <Card
+              onClick={handleSpinActivityType}
+              className="w-52 h-52 sm:w-60 sm:h-60 rounded-full flex flex-col items-center justify-center cursor-pointer hover:shadow-2xl hover:scale-105 active:scale-95 transition-all duration-200 border-4 border-accent/30 hover:border-accent/70 mx-auto group bg-background/70"
+            >
+              <RotateCw className="h-12 w-12 sm:h-16 sm:w-16 text-accent mb-2 sm:mb-3 group-hover:animate-spin-slow" />
+              <p className="text-md sm:text-lg font-semibold text-accent">Spin for Fun!</p>
+              <p className="text-xs text-muted-foreground">(Click the Wheel)</p>
+            </Card>
             {spunActivityType && (
               <div className="text-center p-3 bg-secondary/50 dark:bg-secondary/20 rounded-md">
                 <p className="text-sm text-muted-foreground">You spun:</p>
@@ -317,9 +329,8 @@ export default function WITWheelPage() {
       {suggestion && suggestionType === 'activity' && (
         <Card className="max-w-2xl mx-auto shadow-2xl bg-gradient-to-br from-accent/10 to-primary/10 dark:from-accent/5 dark:to-primary/5 border-2 border-accent/50">
           <CardHeader className="text-center">
-            {/* Choose an icon for activities */}
             {(suggestion as ActivitySuggestion).category === "Arts & Culture" ? <Palette className="mx-auto h-12 w-12 text-accent mb-3" /> : 
-             (suggestion as ActivitySuggestion).category === "Nightlife" ? <Beer className="mx-auto h-12 w-12 text-accent mb-3" /> :
+             (suggestion as ActivitySuggestion).category.toLowerCase().includes("nightlife") ? <Beer className="mx-auto h-12 w-12 text-accent mb-3" /> :
              <Sailboat className="mx-auto h-12 w-12 text-accent mb-3" />}
             <CardTitle className="text-3xl">Your Fun Adventure is Here!</CardTitle>
           </CardHeader>

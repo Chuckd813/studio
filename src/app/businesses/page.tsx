@@ -7,7 +7,7 @@ import type { Business } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Search, Filter, Building2, ShoppingBag } from 'lucide-react';
+import { Search, Filter, Building2, ShoppingBag, Sparkles } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import Link from 'next/link';
 
@@ -106,22 +106,21 @@ export default function BusinessesPage() {
         </div>
       </div>
 
-      {/* Advertisement Placeholder */}
       <section className="my-8">
         <Card className="p-6 md:p-8 rounded-lg shadow-md text-center border-2 border-dashed border-primary/30 bg-gradient-to-br from-primary/5 to-accent/5">
             <CardHeader className="p-0 pb-4">
-              <ShoppingBag className="mx-auto h-10 w-10 text-primary mb-2" />
-              <CardTitle className="text-2xl font-semibold text-primary">Feature Your Business!</CardTitle>
+              <Sparkles className="mx-auto h-10 w-10 text-primary mb-2" />
+              <CardTitle className="text-2xl font-semibold text-primary">Want Your Business to Shine?</CardTitle>
             </CardHeader>
             <CardContent className="p-0 space-y-3 text-foreground">
-              <p>Get your Tampa business in front of thousands of engaged locals and visitors.</p>
+              <p>Feature your Tampa business on this page and reach thousands of engaged customers!</p>
               <ul className="list-disc list-inside text-left inline-block text-sm space-y-1">
-                <li>Prime placement on business listings.</li>
-                <li>Enhanced visibility and brand awareness.</li>
-                <li>Attract more customers directly.</li>
+                <li>Top placement in search results and category listings.</li>
+                <li>Enhanced visibility to drive more leads.</li>
+                <li>Showcase your unique offerings and promotions.</li>
               </ul>
                <Button asChild className="mt-4 rounded-full">
-                <Link href="/auth/register">Learn About Advertising</Link>
+                <Link href="/auth/register">Advertise With Us</Link>
               </Button>
             </CardContent>
           </Card>
