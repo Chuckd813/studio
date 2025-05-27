@@ -2,7 +2,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, X, Briefcase, CalendarDays, Sparkles, UserPlus } from 'lucide-react';
+import { Menu, X, Briefcase, CalendarDays, Sparkles, UserPlus, ChefHat } from 'lucide-react'; // Added ChefHat
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { AISearch } from '@/components/features/AISearch';
@@ -14,7 +14,8 @@ import { cn } from '@/lib/utils';
 const navLinks = [
   { href: '/businesses', label: 'Businesses', icon: Briefcase },
   { href: '/events', label: 'Events', icon: CalendarDays },
-  { href: '/deals', label: 'Deals', icon: Sparkles }, // Changed "Hot Deals" to "Deals"
+  { href: '/deals', label: 'Deals', icon: Sparkles },
+  { href: '/food-randomizer', label: 'Food Randomizer', icon: ChefHat }, // Added Food Randomizer
 ];
 
 const authLinks = [
@@ -51,7 +52,7 @@ export function Header() {
       href={href}
       onClick={onClick}
       className={cn(
-        "flex items-center gap-2 rounded-md px-3 py-2 text-foreground hover:bg-primary/10 hover:text-primary transition-colors",
+        "flex items-center gap-2 rounded-md px-3 py-2 text-foreground hover:bg-primary/10 hover:text-primary transition-colors text-sm", // Added text-sm
         pathname === href && "bg-primary/10 text-primary font-medium"
       )}
     >
@@ -64,16 +65,18 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
         <Logo />
-        <div className="hidden lg:flex items-center gap-4">
-          <nav className="flex items-center gap-2">
+        <div className="hidden lg:flex items-center gap-3"> {/* Reduced gap slightly */}
+          <nav className="flex items-center gap-1"> {/* Reduced gap slightly */}
             {navLinks.map((link) => (
               <NavLinkItem key={link.href} {...link} />
             ))}
           </nav>
-          <AISearch />
+          <div className="flex-shrink-0"> {/* Prevent AISearch from growing too much */}
+            <AISearch />
+          </div>
           <div className="flex items-center gap-2">
             {authLinks.map((link) => (
-              <Button key={link.href} variant="outline" asChild className="rounded-full">
+              <Button key={link.href} variant="outline" asChild className="rounded-full text-sm px-3"> {/* Added text-sm and adjusted padding */}
                 <Link href={link.href} className="flex items-center gap-1">
                   <link.icon className="h-4 w-4" />
                   {link.label}
@@ -82,7 +85,7 @@ export function Header() {
             ))}
              {/* Link to dashboard for admin, assuming admin path is /dashboard/profile */}
              {pathname !== '/dashboard/profile' && (
-              <Button variant="default" asChild className="rounded-full">
+              <Button variant="default" asChild className="rounded-full text-sm px-3"> {/* Added text-sm and adjusted padding */}
                 <Link href="/dashboard/profile">Admin Dashboard</Link>
               </Button>
             )}

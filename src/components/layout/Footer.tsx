@@ -1,7 +1,8 @@
+
 import { ContactForm } from '@/components/shared/ContactForm';
 import { Separator } from '@/components/ui/separator';
 import { Logo } from './Logo';
-import { Copyright, Facebook, Instagram, Twitter } from 'lucide-react';
+import { Copyright, Facebook, Instagram, Twitter, ChefHat } from 'lucide-react'; // Added ChefHat
 import Link from 'next/link';
 
 export function Footer() {
@@ -34,7 +35,12 @@ export function Footer() {
             <ul className="space-y-2">
               <li><Link href="/businesses" className="hover:text-primary transition-colors">Browse Businesses</Link></li>
               <li><Link href="/events" className="hover:text-primary transition-colors">Event Calendar</Link></li>
-              <li><Link href="/deals" className="hover:text-primary transition-colors">Hot Deals</Link></li>
+              <li><Link href="/deals" className="hover:text-primary transition-colors">Deals</Link></li>
+              <li>
+                <Link href="/food-randomizer" className="hover:text-primary transition-colors flex items-center">
+                  <ChefHat className="h-4 w-4 mr-1.5" /> Food Randomizer
+                </Link>
+              </li>
               <li><Link href="/auth/register" className="hover:text-primary transition-colors">For Businesses</Link></li>
             </ul>
           </div>
