@@ -95,8 +95,11 @@ export default function Home() {
             priority
           />
         </div>
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          {/* Removed large "TAMPA" text overlay */}
+        </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-md title-gradient-white-blue dark:title-gradient-white-blue">
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-md">
             Discover What's In Tampa
           </h1>
           <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto drop-shadow-sm">
@@ -131,34 +134,38 @@ export default function Home() {
               <Link href="/deals">View All Deals <ArrowRight className="ml-1 h-4 w-4" /></Link>
             </Button>
           </div>
-          <Carousel
-            opts={{ align: "start", loop: true }}
-            plugins={[dealsAutoplayPlugin.current]}
-            setApi={setDealsApi}
-            className="w-full"
-            onMouseEnter={dealsAutoplayPlugin.current.stop}
-            onMouseLeave={dealsAutoplayPlugin.current.reset}
-          >
-            <CarouselContent>
-              {mockDeals.slice(0, 6).map(deal => (
-                <CarouselItem key={deal.id} className="basis-full sm:basis-1/2 lg:basis-1/3">
-                  <div className="p-1 h-full">
-                    <DealCard deal={deal} />
+          {isMounted ? (
+            <Carousel
+              opts={{ align: "start", loop: mockDeals.slice(0, 6).length > 2 }} // Loop only if enough items
+              plugins={[dealsAutoplayPlugin.current]}
+              setApi={setDealsApi}
+              className="w-full"
+              onMouseEnter={dealsAutoplayPlugin.current.stop}
+              onMouseLeave={dealsAutoplayPlugin.current.reset}
+            >
+              <CarouselContent>
+                {mockDeals.slice(0, 6).map(deal => (
+                  <CarouselItem key={deal.id} className="basis-full sm:basis-1/2 lg:basis-1/3">
+                    <div className="p-1 h-full">
+                      <DealCard deal={deal} />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              {dealsCount > 0 && (
+                <>
+                  <CarouselPrevious className="hidden sm:flex -left-4" />
+                  <CarouselNext className="hidden sm:flex -right-4" />
+                  <CarouselDots className="mt-6" />
+                  <div className="py-2 text-center text-sm text-muted-foreground">
+                    Slide {dealsCurrent} of {dealsCount}
                   </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            {isMounted && dealsCount > 0 && (
-              <>
-                <CarouselPrevious className="hidden sm:flex -left-4" />
-                <CarouselNext className="hidden sm:flex -right-4" />
-                <CarouselDots className="mt-6" />
-                <div className="py-2 text-center text-sm text-muted-foreground">
-                  Slide {dealsCurrent} of {dealsCount}
-                </div>
-              </>
-            )}
-          </Carousel>
+                </>
+              )}
+            </Carousel>
+          ) : (
+            <p className="text-center text-muted-foreground py-10">Loading deals...</p>
+          )}
         </div>
       </section>
       
@@ -184,34 +191,38 @@ export default function Home() {
               <Link href="/events">View Full Calendar <ArrowRight className="ml-1 h-4 w-4" /></Link>
             </Button>
           </div>
-          <Carousel
-            opts={{ align: "start", loop: true }}
-            plugins={[eventsAutoplayPlugin.current]}
-            setApi={setEventsApi}
-            className="w-full"
-            onMouseEnter={eventsAutoplayPlugin.current.stop}
-            onMouseLeave={eventsAutoplayPlugin.current.reset}
-          >
-            <CarouselContent>
-              {mockEvents.slice(0, 6).map(event => (
-                <CarouselItem key={event.id} className="basis-full sm:basis-1/2 lg:basis-1/3">
-                  <div className="p-1 h-full">
-                    <EventCard event={event} />
+          {isMounted ? (
+            <Carousel
+              opts={{ align: "start", loop: mockEvents.slice(0, 6).length > 2 }}
+              plugins={[eventsAutoplayPlugin.current]}
+              setApi={setEventsApi}
+              className="w-full"
+              onMouseEnter={eventsAutoplayPlugin.current.stop}
+              onMouseLeave={eventsAutoplayPlugin.current.reset}
+            >
+              <CarouselContent>
+                {mockEvents.slice(0, 6).map(event => (
+                  <CarouselItem key={event.id} className="basis-full sm:basis-1/2 lg:basis-1/3">
+                    <div className="p-1 h-full">
+                      <EventCard event={event} />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+               {eventsCount > 0 && (
+                <>
+                  <CarouselPrevious className="hidden sm:flex -left-4" />
+                  <CarouselNext className="hidden sm:flex -right-4" />
+                  <CarouselDots className="mt-6" />
+                   <div className="py-2 text-center text-sm text-muted-foreground">
+                    Slide {eventsCurrent} of {eventsCount}
                   </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-             {isMounted && eventsCount > 0 && (
-              <>
-                <CarouselPrevious className="hidden sm:flex -left-4" />
-                <CarouselNext className="hidden sm:flex -right-4" />
-                <CarouselDots className="mt-6" />
-                 <div className="py-2 text-center text-sm text-muted-foreground">
-                  Slide {eventsCurrent} of {eventsCount}
-                </div>
-              </>
-            )}
-          </Carousel>
+                </>
+              )}
+            </Carousel>
+          ) : (
+            <p className="text-center text-muted-foreground py-10">Loading events...</p>
+          )}
         </div>
       </section>
 
@@ -226,34 +237,38 @@ export default function Home() {
               <Link href="/businesses">Explore All Businesses <ArrowRight className="ml-1 h-4 w-4" /></Link>
             </Button>
           </div>
-          <Carousel
-            opts={{ align: "start", loop: true }}
-            plugins={[bizAutoplayPlugin.current]}
-            setApi={setBizApi}
-            className="w-full"
-            onMouseEnter={bizAutoplayPlugin.current.stop}
-            onMouseLeave={bizAutoplayPlugin.current.reset}
-          >
-            <CarouselContent>
-              {mockBusinesses.slice(0, 9).map(business => (
-                <CarouselItem key={business.id} className="basis-full sm:basis-1/2 lg:basis-1/3">
-                  <div className="p-1 h-full">
-                    <BusinessCard business={business} />
+          {isMounted ? (
+            <Carousel
+              opts={{ align: "start", loop: mockBusinesses.slice(0, 9).length > 2 }}
+              plugins={[bizAutoplayPlugin.current]}
+              setApi={setBizApi}
+              className="w-full"
+              onMouseEnter={bizAutoplayPlugin.current.stop}
+              onMouseLeave={bizAutoplayPlugin.current.reset}
+            >
+              <CarouselContent>
+                {mockBusinesses.slice(0, 9).map(business => (
+                  <CarouselItem key={business.id} className="basis-full sm:basis-1/2 lg:basis-1/3">
+                    <div className="p-1 h-full">
+                      <BusinessCard business={business} />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              {bizCount > 0 && (
+                <>
+                  <CarouselPrevious className="hidden sm:flex -left-4" />
+                  <CarouselNext className="hidden sm:flex -right-4" />
+                  <CarouselDots className="mt-6" />
+                  <div className="py-2 text-center text-sm text-muted-foreground">
+                    Slide {bizCurrent} of {bizCount}
                   </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            {isMounted && bizCount > 0 && (
-              <>
-                <CarouselPrevious className="hidden sm:flex -left-4" />
-                <CarouselNext className="hidden sm:flex -right-4" />
-                <CarouselDots className="mt-6" />
-                <div className="py-2 text-center text-sm text-muted-foreground">
-                  Slide {bizCurrent} of {bizCount}
-                </div>
-              </>
-            )}
-          </Carousel>
+                </>
+              )}
+            </Carousel>
+          ) : (
+            <p className="text-center text-muted-foreground py-10">Loading businesses...</p>
+          )}
         </div>
       </section>
 
