@@ -1,5 +1,8 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { Deal } from '@/types';
+import type { Deal } from '@/types';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -11,6 +14,27 @@ interface DealCardProps {
 }
 
 export function DealCard({ deal }: DealCardProps) {
+  const [formattedExpiryDate, setFormattedExpiryDate] = useState<string | null>(null);
+  const [confidencePercentage, setConfidencePercentage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (deal.expiryDate) {
+      setFormattedExpiryDate(new Date(deal.expiryDate).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      }));
+    } else {
+      setFormattedExpiryDate(null); // Ensure it's reset if no date
+    }
+
+    if (deal.confidence !== undefined) {
+      setConfidencePercentage((deal.confidence * 100).toFixed(0));
+    } else {
+      setConfidencePercentage(null); // Ensure it's reset if no confidence
+    }
+  }, [deal.expiryDate, deal.confidence]);
+
   return (
     <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 rounded-lg">
       <CardHeader className="p-0">
@@ -23,10 +47,10 @@ export function DealCard({ deal }: DealCardProps) {
             data-ai-hint={deal.dataAiHint}
           />
         </div>
-        {deal.confidence && (
+        {deal.confidence !== undefined && (
           <div className="absolute top-2 right-2 bg-primary text-primary-foreground px-2 py-1 rounded-full text-xs font-semibold flex items-center gap-1 shadow-md">
             <Star className="h-3 w-3" />
-            {`Curated: ${(deal.confidence * 100).toFixed(0)}%`}
+            {confidencePercentage ? `Curated: ${confidencePercentage}%` : '...'}
           </div>
         )}
       </CardHeader>
@@ -41,7 +65,7 @@ export function DealCard({ deal }: DealCardProps) {
         {deal.expiryDate && (
            <div className="flex items-center text-xs text-destructive font-medium">
             <CalendarClock className="h-3.5 w-3.5 mr-1.5 shrink-0" />
-            <span>Expires: {new Date(deal.expiryDate).toLocaleDateString()}</span>
+            <span>Expires: {formattedExpiryDate || '...'}</span>
           </div>
         )}
       </CardContent>

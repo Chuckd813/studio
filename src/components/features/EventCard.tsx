@@ -1,6 +1,9 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Event } from '@/types';
+import type { Event } from '@/types';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -11,6 +14,21 @@ interface EventCardProps {
 }
 
 export function EventCard({ event }: EventCardProps) {
+  const [formattedEventDate, setFormattedEventDate] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (event.date) {
+      setFormattedEventDate(new Date(event.date).toLocaleDateString('en-US', {
+        weekday: 'short',
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+      }));
+    } else {
+      setFormattedEventDate(null);
+    }
+  }, [event.date]);
+
   return (
     <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 rounded-lg">
       <CardHeader className="p-0">
@@ -31,7 +49,7 @@ export function EventCard({ event }: EventCardProps) {
         <div className="space-y-1.5 text-sm text-muted-foreground">
           <div className="flex items-center">
             <CalendarDays className="h-4 w-4 mr-2 shrink-0 text-primary/80" />
-            <span>{new Date(event.date).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' })}</span>
+            <span>{formattedEventDate || '...'}</span>
           </div>
           <div className="flex items-center">
             <Clock className="h-4 w-4 mr-2 shrink-0 text-primary/80" />
