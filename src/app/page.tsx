@@ -171,36 +171,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Tampa Tip of the Day Section */}
-      {isMounted && (
-        <section className="py-12 bg-secondary/50 dark:bg-secondary/20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <Card className="shadow-lg border-2 border-primary/30 bg-gradient-to-r from-primary/5 to-accent/5 dark:from-primary/10 dark:to-accent/10">
-              <CardHeader className="text-center pb-3">
-                <CardTitle className="text-2xl flex items-center justify-center gap-2">
-                  <Lightbulb className="h-7 w-7 text-primary" />
-                  Tampa Tip of the Day!
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                {isLoadingTip ? (
-                  <div className="flex items-center justify-center py-4">
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin text-primary" />
-                    <p className="text-muted-foreground">Fetching today's tip...</p>
-                  </div>
-                ) : (
-                  <p className="text-lg italic text-foreground">"{dailyTip}"</p>
-                )}
-                <Button variant="link" onClick={fetchDailyTip} disabled={isLoadingTip} className="mt-3 text-primary hover:text-accent">
-                  {isLoadingTip ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> :  <Zap className="mr-2 h-4 w-4"/>}
-                  Get Another Tip
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-      )}
       
       <HomepageWitWheel />
       <AdSlideshow />
@@ -359,8 +329,38 @@ export default function Home() {
         </section>
       )}
 
+      {/* Tampa Tip of the Day Section - MOVED HERE */}
+      {isMounted && (
+        <section className="py-12 bg-secondary/50 dark:bg-secondary/20">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <Card className="shadow-lg border-2 border-primary/30 bg-gradient-to-r from-primary/5 to-accent/5 dark:from-primary/10 dark:to-accent/10">
+              <CardHeader className="text-center pb-3">
+                <CardTitle className="text-2xl flex items-center justify-center gap-2">
+                  <Lightbulb className="h-7 w-7 text-primary" />
+                  Tampa Tip of the Day!
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="text-center">
+                {isLoadingTip ? (
+                  <div className="flex items-center justify-center py-4">
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin text-primary" />
+                    <p className="text-muted-foreground">Fetching today's tip...</p>
+                  </div>
+                ) : (
+                  <p className="text-lg italic text-foreground">"{dailyTip}"</p>
+                )}
+                <Button variant="link" onClick={fetchDailyTip} disabled={isLoadingTip} className="mt-3 text-primary hover:text-accent">
+                  {isLoadingTip ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> :  <Zap className="mr-2 h-4 w-4"/>}
+                  Get Another Tip
+                </Button>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+      )}
+
      {!isMounted ? renderLoadingPlaceholder("Featured Community Leaders", Users) : (
-        <section className="py-16 bg-secondary/50 dark:bg-secondary/20">
+        <section className="py-16 bg-background"> {/* Changed background for variety if tip is on secondary */}
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center mb-10">
               <h2 className="text-3xl font-bold text-primary flex items-center">
