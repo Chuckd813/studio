@@ -1,7 +1,7 @@
 
 import type { Business, Event, Deal, CommunityLeader } from '@/types';
 
-const industries = [
+export const industries = [ // Added export here
   "Technology", "Healthcare", "Food & Beverage", "Retail", "Professional Services", 
   "Arts & Culture", "Education", "Real Estate", "Automotive", "Travel & Hospitality"
 ];

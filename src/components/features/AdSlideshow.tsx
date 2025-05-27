@@ -1,7 +1,6 @@
 
 'use client';
 
-import *import('zod').ZodNever_base;
 import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
