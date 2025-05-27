@@ -48,15 +48,19 @@ export function AdSlideshow() {
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap() + 1)
     })
-    api.on("reInit", () => { // Also update count on reInit
+    api.on("reInit", () => { 
       setCount(api.scrollSnapList().length)
       setCurrent(api.selectedScrollSnap() + 1)
     })
   }, [api])
 
-  if (businessesToShow.length === 0) {
+  if (businessesToShow.length === 0 && isMounted) { // Only return null if mounted and no businesses
     return null; 
   }
+  if (!isMounted) { // Return basic loading or null if not mounted
+    return <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12"><p className="text-center">Loading Business Spotlight...</p></div>;
+  }
+
 
   return (
     <section className="py-12 bg-muted/30 dark:bg-muted/10">
@@ -109,15 +113,17 @@ export function AdSlideshow() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious className="hidden sm:flex" />
-          <CarouselNext className="hidden sm:flex" />
-          {isMounted && count > 0 && <CarouselDots className="mt-6" />}
+          {isMounted && count > 0 && (
+            <>
+              <CarouselPrevious className="hidden sm:flex" />
+              <CarouselNext className="hidden sm:flex" />
+              <CarouselDots className="mt-6" />
+              <div className="py-2 text-center text-sm text-muted-foreground">
+                Slide {current} of {count}
+              </div>
+            </>
+          )}
         </Carousel>
-        {isMounted && count > 0 && (
-            <div className="py-2 text-center text-sm text-muted-foreground">
-            Slide {current} of {count}
-            </div>
-        )}
       </div>
     </section>
   );

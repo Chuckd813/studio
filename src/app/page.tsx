@@ -96,7 +96,7 @@ export default function Home() {
           />
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-md">
+          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-md title-gradient-white-blue dark:title-gradient-white-blue">
             Discover What's In Tampa
           </h1>
           <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto drop-shadow-sm">
@@ -148,15 +148,17 @@ export default function Home() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden sm:flex -left-4" />
-            <CarouselNext className="hidden sm:flex -right-4" />
-            {isMounted && dealsCount > 0 && <CarouselDots className="mt-6" />}
+            {isMounted && dealsCount > 0 && (
+              <>
+                <CarouselPrevious className="hidden sm:flex -left-4" />
+                <CarouselNext className="hidden sm:flex -right-4" />
+                <CarouselDots className="mt-6" />
+                <div className="py-2 text-center text-sm text-muted-foreground">
+                  Slide {dealsCurrent} of {dealsCount}
+                </div>
+              </>
+            )}
           </Carousel>
-           {isMounted && dealsCount > 0 && (
-            <div className="py-2 text-center text-sm text-muted-foreground">
-              Slide {dealsCurrent} of {dealsCount}
-            </div>
-          )}
         </div>
       </section>
       
@@ -199,15 +201,17 @@ export default function Home() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden sm:flex -left-4" />
-            <CarouselNext className="hidden sm:flex -right-4" />
-            {isMounted && eventsCount > 0 && <CarouselDots className="mt-6" />}
+             {isMounted && eventsCount > 0 && (
+              <>
+                <CarouselPrevious className="hidden sm:flex -left-4" />
+                <CarouselNext className="hidden sm:flex -right-4" />
+                <CarouselDots className="mt-6" />
+                 <div className="py-2 text-center text-sm text-muted-foreground">
+                  Slide {eventsCurrent} of {eventsCount}
+                </div>
+              </>
+            )}
           </Carousel>
-          {isMounted && eventsCount > 0 && (
-            <div className="py-2 text-center text-sm text-muted-foreground">
-              Slide {eventsCurrent} of {eventsCount}
-            </div>
-          )}
         </div>
       </section>
 
@@ -239,15 +243,17 @@ export default function Home() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious className="hidden sm:flex -left-4" />
-            <CarouselNext className="hidden sm:flex -right-4" />
-            {isMounted && bizCount > 0 && <CarouselDots className="mt-6" />}
+            {isMounted && bizCount > 0 && (
+              <>
+                <CarouselPrevious className="hidden sm:flex -left-4" />
+                <CarouselNext className="hidden sm:flex -right-4" />
+                <CarouselDots className="mt-6" />
+                <div className="py-2 text-center text-sm text-muted-foreground">
+                  Slide {bizCurrent} of {bizCount}
+                </div>
+              </>
+            )}
           </Carousel>
-           {isMounted && bizCount > 0 && (
-            <div className="py-2 text-center text-sm text-muted-foreground">
-              Slide {bizCurrent} of {bizCount}
-            </div>
-          )}
         </div>
       </section>
 
