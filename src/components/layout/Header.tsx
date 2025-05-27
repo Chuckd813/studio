@@ -1,3 +1,4 @@
+
 'use client';
 
 import Link from 'next/link';
@@ -13,12 +14,11 @@ import { cn } from '@/lib/utils';
 const navLinks = [
   { href: '/businesses', label: 'Businesses', icon: Briefcase },
   { href: '/events', label: 'Events', icon: CalendarDays },
-  { href: '/deals', label: 'Hot Deals', icon: Sparkles },
+  { href: '/deals', label: 'Deals', icon: Sparkles }, // Changed "Hot Deals" to "Deals"
 ];
 
 const authLinks = [
   { href: '/auth/register', label: 'Register Business', icon: UserPlus },
-  // { href: '/auth/login', label: 'Business Login', icon: LogIn }, // Removed login link
 ];
 
 export function Header() {
@@ -31,7 +31,19 @@ export function Header() {
   }, []);
   
   if (!isMounted) {
-    return null; // Avoid rendering mismatch during hydration
+    // Render a minimal header or null during SSR to avoid hydration issues with pathname
+    return (
+      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+          <Logo />
+          <div className="lg:hidden">
+            <Button variant="ghost" size="icon" disabled>
+              <Menu className="h-6 w-6" />
+            </Button>
+          </div>
+        </div>
+      </header>
+    );
   }
 
   const NavLinkItem: React.FC<{ href: string, label: string, icon: React.ElementType, onClick?: () => void }> = ({ href, label, icon: Icon, onClick }) => (

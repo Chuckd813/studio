@@ -4,7 +4,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Sparkles, CalendarDays, Building2, Users } from 'lucide-react';
+import { ArrowRight, Sparkles, CalendarDays, Building2, Users, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { mockDeals, mockEvents, mockBusinesses, mockCommunityLeaders } from '@/lib/mock-data';
@@ -80,6 +80,27 @@ export default function Home() {
   }, [bizApi]);
 
 
+  const renderLoadingPlaceholder = (title: string, icon: React.ElementType) => {
+    const IconComponent = icon;
+    return (
+      <section className="py-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="text-3xl font-bold text-primary flex items-center">
+              <IconComponent className="mr-3 h-8 w-8 text-accent" /> 
+              {title}
+            </h2>
+          </div>
+          <div className="flex items-center justify-center py-10 text-muted-foreground">
+            <Loader2 className="mr-2 h-6 w-6 animate-spin" />
+            Loading {title.toLowerCase()}...
+          </div>
+        </div>
+      </section>
+    );
+  };
+
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
@@ -95,10 +116,8 @@ export default function Home() {
             priority
           />
         </div>
-        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-          {/* Removed large "TAMPA" text overlay */}
-        </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          {/* Title made white by default text-primary-foreground from parent section */}
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-md">
             Discover What's In Tampa
           </h1>
@@ -124,19 +143,19 @@ export default function Home() {
       <AdSlideshow />
 
       {/* Hot Deals Preview */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-primary flex items-center">
-              <Sparkles className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Hot Deals</span>
-            </h2>
-            <Button variant="link" asChild className="text-primary hover:text-accent">
-              <Link href="/deals">View All Deals <ArrowRight className="ml-1 h-4 w-4" /></Link>
-            </Button>
-          </div>
-          {isMounted ? (
+      {!isMounted ? renderLoadingPlaceholder("Hot Deals", Sparkles) : (
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-3xl font-bold text-primary flex items-center">
+                <Sparkles className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Hot Deals</span>
+              </h2>
+              <Button variant="link" asChild className="text-primary hover:text-accent">
+                <Link href="/deals">View All Deals <ArrowRight className="ml-1 h-4 w-4" /></Link>
+              </Button>
+            </div>
             <Carousel
-              opts={{ align: "start", loop: mockDeals.slice(0, 6).length > 2 }} // Loop only if enough items
+              opts={{ align: "start", loop: mockDeals.slice(0, 6).length > 2 }}
               plugins={[dealsAutoplayPlugin.current]}
               setApi={setDealsApi}
               className="w-full"
@@ -163,11 +182,9 @@ export default function Home() {
                 </>
               )}
             </Carousel>
-          ) : (
-            <p className="text-center text-muted-foreground py-10">Loading deals...</p>
-          )}
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
       
       {/* Advertisement Placeholder 1 */}
       <section className="py-8 bg-muted/30 dark:bg-muted/10">
@@ -181,17 +198,17 @@ export default function Home() {
       </section>
 
       {/* Upcoming Events Preview */}
-      <section className="py-16 bg-secondary/50 dark:bg-secondary/20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-primary flex items-center">
-              <CalendarDays className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Upcoming Events</span>
-            </h2>
-            <Button variant="link" asChild className="text-primary hover:text-accent">
-              <Link href="/events">View Full Calendar <ArrowRight className="ml-1 h-4 w-4" /></Link>
-            </Button>
-          </div>
-          {isMounted ? (
+      {!isMounted ? renderLoadingPlaceholder("Upcoming Events", CalendarDays) : (
+        <section className="py-16 bg-secondary/50 dark:bg-secondary/20">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-3xl font-bold text-primary flex items-center">
+                <CalendarDays className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Upcoming Events</span>
+              </h2>
+              <Button variant="link" asChild className="text-primary hover:text-accent">
+                <Link href="/events">View Full Calendar <ArrowRight className="ml-1 h-4 w-4" /></Link>
+              </Button>
+            </div>
             <Carousel
               opts={{ align: "start", loop: mockEvents.slice(0, 6).length > 2 }}
               plugins={[eventsAutoplayPlugin.current]}
@@ -220,24 +237,22 @@ export default function Home() {
                 </>
               )}
             </Carousel>
-          ) : (
-            <p className="text-center text-muted-foreground py-10">Loading events...</p>
-          )}
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
 
       {/* Featured Businesses Preview */}
-       <section className="py-16 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-primary flex items-center">
-              <Building2 className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Featured Businesses</span>
-            </h2>
-            <Button variant="link" asChild className="text-primary hover:text-accent">
-              <Link href="/businesses">Explore All Businesses <ArrowRight className="ml-1 h-4 w-4" /></Link>
-            </Button>
-          </div>
-          {isMounted ? (
+      {!isMounted ? renderLoadingPlaceholder("Featured Businesses", Building2) : (
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-3xl font-bold text-primary flex items-center">
+                <Building2 className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Featured Businesses</span>
+              </h2>
+              <Button variant="link" asChild className="text-primary hover:text-accent">
+                <Link href="/businesses">Explore All Businesses <ArrowRight className="ml-1 h-4 w-4" /></Link>
+              </Button>
+            </div>
             <Carousel
               opts={{ align: "start", loop: mockBusinesses.slice(0, 9).length > 2 }}
               plugins={[bizAutoplayPlugin.current]}
@@ -266,11 +281,9 @@ export default function Home() {
                 </>
               )}
             </Carousel>
-          ) : (
-            <p className="text-center text-muted-foreground py-10">Loading businesses...</p>
-          )}
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
 
       {/* Featured Community Leaders */}
       <section className="py-16 bg-secondary/50 dark:bg-secondary/20">
@@ -279,16 +292,19 @@ export default function Home() {
             <h2 className="text-3xl font-bold text-primary flex items-center">
               <Users className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Featured Community Leaders</span>
             </h2>
-            {/* Optional: Link to a page with all leaders */}
-            {/* <Button variant="link" asChild className="text-primary hover:text-accent">
-              <Link href="/community-leaders">Meet All Leaders <ArrowRight className="ml-1 h-4 w-4" /></Link>
-            </Button> */}
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {mockCommunityLeaders.slice(0, 4).map(leader => (
-              <PersonCard key={leader.id} leader={leader} />
-            ))}
-          </div>
+          {isMounted ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {mockCommunityLeaders.slice(0, 4).map(leader => (
+                <PersonCard key={leader.id} leader={leader} />
+              ))}
+            </div>
+          ) : (
+             <div className="flex items-center justify-center py-10 text-muted-foreground">
+              <Loader2 className="mr-2 h-6 w-6 animate-spin" />
+              Loading community leaders...
+            </div>
+          )}
         </div>
       </section>
       
