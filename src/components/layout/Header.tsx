@@ -2,7 +2,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, X, Briefcase, CalendarDays, Sparkles, UserPlus, Zap } from 'lucide-react'; // Changed ChefHat to Zap
+import { Menu, X, Briefcase, CalendarDays, Sparkles, UserPlus, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
 import { AISearch } from '@/components/features/AISearch';
@@ -15,7 +15,7 @@ const navLinks = [
   { href: '/businesses', label: 'Businesses', icon: Briefcase },
   { href: '/events', label: 'Events', icon: CalendarDays },
   { href: '/deals', label: 'Deals', icon: Sparkles },
-  { href: '/adventure-wheel', label: 'WIT Wheel', icon: Zap }, // Updated label and icon
+  { href: '/adventure-wheel', label: 'WIT Wheel', icon: Zap, labelClassName: 'text-xs' },
 ];
 
 const authLinks = [
@@ -47,7 +47,7 @@ export function Header() {
     );
   }
 
-  const NavLinkItem: React.FC<{ href: string, label: string, icon: React.ElementType, onClick?: () => void }> = ({ href, label, icon: Icon, onClick }) => (
+  const NavLinkItem: React.FC<{ href: string, label: string, icon: React.ElementType, onClick?: () => void, labelClassName?: string }> = ({ href, label, icon: Icon, onClick, labelClassName }) => (
     <Link
       href={href}
       onClick={onClick}
@@ -57,7 +57,7 @@ export function Header() {
       )}
     >
       <Icon className="h-5 w-5" />
-      {label}
+      <span className={cn(labelClassName)}>{label}</span>
     </Link>
   );
   
