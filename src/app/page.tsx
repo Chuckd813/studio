@@ -142,7 +142,7 @@ export default function Home() {
             Your ultimate guide to the best businesses, exciting events, and unbeatable deals in Tampa Bay.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button size="lg" asChild className="rounded-full text-lg px-8 py-6 shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out">
+            <Button size="lg" asChild className="rounded-full text-lg px-8 py-6 shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out bg-tertiary text-tertiary-foreground hover:bg-tertiary/90">
               <Link href="/businesses">
                 Explore Businesses <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -206,7 +206,7 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <Card className="p-6 md:p-8 rounded-lg shadow-md text-center border-2 border-dashed border-primary/30 bg-gradient-to-br from-accent/5 to-primary/5">
             <div className="relative w-full h-32 sm:h-40 mb-4">
-              <Image src="https://placehold.co/728x90.png?text=Your+Business+Ad+Here" alt="Advertise your business" layout="fill" objectFit="contain" data-ai-hint="advertisement banner" />
+              <Image src="https://placehold.co/728x90.png?text=Your+Business+Ad+Here" alt="Advertise your business on What's In Tampa" layout="fill" objectFit="contain" data-ai-hint="advertisement banner" />
             </div>
             <CardHeader className="p-0 pb-4">
               <ShoppingBag className="mx-auto h-10 w-10 text-primary mb-2" />
@@ -313,7 +313,7 @@ export default function Home() {
         </section>
       )}
 
-      {!isMounted ? renderLoadingPlaceholder("Featured Community Leaders", Users) : (
+     {!isMounted ? renderLoadingPlaceholder("Featured Community Leaders", Users) : (
         <section className="py-16 bg-secondary/50 dark:bg-secondary/20">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between items-center mb-10">
@@ -323,7 +323,7 @@ export default function Home() {
               {/* Optionally, add a "View All Leaders" link if you plan a dedicated page */}
             </div>
             <Carousel
-              opts={{ align: "start", loop: mockCommunityLeaders.length > 1 }} // Loop if more than 1 leader
+              opts={{ align: "start", loop: mockCommunityLeaders.length > 1 }}
               plugins={[leadersAutoplayPlugin.current]}
               setApi={setLeadersApi}
               className="w-full"
@@ -388,7 +388,7 @@ export default function Home() {
           <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto">
             Join our platform to reach more customers, promote your services, and list your deals and events.
           </p>
-          <Button size="lg" variant="secondary" asChild className="rounded-full text-lg px-8 py-6 bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out">
+          <Button size="lg" asChild className="rounded-full text-lg px-8 py-6 bg-tertiary text-tertiary-foreground hover:bg-tertiary/90 shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out">
             <Link href="/auth/register">
               Register Your Business <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
