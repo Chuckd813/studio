@@ -221,8 +221,8 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
            <Card className="p-4 md:p-6 rounded-lg shadow-md text-center border-2 border-dashed border-primary/30 bg-gradient-to-br from-accent/5 to-primary/5">
             <div className="relative w-full h-32 sm:h-40 mb-3 rounded-md overflow-hidden">
-              <Image src="https://placehold.co/728x90.png?text=Your+Business+Ad+Here" alt="Advertise your business on What's In Tampa" layout="fill" objectFit="contain" data-ai-hint="advertisement banner" />
-            </div> {/* Removed layout and objectFit as per Next.js 13+ Image component changes. The container handles layout, object-fit can be applied via CSS. */}
+              <Image src="https://drive.google.com/file/d/1LKgSxoh8oyw7HRSMR0eZ-brMTMxnY9OW/preview" alt="Glenn Cummings and BIG Financial Services ad" fill style={{ objectFit: 'contain' }} data-ai-hint="financial services ad" />
+            </div>
             <CardHeader className="p-0 pb-3">
               <ShoppingBag className="mx-auto h-8 w-8 text-primary mb-2" />
               <CardTitle className="text-xl font-semibold text-primary">Advertise Your Business Here!</CardTitle>

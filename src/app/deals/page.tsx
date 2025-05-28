@@ -1,3 +1,4 @@
+
 'use client';
 import { useState, useEffect, useCallback } from 'react';
 import { DealCard } from '@/components/features/DealCard';
@@ -11,17 +12,24 @@ import { curateHotDeals, type CurateHotDealsInput, type CurateHotDealsOutput, ty
 import { useToast } from '@/hooks/use-toast';
 
 export default function DealsPage() {
-  const [allDeals, setAllDeals] = useState<Deal[]>(mockDeals); // Original mock deals
-  const [curatedDeals, setCuratedDeals] = useState<Deal[]>([]); // Deals after AI curation
+  const [allDeals, setAllDeals] = useState<Deal[]>(mockDeals.map(deal => ({ ...deal, confidence: undefined }))); // Start with undefined confidence
   const [filteredDeals, setFilteredDeals] = useState<Deal[]>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingCuration, setIsLoadingCuration] = useState(true); // Specifically for AI curation
   const [isMounted, setIsMounted] = useState(false);
   const { toast } = useToast();
 
+  useEffect(() => {
+    setIsMounted(true);
+    // Display initial mock deals immediately
+    setFilteredDeals(mockDeals.map(deal => ({ ...deal, confidence: undefined })));
+    // Then, start AI curation
+    runAICuration(mockDeals);
+  }, []); // Removed runAICuration from dependency array to prevent re-triggering from itself
+
   const runAICuration = useCallback(async (dealsToCurate: Deal[]) => {
-    setIsLoading(true);
+    setIsLoadingCuration(true);
     try {
       const aiInputDeals: AIHotDeal[] = dealsToCurate.map(d => ({ title: d.title, description: d.description }));
       const input: CurateHotDealsInput = { deals: aiInputDeals };
@@ -31,11 +39,16 @@ export default function DealsPage() {
         const matchedAiDeal = aiOutput.find(aiDeal => aiDeal.title === originalDeal.title && aiDeal.description === originalDeal.description);
         return {
           ...originalDeal,
-          confidence: matchedAiDeal ? matchedAiDeal.confidence : 0, // Assign confidence, default to 0 if not found
+          confidence: matchedAiDeal ? matchedAiDeal.confidence : 0.5, // Default confidence if not matched, or 0
         };
-      }).sort((a, b) => (b.confidence || 0) - (a.confidence || 0)); // Sort by confidence
+      }).sort((a, b) => (b.confidence || 0) - (a.confidence || 0));
 
-      setCuratedDeals(newlyCuratedDeals);
+      setAllDeals(newlyCuratedDeals); // Update allDeals with curated results
+      // Filtering will be re-applied in the other useEffect due to allDeals changing
+      toast({
+        title: "Deals Curated!",
+        description: "Hot deals have been updated with AI insights.",
+      });
       
     } catch (error) {
       console.error('Error curating hot deals:', error);
@@ -44,22 +57,18 @@ export default function DealsPage() {
         description: "Could not curate deals at this time. Displaying default deals.",
         variant: "destructive",
       });
-      // Fallback to original mock deals if AI curation fails
-      setCuratedDeals(dealsToCurate.map(d => ({ ...d, confidence: Math.random() * 0.3 + 0.7 }))); // mock confidence
+      // Fallback to original mock deals with some mocked confidence if AI fails
+      const fallbackDeals = dealsToCurate.map(d => ({ ...d, confidence: Math.random() * 0.3 + 0.7 }));
+      setAllDeals(fallbackDeals);
     } finally {
-      setIsLoading(false);
+      setIsLoadingCuration(false);
     }
-  }, [toast]);
-
-  useEffect(() => {
-    setIsMounted(true);
-    runAICuration(mockDeals);
-  }, [runAICuration]);
+  }, [toast]); // Only toast as dependency, as dealsToCurate is passed in
   
   useEffect(() => {
-    if (!isMounted || isLoading) return; // Don't filter until mounted and curation is done
+    if (!isMounted) return; 
 
-    let result = curatedDeals;
+    let result = allDeals; // Use allDeals (which gets updated by AI) as the source
 
     if (selectedCategory !== 'All') {
       result = result.filter(deal => deal.category === selectedCategory);
@@ -73,7 +82,7 @@ export default function DealsPage() {
       );
     }
     setFilteredDeals(result);
-  }, [searchTerm, selectedCategory, curatedDeals, isLoading, isMounted]);
+  }, [searchTerm, selectedCategory, allDeals, isMounted]);
 
 
   if (!isMounted) {
@@ -82,7 +91,10 @@ export default function DealsPage() {
         <h1 className="text-3xl font-bold mb-8 text-primary flex items-center">
           <Sparkles className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Today's Hot Deals</span>
         </h1>
-        <p>Loading deals...</p>
+        <div className="flex justify-center items-center py-20">
+          <Loader2 className="h-12 w-12 text-primary animate-spin mr-4" />
+          <p className="text-xl text-muted-foreground">Loading awesome deals...</p>
+        </div>
       </div>
     );
   }
@@ -95,6 +107,7 @@ export default function DealsPage() {
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           Discover AI-curated promotions and special offers from businesses across Tampa.
+          {isLoadingCuration && " (Updating with latest AI insights...)"}
         </p>
       </header>
 
@@ -137,16 +150,16 @@ export default function DealsPage() {
         </div>
       </div>
 
-      {isLoading ? (
-        <div className="flex justify-center items-center py-20">
-          <Loader2 className="h-12 w-12 text-primary animate-spin mr-4" />
-          <p className="text-xl text-muted-foreground">Curating the best deals for you...</p>
-        </div>
-      ) : filteredDeals.length > 0 ? (
+      {filteredDeals.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-8">
           {filteredDeals.map(deal => (
             <DealCard key={deal.id} deal={deal} />
           ))}
+        </div>
+      ) : isLoadingCuration ? ( // Show loading if still curating and no deals yet
+        <div className="flex justify-center items-center py-20">
+          <Loader2 className="h-12 w-12 text-primary animate-spin mr-4" />
+          <p className="text-xl text-muted-foreground">Curating the best deals for you...</p>
         </div>
       ) : (
          <div className="text-center py-12">
