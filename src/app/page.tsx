@@ -1,5 +1,5 @@
 
-'use client'; 
+'use client';
 
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
@@ -7,12 +7,11 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { ArrowRight, Sparkles, CalendarDays, Building2, Users, Loader2, Zap, ShoppingBag, Palette, Lightbulb } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { mockDeals, mockEvents, mockBusinesses, mockCommunityLeaders, featuredBusinesses } from '@/lib/mock-data';
+import { mockDeals, mockEvents, featuredBusinesses, mockCommunityLeaders } from '@/lib/mock-data';
 import { DealCard } from '@/components/features/DealCard';
 import { EventCard } from '@/components/features/EventCard';
 import { BusinessCard } from '@/components/features/BusinessCard';
 import { PersonCard } from '@/components/features/PersonCard';
-import { AdSlideshow } from '@/components/features/AdSlideshow';
 import { HomepageWitWheel } from '@/components/features/HomepageWitWheel';
 import { generateTampaTip, type GenerateTampaTipOutput } from '@/ai/flows/generate-tampa-tip';
 import {
@@ -114,40 +113,21 @@ export default function Home() {
     });
   }, [leadersApi]);
 
-  const renderLoadingPlaceholder = (title: string, icon: React.ElementType) => {
-    const IconComponent = icon;
-    return (
-      <section className="py-16">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center mb-8">
-            <h2 className="text-3xl font-bold text-primary flex items-center">
-              <IconComponent className="mr-3 h-8 w-8 text-accent" /> 
-              {title}
-            </h2>
-          </div>
-          <div className="flex items-center justify-center py-10 text-muted-foreground">
-            <Loader2 className="mr-2 h-6 w-6 animate-spin" />
-            Loading {title.toLowerCase()}...
-          </div>
-        </div>
-      </section>
-    );
-  };
-
+  // renderLoadingPlaceholder function was here, removed as it's not used in the main return.
 
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 bg-gradient-to-br from-primary to-accent text-primary-foreground overflow-hidden">
         <div className="absolute inset-0">
- <Image src="https://images.unsplash.com/photo-1594602729519-ba24058355b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" // Tampa skyline image
- alt="Tampa Bay Skyline during the day"
- fill
-            className="opacity-50 dark:opacity-30 z-0" // Increased opacity and added z-index
- data-ai-hint="tampa skyline day"
+          <Image src="https://images.unsplash.com/photo-1594602729519-ba24058355b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
+            alt="Tampa Bay Skyline during the day"
+            fill
             priority
+            className="opacity-50 dark:opacity-30 z-0 object-cover"
+            data-ai-hint="tampa skyline day"
           />
- </div>
+        </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-md text-primary-foreground">
             Discover What's In Tampa
@@ -171,21 +151,25 @@ export default function Home() {
       </section>
       
       <HomepageWitWheel />
-      <AdSlideshow />
 
-      {!isMounted || featuredBusinesses.length === 0 ? null : ( // Render nothing if not mounted or no featured businesses
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-3xl font-bold text-primary flex items-center">
-                <Building2 className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Featured Businesses</span>
-              </h2>
-              <Button variant="link" asChild className="text-primary hover:text-accent">
-                <Link href="/businesses">Explore All Businesses <ArrowRight className="ml-1 h-4 w-4" /></Link>
-              </Button>
+      {/* Featured Businesses Section */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="text-3xl font-bold text-primary flex items-center">
+              <Building2 className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Featured Businesses</span>
+            </h2>
+            <Button variant="link" asChild className="text-primary hover:text-accent">
+              <Link href="/businesses">Explore All Businesses <ArrowRight className="ml-1 h-4 w-4" /></Link>
+            </Button>
+          </div>
+          {!isMounted ? (
+            <div className="flex items-center justify-center py-10 text-muted-foreground">
+              <Loader2 className="mr-2 h-6 w-6 animate-spin" /> Loading featured businesses...
             </div>
+          ) : (
             <Carousel
- opts={{ align: "start", loop: featuredBusinesses.length > 2 }}
+              opts={{ align: "start", loop: featuredBusinesses.length > 2 }}
               plugins={[bizAutoplayPlugin.current]}
               setApi={setBizApi}
               className="w-full"
@@ -193,7 +177,7 @@ export default function Home() {
               onMouseLeave={bizAutoplayPlugin.current.reset}
             >
               <CarouselContent>
- {featuredBusinesses.map(business => (
+                {featuredBusinesses.map(business => (
                   <CarouselItem key={business.id} className="basis-full sm:basis-1/2 lg:basis-1/3">
                     <div className="p-1 h-full">
                       <BusinessCard business={business} />
@@ -212,21 +196,26 @@ export default function Home() {
                 </>
               )}
             </Carousel>
-          </div>
-        </section>
-      )}
+          )}
+        </div>
+      </section>
 
-      {!isMounted ? renderLoadingPlaceholder("Hot Deals", Sparkles) : (
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-3xl font-bold text-primary flex items-center">
-                <Sparkles className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Hot Deals</span>
-              </h2>
-              <Button variant="link" asChild className="text-primary hover:text-accent">
-                <Link href="/deals">View All Deals <ArrowRight className="ml-1 h-4 w-4" /></Link>
-              </Button>
+      {/* Hot Deals Section */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="text-3xl font-bold text-primary flex items-center">
+              <Sparkles className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Hot Deals</span>
+            </h2>
+            <Button variant="link" asChild className="text-primary hover:text-accent">
+              <Link href="/deals">View All Deals <ArrowRight className="ml-1 h-4 w-4" /></Link>
+            </Button>
+          </div>
+          {!isMounted ? (
+            <div className="flex items-center justify-center py-10 text-muted-foreground">
+              <Loader2 className="mr-2 h-6 w-6 animate-spin" /> Loading hot deals...
             </div>
+          ) : (
             <Carousel
               opts={{ align: "start", loop: mockDeals.slice(0, 6).length > 2 }}
               plugins={[dealsAutoplayPlugin.current]}
@@ -255,46 +244,52 @@ export default function Home() {
                 </>
               )}
             </Carousel>
-          </div>
-        </section>
-      )}
+          )}
+        </div>
+      </section>
       
+      {/* Ad Placeholder 1 */}
       <section className="py-8 bg-muted/30 dark:bg-muted/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
            <Card className="p-4 md:p-6 rounded-lg shadow-md text-center border-2 border-dashed border-primary/30 bg-gradient-to-br from-accent/5 to-primary/5">
             <div className="relative w-full h-32 sm:h-40 mb-3 rounded-md overflow-hidden">
-              <Image src="https://drive.google.com/file/d/1LKgSxoh8oyw7HRSMR0eZ-brMTMxnY9OW/preview" alt="Glenn Cummings and BIG Financial Services ad" fill style={{ objectFit: 'contain' }} data-ai-hint="financial services ad" />
+              <Image src="https://placehold.co/728x90.png?text=Your+Business+Ad+Here" alt="Advertise your business" fill style={{ objectFit: 'contain' }} data-ai-hint="advertisement banner" />
             </div>
             <CardHeader className="p-0 pb-3">
               <ShoppingBag className="mx-auto h-8 w-8 text-primary mb-2" />
-              <CardTitle className="text-xl font-semibold text-primary">Advertise Your Business Here!</CardTitle>
+              <CardTitle className="text-xl font-semibold text-primary">Feature Your Business!</CardTitle>
             </CardHeader>
             <CardContent className="p-0 space-y-2 text-sm text-foreground">
-              <p>Want to be seen by thousands of Tampa locals and visitors? Feature your business prominently!</p>
+              <p>Reach thousands of Tampa locals and visitors by showcasing your business here.</p>
               <ul className="list-disc list-inside text-left inline-block text-xs space-y-0.5">
                 <li>Prime placement on our homepage.</li>
-                <li>Increased brand visibility and awareness.</li>
-                <li>Drive targeted traffic to your offerings.</li>
+                <li>Increase brand visibility.</li>
+                <li>Drive targeted traffic.</li>
               </ul>
                <Button asChild className="mt-3 rounded-full bg-tertiary text-tertiary-foreground hover:bg-tertiary/90">
-                <Link href="/auth/register">Learn About Advertising</Link>
+                <Link href="/auth/register">Advertise With Us</Link>
               </Button>
             </CardContent>
           </Card>
         </div>
       </section>
 
-      {!isMounted ? renderLoadingPlaceholder("Upcoming Events", CalendarDays) : (
-        <section className="py-16 bg-secondary/50 dark:bg-secondary/20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-3xl font-bold text-primary flex items-center">
-                <CalendarDays className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Upcoming Events</span>
-              </h2>
-              <Button variant="link" asChild className="text-primary hover:text-accent">
-                <Link href="/events">View Full Calendar <ArrowRight className="ml-1 h-4 w-4" /></Link>
-              </Button>
+      {/* Upcoming Events Section */}
+      <section className="py-16 bg-secondary/50 dark:bg-secondary/20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center mb-8">
+            <h2 className="text-3xl font-bold text-primary flex items-center">
+              <CalendarDays className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Upcoming Events</span>
+            </h2>
+            <Button variant="link" asChild className="text-primary hover:text-accent">
+              <Link href="/events">View Full Calendar <ArrowRight className="ml-1 h-4 w-4" /></Link>
+            </Button>
+          </div>
+          {!isMounted ? (
+             <div className="flex items-center justify-center py-10 text-muted-foreground">
+              <Loader2 className="mr-2 h-6 w-6 animate-spin" /> Loading upcoming events...
             </div>
+          ) : (
             <Carousel
               opts={{ align: "start", loop: mockEvents.slice(0, 6).length > 2 }}
               plugins={[eventsAutoplayPlugin.current]}
@@ -323,51 +318,53 @@ export default function Home() {
                 </>
               )}
             </Carousel>
-          </div>
-        </section>
-      )}
+          )}
+        </div>
+      </section>
 
-      {/* Tampa Tip of the Day Section - MOVED HERE */}
-      {isMounted && (
-        <section className="py-12 bg-secondary/50 dark:bg-secondary/20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <Card className="shadow-lg border-2 border-primary/30 bg-gradient-to-r from-primary/5 to-accent/5 dark:from-primary/10 dark:to-accent/10">
-              <CardHeader className="text-center pb-3">
-                <CardTitle className="text-2xl flex items-center justify-center gap-2">
-                  <Lightbulb className="h-7 w-7 text-primary" />
-                  Tampa Tip of the Day!
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="text-center">
-                {isLoadingTip ? (
-                  <div className="flex items-center justify-center py-4">
-                    <Loader2 className="mr-2 h-5 w-5 animate-spin text-primary" />
-                    <p className="text-muted-foreground">Fetching today's tip...</p>
-                  </div>
-                ) : (
-                  <p className="text-lg italic text-foreground">"{dailyTip}"</p>
-                )}
-                <Button variant="link" onClick={fetchDailyTip} disabled={isLoadingTip} className="mt-3 text-primary hover:text-accent">
-                  {isLoadingTip ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> :  <Zap className="mr-2 h-4 w-4"/>}
-                  Get Another Tip
-                </Button>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-      )}
+      {/* Tampa Tip of the Day Section */}
+      <section className="py-12 bg-secondary/50 dark:bg-secondary/20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <Card className="shadow-lg border-2 border-primary/30 bg-gradient-to-r from-primary/5 to-accent/5 dark:from-primary/10 dark:to-accent/10">
+            <CardHeader className="text-center pb-3">
+              <CardTitle className="text-2xl flex items-center justify-center gap-2">
+                <Lightbulb className="h-7 w-7 text-primary" />
+                Tampa Tip of the Day!
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="text-center">
+              {isLoadingTip ? (
+                <div className="flex items-center justify-center py-4">
+                  <Loader2 className="mr-2 h-5 w-5 animate-spin text-primary" />
+                  <p className="text-muted-foreground">Fetching today's tip...</p>
+                </div>
+              ) : (
+                <p className="text-lg italic text-foreground">"{dailyTip}"</p>
+              )}
+              <Button variant="link" onClick={fetchDailyTip} disabled={isLoadingTip} className="mt-3 text-primary hover:text-accent">
+                {isLoadingTip ? <Loader2 className="mr-2 h-4 w-4 animate-spin"/> :  <Zap className="mr-2 h-4 w-4"/>}
+                Get Another Tip
+              </Button>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
 
-     {!isMounted ? renderLoadingPlaceholder("Featured Community Leaders", Users) : (
-        <section className="py-16 bg-background"> {/* Changed background for variety if tip is on secondary */}
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center mb-10">
-              <h2 className="text-3xl font-bold text-primary flex items-center">
-                <Users className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Featured Community Leaders</span>
-              </h2>
-              {/* Optionally, add a "View All Leaders" link if you plan a dedicated page */}
+      {/* Featured Community Leaders Section */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center mb-10">
+            <h2 className="text-3xl font-bold text-primary flex items-center">
+              <Users className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Featured Community Leaders</span>
+            </h2>
+          </div>
+          {!isMounted ? (
+             <div className="flex items-center justify-center py-10 text-muted-foreground">
+              <Loader2 className="mr-2 h-6 w-6 animate-spin" /> Loading community leaders...
             </div>
+          ) : (
             <Carousel
-              opts={{ align: "start", loop: mockCommunityLeaders.length > 1 }}
+              opts={{ align: "start", loop: mockCommunityLeaders.length > 2 }}
               plugins={[leadersAutoplayPlugin.current]}
               setApi={setLeadersApi}
               className="w-full"
@@ -394,10 +391,11 @@ export default function Home() {
                 </>
               )}
             </Carousel>
-          </div>
-        </section>
-      )}
+          )}
+        </div>
+      </section>
       
+      {/* Ad Placeholder 2 */}
       <section className="py-8 bg-muted/30 dark:bg-muted/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
            <Card className="p-4 md:p-6 rounded-lg shadow-md text-center border-2 border-dashed border-accent/30 bg-gradient-to-br from-primary/5 to-accent/5">
@@ -406,23 +404,24 @@ export default function Home() {
             </div>
             <CardHeader className="p-0 pb-3">
               <Palette className="mx-auto h-8 w-8 text-accent mb-2" />
-              <CardTitle className="text-xl font-semibold text-accent">Showcase Your Event or Venue!</CardTitle>
+              <CardTitle className="text-xl font-semibold text-accent">Showcase Your Event!</CardTitle>
             </CardHeader>
             <CardContent className="p-0 space-y-2 text-sm text-foreground">
-              <p>Got an event Tampa needs to know about? Feature your venue and attract more attendees!</p>
+              <p>Got an event Tampa needs to know about? Attract more attendees by featuring it here.</p>
               <ul className="list-disc list-inside text-left inline-block text-xs space-y-0.5">
-                <li>Boost event visibility and ticket sales.</li>
+                <li>Boost event visibility.</li>
                 <li>Highlight your venue’s unique features.</li>
                 <li>Connect with an engaged local audience.</li>
               </ul>
               <Button asChild className="mt-3 rounded-full bg-tertiary text-tertiary-foreground hover:bg-tertiary/90">
-                <Link href="/auth/register">Promote Your Listing</Link>
+                <Link href="/auth/register">Promote Your Event</Link>
               </Button>
             </CardContent>
           </Card>
         </div>
       </section>
 
+      {/* Final Call to Action Section */}
       <section className="relative py-20 bg-primary text-primary-foreground overflow-hidden">
          <div className="absolute inset-0 opacity-10" style={{backgroundImage: "url('https://placehold.co/1920x400.png')", backgroundSize: 'cover', backgroundPosition: 'center', filter: 'grayscale(50%)'}} data-ai-hint="abstract pattern"></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
@@ -442,3 +441,5 @@ export default function Home() {
     </div>
   );
 }
+
+    

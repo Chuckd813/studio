@@ -36,17 +36,6 @@ export default function BusinessesPage() {
           </Link>
         ))}
       </div>
-      <section className="my-12 text-center">
-        <h2 className="text-3xl font-bold text-primary mb-4">
-          Featured Tampa Businesses
-        </h2>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-          Discover some of Tampa's leading businesses across various sectors.
-        </p>
-        <div className="relative w-full h-48 md:h-64 lg:h-80 rounded-lg overflow-hidden shadow-xl">
-          {/* Placeholder for future business spotlight carousel */}
-        </div>
-      </section>
     </div>
   );
 }
