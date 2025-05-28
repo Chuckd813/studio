@@ -16,7 +16,7 @@ import {
   type CarouselApi
 } from '@/components/ui/carousel';
 import Autoplay from "embla-carousel-autoplay";
-import { mockBusinesses, industries } from '@/lib/mock-data'; 
+import { featuredBusinesses } from '@/lib/mock-data'; // Import featuredBusinesses directly
 import type { Business } from '@/types';
 import { ArrowRight } from 'lucide-react';
 
@@ -34,9 +34,8 @@ export function AdSlideshow() {
     setIsMounted(true);
   }, []);
 
-  const businessesToShow: Business[] = industries.map(industry => {
-    return mockBusinesses.find(business => business.category === industry) as Business;
-  }).filter(Boolean); 
+  // Use featuredBusinesses directly
+  const businessesToShow: Business[] = featuredBusinesses; 
 
   React.useEffect(() => {
     if (!api) {
@@ -54,10 +53,10 @@ export function AdSlideshow() {
     })
   }, [api])
 
-  if (businessesToShow.length === 0 && isMounted) { // Only return null if mounted and no businesses
+  if (businessesToShow.length === 0 && isMounted) {
     return null; 
   }
-  if (!isMounted) { // Return basic loading or null if not mounted
+  if (!isMounted) {
     return <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12"><p className="text-center">Loading Business Spotlight...</p></div>;
   }
 
@@ -72,7 +71,7 @@ export function AdSlideshow() {
         <Carousel
           opts={{
             align: "start",
-            loop: true,
+            loop: businessesToShow.length > 2, // Adjust loop condition based on businessesToShow
           }}
           plugins={[plugin.current]}
           setApi={setApi}
@@ -91,7 +90,7 @@ export function AdSlideshow() {
                         alt={business.name}
                         fill
                         style={{ objectFit: 'cover' }}
-                        data-ai-hint={business.dataAiHint || 'business storefront'}
+                        data-ai-hint={business.dataAiHint || 'business image'}
                       />
                     </div>
                     <CardHeader className="pb-2">

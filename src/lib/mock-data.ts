@@ -15,13 +15,13 @@ let businessIdCounter: number = 1;
 export interface Business {
   id: string;
   name: string;
-  industry: string; // Added industry property
+  industry: string; 
   imageUrl: string;
   dataAiHint: string;
   description: string;
   address: string;
   phone: string;
- category: string; // Add category property here
+  category: string; 
   website: string;
 }
 
@@ -62,13 +62,14 @@ const generateBusinessDataAiHint = (category: string): string => {
 }
 
 // Static data for the ten specific businesses featured in the spotlight
+// Ensure imageUrl points to public/images/businessname.jpg (or .png, etc.)
 export const featuredBusinesses: Business[] = [
   {
     id: 'featured-b1',
     name: 'ConnectWise',
     category: 'Technology',
     imageUrl: '/images/connectwise.jpg',
-    dataAiHint: 'ConnectWise logo',
+    dataAiHint: 'ConnectWise office logo',
     description: 'Leading provider of technology solutions for IT businesses.',
     address: '1 ConnectWise Way, Tampa, FL 33607',
     industry: 'Technology',
@@ -80,7 +81,7 @@ export const featuredBusinesses: Business[] = [
     name: 'Moffitt Cancer Center',
     category: 'Healthcare',
     imageUrl: '/images/moffitt.jpg',
-    dataAiHint: 'Moffitt Cancer Center building',
+    dataAiHint: 'Moffitt Cancer Center building exterior',
     description: 'Nationally ranked cancer center providing comprehensive care and research.',
     address: '12902 USF Magnolia Dr, Tampa, FL 33612',
     industry: 'Healthcare',
@@ -92,7 +93,7 @@ export const featuredBusinesses: Business[] = [
     name: 'Columbia Restaurant',
     category: 'Food & Beverage',
     imageUrl: '/images/columbia-restaurant.jpg',
-    dataAiHint: 'Columbia Restaurant exterior',
+    dataAiHint: 'Columbia Restaurant exterior historic building',
     description: 'Historic Spanish restaurant with multiple locations, famous for its 1905 salad and Cuban bread.',
     address: '2117 E 7th Ave, Tampa, FL 33605',
     industry: 'Food & Beverage',
@@ -104,7 +105,7 @@ export const featuredBusinesses: Business[] = [
     name: 'International Plaza',
     category: 'Retail',
     imageUrl: '/images/international-plaza.jpg',
-    dataAiHint: 'International Plaza mall interior',
+    dataAiHint: 'International Plaza shopping mall interior',
     description: 'Upscale shopping mall with a wide range of retailers and dining options.',
     address: '2223 N Westshore Blvd, Tampa, FL 33607',
     industry: 'Retail',
@@ -116,7 +117,7 @@ export const featuredBusinesses: Business[] = [
     name: 'PwC Tampa',
     category: 'Professional Services',
     imageUrl: '/images/pwc-tampa.jpg',
-    dataAiHint: 'PwC Tampa office building',
+    dataAiHint: 'PwC Tampa office building modern',
     description: 'Provides industry-focused assurance, tax, and advisory services.',
     address: '420 S Tampa St #3100, Tampa, FL 33602',
     industry: 'Professional Services',
@@ -128,19 +129,19 @@ export const featuredBusinesses: Business[] = [
     name: 'Tampa Museum of Art',
     category: 'Arts & Culture',
     imageUrl: '/images/tampa-museum-of-art.jpg',
-    dataAiHint: 'Tampa Museum of Art exterior',
+    dataAiHint: 'Tampa Museum of Art exterior modern architecture',
     description: 'Showcases a diverse collection of ancient and contemporary art.',
     address: '120 W Gasparilla Plaza, Tampa, FL 33602',
     industry: 'Arts & Culture',
     phone: generatePhoneNumber(),
-    website: 'https://www.tampamuseum.org',
+    website: 'https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_468,q_75,w_702/v1/clients/tampabay/TMA_960x640_77888870-3218-49f0-8079-0196d0ac2ebc.jpg', // Example, replace with local if available
   },
   {
     id: 'featured-b7',
     name: 'University of South Florida (USF)',
     category: 'Education',
     imageUrl: '/images/usf.jpg',
-    dataAiHint: 'USF campus building',
+    dataAiHint: 'University of South Florida USF campus building',
     description: 'Large public research university with a major campus in Tampa.',
     address: '4202 E Fowler Ave, Tampa, FL 33620',
     industry: 'Education',
@@ -152,7 +153,7 @@ export const featuredBusinesses: Business[] = [
     name: 'Smith & Associates Real Estate',
     category: 'Real Estate',
     imageUrl: '/images/smith-associates.jpg',
-    dataAiHint: 'Smith & Associates Real Estate office',
+    dataAiHint: 'Smith & Associates Real Estate luxury home',
     description: 'Premier real estate firm specializing in luxury properties in the Tampa Bay area.',
     address: '3901 W Bay to Bay Blvd, Tampa, FL 33629',
     industry: 'Real Estate',
@@ -164,7 +165,7 @@ export const featuredBusinesses: Business[] = [
     name: 'Ferman Automotive Group',
     category: 'Automotive',
     imageUrl: '/images/ferman-automotive.jpg',
-    dataAiHint: 'Ferman Automotive dealership cars',
+    dataAiHint: 'Ferman Automotive car dealership showroom',
     description: 'Family-owned automotive group with a wide selection of new and used vehicles.',
     address: '12801 N Florida Ave, Tampa, FL 33612',
     industry: 'Automotive',
@@ -176,7 +177,7 @@ export const featuredBusinesses: Business[] = [
     name: 'The Tampa EDITION',
     category: 'Travel & Hospitality',
     imageUrl: '/images/tampa-edition.jpg',
-    dataAiHint: 'The Tampa EDITION hotel exterior night',
+    dataAiHint: 'The Tampa EDITION luxury hotel night view',
     description: 'Luxury hotel located in the Water Street Tampa district.',
     address: '510 Channelside Dr, Tampa, FL 33602',
     industry: 'Travel & Hospitality',
@@ -186,14 +187,14 @@ export const featuredBusinesses: Business[] = [
 ];
 
 
-// Static data for the ten specific businesses
+// Static data for the ten specific businesses, ensuring their imageUrls match featuredBusinesses
 const realBusinesses: Business[] = [
   {
     id: 'real-b1',
     name: 'ConnectWise',
     industry: 'Technology',
     imageUrl: '/images/connectwise.jpg',
-    dataAiHint: 'ConnectWise logo',
+    dataAiHint: 'ConnectWise office logo',
     description: 'Leading provider of technology solutions for IT businesses.',
     category: 'Technology',
     address: '1 ConnectWise Way, Tampa, FL 33607',
@@ -205,7 +206,7 @@ const realBusinesses: Business[] = [
     name: 'Moffitt Cancer Center',
     industry: 'Healthcare',
     imageUrl: '/images/moffitt.jpg',
-    dataAiHint: 'Moffitt Cancer Center building',
+    dataAiHint: 'Moffitt Cancer Center building exterior',
     description: 'Nationally ranked cancer center providing comprehensive care and research.',
     category: 'Healthcare',
     address: '12902 USF Magnolia Dr, Tampa, FL 33612',
@@ -217,7 +218,7 @@ const realBusinesses: Business[] = [
     name: 'Columbia Restaurant',
     industry: 'Food & Beverage',
     imageUrl: '/images/columbia-restaurant.jpg',
-    dataAiHint: 'Columbia Restaurant exterior',
+    dataAiHint: 'Columbia Restaurant exterior historic building',
     description: 'Historic Spanish restaurant with multiple locations, famous for its 1905 salad and Cuban bread.',
     category: 'Food & Beverage',
     address: '2117 E 7th Ave, Tampa, FL 33605',
@@ -229,7 +230,7 @@ const realBusinesses: Business[] = [
     name: 'International Plaza',
     industry: 'Retail',
     imageUrl: '/images/international-plaza.jpg',
-    dataAiHint: 'International Plaza mall interior',
+    dataAiHint: 'International Plaza shopping mall interior',
     description: 'Upscale shopping mall with a wide range of retailers and dining options.',
     category: 'Retail',
     address: '2223 N Westshore Blvd, Tampa, FL 33607',
@@ -241,7 +242,7 @@ const realBusinesses: Business[] = [
     name: 'PwC Tampa',
     industry: 'Professional Services',
     imageUrl: '/images/pwc-tampa.jpg',
-    dataAiHint: 'PwC Tampa office building',
+    dataAiHint: 'PwC Tampa office building modern',
     description: 'Provides industry-focused assurance, tax, and advisory services.',
     category: 'Professional Services',
     address: '420 S Tampa St #3100, Tampa, FL 33602',
@@ -253,19 +254,19 @@ const realBusinesses: Business[] = [
     name: 'Tampa Museum of Art',
     industry: 'Arts & Culture',
     imageUrl: '/images/tampa-museum-of-art.jpg',
-    dataAiHint: 'Tampa Museum of Art exterior',
+    dataAiHint: 'Tampa Museum of Art exterior modern architecture',
     description: 'Showcases a diverse collection of ancient and contemporary art.',
     category: 'Arts & Culture',
     address: '120 W Gasparilla Plaza, Tampa, FL 33602',
     phone: '813-555-1717',
-    website: 'https://www.tampamuseum.org',
+    website: 'https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_468,q_75,w_702/v1/clients/tampabay/TMA_960x640_77888870-3218-49f0-8079-0196d0ac2ebc.jpg', // Example, replace with local if available
   },
   {
     id: 'real-b7',
     name: 'University of South Florida (USF)',
     industry: 'Education',
     imageUrl: '/images/usf.jpg',
-    dataAiHint: 'USF campus building',
+    dataAiHint: 'University of South Florida USF campus building',
     description: 'Large public research university with a major campus in Tampa.',
     category: 'Education',
     address: '4202 E Fowler Ave, Tampa, FL 33620',
@@ -277,7 +278,7 @@ const realBusinesses: Business[] = [
     name: 'Smith & Associates Real Estate',
     industry: 'Real Estate',
     imageUrl: '/images/smith-associates.jpg',
-    dataAiHint: 'Smith & Associates Real Estate office',
+    dataAiHint: 'Smith & Associates Real Estate luxury home',
     description: 'Premier real estate firm specializing in luxury properties in the Tampa Bay area.',
     category: 'Real Estate',
     address: '3901 W Bay to Bay Blvd, Tampa, FL 33629',
@@ -289,7 +290,7 @@ const realBusinesses: Business[] = [
     name: 'Ferman Automotive Group',
     industry: 'Automotive',
     imageUrl: '/images/ferman-automotive.jpg',
-    dataAiHint: 'Ferman Automotive dealership cars',
+    dataAiHint: 'Ferman Automotive car dealership showroom',
     description: 'Family-owned automotive group with a wide selection of new and used vehicles.',
     category: 'Automotive',
     address: '12801 N Florida Ave, Tampa, FL 33612',
@@ -301,7 +302,7 @@ const realBusinesses: Business[] = [
     name: 'The Tampa EDITION',
     industry: 'Travel & Hospitality',
     imageUrl: '/images/tampa-edition.jpg',
-    dataAiHint: 'The Tampa EDITION hotel exterior night',
+    dataAiHint: 'The Tampa EDITION luxury hotel night view',
     description: 'Luxury hotel located in the Water Street Tampa district.',
     category: 'Travel & Hospitality',
     address: '510 Channelside Dr, Tampa, FL 33602',
@@ -310,40 +311,40 @@ const realBusinesses: Business[] = [
   },
 ];
 
-// Combine featured businesses with a subset of generated businesses for variety
-// You can adjust the number of generated businesses as needed
-export const mockBusinesses: Business[] = [...realBusinesses]; // This ensures mockBusinesses uses the updated realBusinesses
-export const businesses: Business[] = [...realBusinesses]; // This ensures businesses uses the updated realBusinesses
+export const mockBusinesses: Business[] = [...realBusinesses]; 
 
 industries.forEach(industry => {
-  // Skip generating more businesses if they match the real ones to avoid duplicates in generated data
-  if (!realBusinesses.some(rb => rb.industry === industry && rb.category === industry)) {
-    for (let i = 0; i < 10; i++) {
+  const industrySlug = industry.toLowerCase().replace(/\s+/g, '-');
+  // Check if a real business already covers this industry to avoid too many similar generated ones
+  if (!realBusinesses.some(rb => rb.industry === industry)) {
+    for (let i = 0; i < 10; i++) { // Generating fewer to keep total manageable after adding real ones
       const area = tampaAreas[Math.floor(Math.random() * tampaAreas.length)];
-      const baseName = `${industry.split(' ')[0]}${area.replace(/\s+/g, '')}${i + 1}`;
-      const businessName = `${industry.split(' ')[0]} ${area} Experts ${i + 1}`;
+      const baseName = `${industrySlug}-${area.toLowerCase().replace(/\s+/g, '-')}-${i + 1}`;
+      const businessName = `${industry.split(' ')[0]} ${area} Center ${i + 1}`;
 
       const newBusiness: Business = {
         id: `b${businessIdCounter++}`,
         name: businessName,
         industry: industry,
-        category: industry, // Assign industry as category for generated data
+        category: industry, 
         imageUrl: `https://placehold.co/600x400.png?text=${encodeURIComponent(businessName.substring(0,20))}`,
         dataAiHint: generateBusinessDataAiHint(industry),
         description: generateDescription(businessName, industry, area),
         address: `${Math.floor(Math.random() * 2000) + 100} ${streetNames[Math.floor(Math.random() * streetNames.length)]}, Tampa, FL ${zipCodes[Math.floor(Math.random() * zipCodes.length)]}`,
         phone: generatePhoneNumber(),
-        website: `https://${baseName.toLowerCase().replace(/[^a-z0-9]/gi, '')}.example.com`
+        website: `https://${baseName.replace(/[^a-z0-9-]/gi, '')}.example.com`
       };
-      // Ensure we don't push duplicates if a real business covers this generated one
-      if (!businesses.some(b => b.name === newBusiness.name)) {
-          businesses.push(newBusiness);
-          if (!mockBusinesses.some(mb => mb.name === newBusiness.name)) {
-              mockBusinesses.push(newBusiness);
-          }
+      if (!mockBusinesses.some(b => b.name === newBusiness.name)) {
+          mockBusinesses.push(newBusiness);
       }
     }
   }
+});
+// Ensure the realBusinesses are part of mockBusinesses, adding them if not already present (idempotent)
+realBusinesses.forEach(rb => {
+    if (!mockBusinesses.find(mb => mb.id === rb.id)) {
+        mockBusinesses.push(rb);
+    }
 });
 
 
@@ -408,9 +409,14 @@ export const mockEvents: Event[] = [
 ];
 
 const getBusinessDetailsForDeal = (industry: string): { name: string; id: string | undefined } => {
+  // Prefer featured businesses for deals if available for that industry
+  const featuredForIndustry = featuredBusinesses.find(fb => fb.industry === industry);
+  if (featuredForIndustry) {
+    return { name: featuredForIndustry.name, id: featuredForIndustry.id };
+  }
+
   const businessesInIndustry = mockBusinesses.filter(b => b.category === industry);
   if (businessesInIndustry.length === 0) {
-    // Try to find from realBusinesses if not in mock (shouldn't happen if mock is derived from real)
      const realBizInIndustry = realBusinesses.filter(b => b.category === industry);
      if(realBizInIndustry.length === 0) {
         return { name: `A Great ${industry} Business`, id: undefined };
@@ -418,7 +424,6 @@ const getBusinessDetailsForDeal = (industry: string): { name: string; id: string
      const business = realBizInIndustry[Math.floor(Math.random() * realBizInIndustry.length)];
      return { name: business.name, id: business.id };
   }
-  // Pick a random business from the industry for variety
   const business = businessesInIndustry[Math.floor(Math.random() * businessesInIndustry.length)];
   return { name: business.name, id: business.id };
 };
@@ -475,7 +480,7 @@ export const mockDeals: Deal[] = industries.map((industry, index) => {
     description: dealDescriptions[industry] || `An amazing deal from a local ${industry.toLowerCase()} business. Don't miss out!`,
     imageUrl: `https://placehold.co/600x400.png?text=${encodeURIComponent(industry)}+Deal`,
     dataAiHint: generateDealDataAiHint(industry),
-    confidence: Math.random() * 0.2 + 0.8, // Random confidence between 0.8 and 1.0
+    confidence: Math.random() * 0.2 + 0.8, 
     category: industry,
     expiryDate: new Date(Date.now() + (10 + index * 5) * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
   };
@@ -536,7 +541,3 @@ export const mockCommunityLeaders: CommunityLeader[] = [
 export const businessCategories = ['All', ...industries];
 export const eventCategories = ['All', ...new Set(mockEvents.map(e => e.category))];
 export const dealCategories = ['All', ...new Set(mockDeals.map(d => d.category))];
-
-    
-
-    
