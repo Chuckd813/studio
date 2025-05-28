@@ -67,133 +67,124 @@ export const featuredBusinesses: Business[] = [
     id: 'featured-b1',
     name: 'ConnectWise',
     category: 'Technology',
-    imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'company logo technology',
+    imageUrl: '/images/connectwise.jpg', // Updated
+    dataAiHint: 'ConnectWise logo', // Updated
     description: 'Leading provider of technology solutions for IT businesses.',
-    address: '1 ConnectWise Way, Tampa, FL 33607', // Placeholder address
- industry: '',
-    phone: generatePhoneNumber(), // Use existing generator for placeholder
+    address: '1 ConnectWise Way, Tampa, FL 33607',
+    industry: 'Technology',
+    phone: generatePhoneNumber(),
     website: 'https://www.connectwise.com',
   },
-
   {
     id: 'featured-b2',
     name: 'Moffitt Cancer Center',
     category: 'Healthcare',
-    imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'hospital logo healthcare',
+    imageUrl: '/images/moffitt.jpg', // Updated
+    dataAiHint: 'Moffitt Cancer Center building', // Updated
     description: 'Nationally ranked cancer center providing comprehensive care and research.',
-    address: '12902 USF Magnolia Dr, Tampa, FL 33612', // Placeholder address
- industry: '',
-    phone: generatePhoneNumber(), // Use existing generator for placeholder
+    address: '12902 USF Magnolia Dr, Tampa, FL 33612',
+    industry: 'Healthcare',
+    phone: generatePhoneNumber(),
     website: 'https://moffitt.org',
   },
-
   {
     id: 'featured-b3',
     name: 'Columbia Restaurant',
     category: 'Food & Beverage',
-    imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'restaurant logo spanish food',
+    imageUrl: '/images/columbia-restaurant.jpg', // Updated
+    dataAiHint: 'Columbia Restaurant exterior', // Updated
     description: 'Historic Spanish restaurant with multiple locations, famous for its 1905 salad and Cuban bread.',
-    address: '2117 E 7th Ave, Tampa, FL 33605', // Placeholder address
- industry: '',
-    phone: generatePhoneNumber(), // Use existing generator for placeholder
+    address: '2117 E 7th Ave, Tampa, FL 33605',
+    industry: 'Food & Beverage',
+    phone: generatePhoneNumber(),
     website: 'https://www.columbiarestaurant.com',
   },
-
   {
     id: 'featured-b4',
     name: 'International Plaza',
     category: 'Retail',
-    imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'shopping mall logo retail',
+    imageUrl: '/images/international-plaza.jpg', // Updated
+    dataAiHint: 'International Plaza mall', // Updated
     description: 'Upscale shopping mall with a wide range of retailers and dining options.',
-    address: '2223 N Westshore Blvd, Tampa, FL 33607', // Placeholder address
- industry: '',
-    phone: generatePhoneNumber(), // Use existing generator for placeholder
+    address: '2223 N Westshore Blvd, Tampa, FL 33607',
+    industry: 'Retail',
+    phone: generatePhoneNumber(),
     website: 'https://www.shopinternationalplaza.com',
   },
-
   {
     id: 'featured-b5',
     name: 'PwC Tampa',
     category: 'Professional Services',
-    imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'consulting firm logo',
+    imageUrl: '/images/pwc-tampa.jpg', // Updated
+    dataAiHint: 'PwC Tampa office', // Updated
     description: 'Provides industry-focused assurance, tax, and advisory services.',
-    address: '420 S Tampa St #3100, Tampa, FL 33602', // Placeholder address
- industry: '',
-    phone: generatePhoneNumber(), // Use existing generator for placeholder
+    address: '420 S Tampa St #3100, Tampa, FL 33602',
+    industry: 'Professional Services',
+    phone: generatePhoneNumber(),
     website: 'https://www.pwc.com/us/en/locations/tampa.html',
   },
-
   {
     id: 'featured-b6',
     name: 'Tampa Museum of Art',
     category: 'Arts & Culture',
-    imageUrl: 'https://assets.simpleviewinc.com/simpleview/image/upload/q_75/v1/crm/tampabay/Museum_Building_West_Lobby_2023-11_33E8478B-F407-4F92-8FB47A205BFF629E_ec657852-e7e8-46ab-b305ed9eafcbefff.jpg',
-    dataAiHint: 'art museum building',
+    imageUrl: '/images/tampa-museum-of-art.jpg', // Updated
+    dataAiHint: 'Tampa Museum of Art building', // Updated
     description: 'Showcases a diverse collection of ancient and contemporary art.',
-    address: '120 W Gasparilla Plaza, Tampa, FL 33602', // Placeholder address
- industry: '',
-    phone: generatePhoneNumber(), // Use existing generator for placeholder
+    address: '120 W Gasparilla Plaza, Tampa, FL 33602',
+    industry: 'Arts & Culture',
+    phone: generatePhoneNumber(),
     website: 'https://www.tampamuseum.org',
   },
-
   {
     id: 'featured-b7',
     name: 'University of South Florida (USF)',
     category: 'Education',
-    imageUrl: 'https://www.usf.edu/images/usf-logo.png',
-    dataAiHint: 'university logo education',
+    imageUrl: '/images/usf.jpg', // Updated
+    dataAiHint: 'USF campus building', // Updated
     description: 'Large public research university with a major campus in Tampa.',
-    address: '4202 E Fowler Ave, Tampa, FL 33620', // Placeholder address
- industry: '',
-    phone: generatePhoneNumber(), // Use existing generator for placeholder
+    address: '4202 E Fowler Ave, Tampa, FL 33620',
+    industry: 'Education',
+    phone: generatePhoneNumber(),
     website: 'https://www.usf.edu',
   },
-
   {
     id: 'featured-b8',
     name: 'Smith & Associates Real Estate',
     category: 'Real Estate',
-    imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'real estate logo',
+    imageUrl: '/images/smith-associates.jpg', // Updated
+    dataAiHint: 'Smith & Associates Real Estate office', // Updated
     description: 'Premier real estate firm specializing in luxury properties in the Tampa Bay area.',
-    address: '3901 W Bay to Bay Blvd, Tampa, FL 33629', // Placeholder address
- industry: '',
-    phone: generatePhoneNumber(), // Use existing generator for placeholder
+    address: '3901 W Bay to Bay Blvd, Tampa, FL 33629',
+    industry: 'Real Estate',
+    phone: generatePhoneNumber(),
     website: 'https://www.smithandassociates.com',
   },
-
   {
     id: 'featured-b9',
     name: 'Ferman Automotive Group',
     category: 'Automotive',
-    imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'car dealership logo',
+    imageUrl: '/images/ferman-automotive.jpg', // Updated
+    dataAiHint: 'Ferman Automotive dealership', // Updated
     description: 'Family-owned automotive group with a wide selection of new and used vehicles.',
-    address: '12801 N Florida Ave, Tampa, FL 33612', // Placeholder address
- industry: '',
-    phone: generatePhoneNumber(), // Use existing generator for placeholder
+    address: '12801 N Florida Ave, Tampa, FL 33612',
+    industry: 'Automotive',
+    phone: generatePhoneNumber(),
     website: 'https://www.fermanauto.com',
   },
-
   {
     id: 'featured-b10',
     name: 'The Tampa EDITION',
     category: 'Travel & Hospitality',
-    imageUrl: 'https://placehold.co/600x400.png',
-    dataAiHint: 'luxury hotel logo',
+    imageUrl: '/images/tampa-edition.jpg', // Updated
+    dataAiHint: 'The Tampa EDITION hotel exterior', // Updated
     description: 'Luxury hotel located in the Water Street Tampa district.',
-    address: '510 Channelside Dr, Tampa, FL 33602', // Placeholder address
- industry: '',
-    phone: generatePhoneNumber(), // Use existing generator for placeholder
+    address: '510 Channelside Dr, Tampa, FL 33602',
+    industry: 'Travel & Hospitality',
+    phone: generatePhoneNumber(),
     website: 'https://editionhotels.com/tampa/',
   },
-
 ];
+
 
 // Static data for the ten specific businesses
 const realBusinesses: Business[] = [
@@ -201,161 +192,160 @@ const realBusinesses: Business[] = [
     id: 'real-b1',
     name: 'ConnectWise',
     industry: 'Technology',
-    imageUrl: '/images/connectwise.jpg',
-    dataAiHint: 'company logo technology',
+    imageUrl: '/images/connectwise.jpg', // Consistent path
+    dataAiHint: 'ConnectWise logo', // Consistent hint
     description: 'Leading provider of technology solutions for IT businesses.',
-    category: '', // Add empty category
+    category: 'Technology',
     address: '1 ConnectWise Way, Tampa, FL 33607',
     phone: '813-555-1212',
     website: 'https://www.connectwise.com',
   },
-
   {
     id: 'real-b2',
     name: 'Moffitt Cancer Center',
     industry: 'Healthcare',
-    imageUrl: '/images/moffit.jpg',
-    dataAiHint: 'hospital logo healthcare',
+    imageUrl: '/images/moffitt.jpg', // Consistent path
+    dataAiHint: 'Moffitt Cancer Center building', // Consistent hint
     description: 'Nationally ranked cancer center providing comprehensive care and research.',
-    category: '', // Add empty category
+    category: 'Healthcare',
     address: '12902 USF Magnolia Dr, Tampa, FL 33612',
     phone: '813-555-1313',
     website: 'https://moffitt.org',
   },
-
   {
     id: 'real-b3',
     name: 'Columbia Restaurant',
     industry: 'Food & Beverage',
-    imageUrl: '/images/colombia resturant.jpg',
-    dataAiHint: 'restaurant logo spanish food',
+    imageUrl: '/images/columbia-restaurant.jpg', // Consistent path
+    dataAiHint: 'Columbia Restaurant exterior', // Consistent hint
     description: 'Historic Spanish restaurant with multiple locations, famous for its 1905 salad and Cuban bread.',
-    category: '', // Add empty category
+    category: 'Food & Beverage',
     address: '2117 E 7th Ave, Tampa, FL 33605',
     phone: '813-555-1414',
     website: 'https://www.columbiarestaurant.com',
   },
-
   {
     id: 'real-b4',
     name: 'International Plaza',
     industry: 'Retail',
-    imageUrl: '/images/internationalplaza.jpg',
-    dataAiHint: 'shopping mall logo retail',
+    imageUrl: '/images/international-plaza.jpg', // Consistent path
+    dataAiHint: 'International Plaza mall', // Consistent hint
     description: 'Upscale shopping mall with a wide range of retailers and dining options.',
-    category: '', // Add empty category
+    category: 'Retail',
     address: '2223 N Westshore Blvd, Tampa, FL 33607',
     phone: '813-555-1515',
     website: 'https://www.shopinternationalplaza.com',
   },
-
   {
     id: 'real-b5',
     name: 'PwC Tampa',
     industry: 'Professional Services',
-    imageUrl: '/images/pwctampa.jpg',
-    dataAiHint: 'consulting firm logo',
+    imageUrl: '/images/pwc-tampa.jpg', // Consistent path
+    dataAiHint: 'PwC Tampa office', // Consistent hint
     description: 'Provides industry-focused assurance, tax, and advisory services.',
-    category: '', // Add empty category
+    category: 'Professional Services',
     address: '420 S Tampa St #3100, Tampa, FL 33602',
     phone: '813-555-1616',
     website: 'https://www.pwc.com/us/en/locations/tampa.html',
   },
-
   {
     id: 'real-b6',
     name: 'Tampa Museum of Art',
     industry: 'Arts & Culture',
-    imageUrl: 'https://assets.simpleviewinc.com/simpleview/image/upload/q_75/v1/crm/tampabay/Museum_Building_West_Lobby_2023-11_33E8478B-F407-4F92-8FB47A205BFF629E_ec657852-e7e8-46ab-b305ed9eafcbefff.jpg',
-    dataAiHint: 'art museum building',
+    imageUrl: '/images/tampa-museum-of-art.jpg', // Consistent path
+    dataAiHint: 'Tampa Museum of Art building', // Consistent hint
     description: 'Showcases a diverse collection of ancient and contemporary art.',
-    category: '', // Add empty category
+    category: 'Arts & Culture',
     address: '120 W Gasparilla Plaza, Tampa, FL 33602',
     phone: '813-555-1717',
     website: 'https://www.tampamuseum.org',
   },
-
   {
     id: 'real-b7',
     name: 'University of South Florida (USF)',
     industry: 'Education',
-    imageUrl: '/images/UniversityOfSouthFL.jpg',
-    dataAiHint: 'university logo education',
+    imageUrl: '/images/usf.jpg', // Consistent path
+    dataAiHint: 'USF campus building', // Consistent hint
     description: 'Large public research university with a major campus in Tampa.',
-    category: '', // Add empty category
+    category: 'Education',
     address: '4202 E Fowler Ave, Tampa, FL 33620',
     phone: '813-555-1818',
     website: 'https://www.usf.edu',
   },
-
   {
     id: 'real-b8',
     name: 'Smith & Associates Real Estate',
     industry: 'Real Estate',
-    imageUrl: '/images/smithassociates4thst.jpg',
-    dataAiHint: 'real estate logo',
+    imageUrl: '/images/smith-associates.jpg', // Consistent path
+    dataAiHint: 'Smith & Associates Real Estate office', // Consistent hint
     description: 'Premier real estate firm specializing in luxury properties in the Tampa Bay area.',
-    category: '', // Add empty category
+    category: 'Real Estate',
     address: '3901 W Bay to Bay Blvd, Tampa, FL 33629',
     phone: '813-555-1919',
     website: 'https://www.smithandassociates.com',
   },
-
   {
     id: 'real-b9',
     name: 'Ferman Automotive Group',
     industry: 'Automotive',
-    imageUrl: '/images/Dimmitt_Automotive_Group_1.jpg',
-    dataAiHint: 'car dealership logo',
+    imageUrl: '/images/ferman-automotive.jpg', // Consistent path
+    dataAiHint: 'Ferman Automotive dealership', // Consistent hint
     description: 'Family-owned automotive group with a wide selection of new and used vehicles.',
-    category: '', // Add empty category
+    category: 'Automotive',
     address: '12801 N Florida Ave, Tampa, FL 33612',
     phone: '813-555-2020',
     website: 'https://www.fermanauto.com',
   },
-
   {
     id: 'real-b10',
     name: 'The Tampa EDITION',
     industry: 'Travel & Hospitality',
-    imageUrl: '/images/EDITION_Tampa-26-scaled.jpg',
-    dataAiHint: 'luxury hotel logo',
+    imageUrl: '/images/tampa-edition.jpg', // Consistent path
+    dataAiHint: 'The Tampa EDITION hotel exterior', // Consistent hint
     description: 'Luxury hotel located in the Water Street Tampa district.',
-    category: '', // Add empty category
+    category: 'Travel & Hospitality',
     address: '510 Channelside Dr, Tampa, FL 33602',
     phone: '813-555-2121',
     website: 'https://editionhotels.com/tampa/',
   },
-
 ];
 
 // Combine featured businesses with a subset of generated businesses for variety
 // You can adjust the number of generated businesses as needed
-export const mockBusinesses: Business[] = [...realBusinesses];
-export const businesses: Business[] = [...realBusinesses];
+export const mockBusinesses: Business[] = [...realBusinesses]; // This ensures mockBusinesses uses the updated realBusinesses
+export const businesses: Business[] = [...realBusinesses]; // This ensures businesses uses the updated realBusinesses
 
 industries.forEach(industry => {
-  for (let i = 0; i < 10; i++) {
-    const area = tampaAreas[Math.floor(Math.random() * tampaAreas.length)];
-    const baseName = `${industry.split(' ')[0]}${area.replace(/\s+/g, '')}${i + 1}`;
-    const businessName = `${industry.split(' ')[0]} ${area} Experts ${i + 1}`;
+  // Skip generating more businesses if they match the real ones to avoid duplicates in generated data
+  if (!realBusinesses.some(rb => rb.industry === industry && rb.category === industry)) {
+    for (let i = 0; i < 10; i++) {
+      const area = tampaAreas[Math.floor(Math.random() * tampaAreas.length)];
+      const baseName = `${industry.split(' ')[0]}${area.replace(/\s+/g, '')}${i + 1}`;
+      const businessName = `${industry.split(' ')[0]} ${area} Experts ${i + 1}`;
 
-    const newBusiness: Business = {
-      id: `b${businessIdCounter++}`,
-      name: businessName,
-      industry: industry,
-      category: industry, // Assign industry as category for generated data
-      imageUrl: `https://placehold.co/600x400.png?text=${encodeURIComponent(businessName.substring(0,20))}`, // Keep placeholder for dynamically generated businesses
-      dataAiHint: generateBusinessDataAiHint(industry),
-      description: generateDescription(businessName, industry, area),
-      address: `${Math.floor(Math.random() * 2000) + 100} ${streetNames[Math.floor(Math.random() * streetNames.length)]}, Tampa, FL ${zipCodes[Math.floor(Math.random() * zipCodes.length)]}`,
-      phone: generatePhoneNumber(),
-      website: `https://${baseName.toLowerCase().replace(/[^a-z0-9]/gi, '')}.example.com`
-    };
-
-    businesses.push(newBusiness);
+      const newBusiness: Business = {
+        id: `b${businessIdCounter++}`,
+        name: businessName,
+        industry: industry,
+        category: industry, // Assign industry as category for generated data
+        imageUrl: `https://placehold.co/600x400.png?text=${encodeURIComponent(businessName.substring(0,20))}`,
+        dataAiHint: generateBusinessDataAiHint(industry),
+        description: generateDescription(businessName, industry, area),
+        address: `${Math.floor(Math.random() * 2000) + 100} ${streetNames[Math.floor(Math.random() * streetNames.length)]}, Tampa, FL ${zipCodes[Math.floor(Math.random() * zipCodes.length)]}`,
+        phone: generatePhoneNumber(),
+        website: `https://${baseName.toLowerCase().replace(/[^a-z0-9]/gi, '')}.example.com`
+      };
+      // Ensure we don't push duplicates if a real business covers this generated one
+      if (!businesses.some(b => b.name === newBusiness.name)) {
+          businesses.push(newBusiness);
+          if (!mockBusinesses.some(mb => mb.name === newBusiness.name)) {
+              mockBusinesses.push(newBusiness);
+          }
+      }
+    }
   }
 });
+
 
 export const mockEvents: Event[] = [
   {
@@ -540,6 +530,5 @@ export const mockCommunityLeaders: CommunityLeader[] = [
 export const businessCategories = ['All', ...industries];
 export const eventCategories = ['All', ...new Set(mockEvents.map(e => e.category))];
 export const dealCategories = ['All', ...new Set(mockDeals.map(d => d.category))];
-
 
     
