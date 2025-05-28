@@ -21,8 +21,9 @@ export const BusinessCard = React.memo(function BusinessCard({ business }: Busin
           <Image
             src={business.imageUrl}
             alt={business.name}
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: 'cover' }}
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
             data-ai-hint={business.dataAiHint}
           />
         </div>

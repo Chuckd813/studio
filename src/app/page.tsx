@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { ArrowRight, Sparkles, CalendarDays, Building2, Users, Loader2, Zap, ShoppingBag, Palette, Lightbulb } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { mockDeals, mockEvents, mockBusinesses, mockCommunityLeaders } from '@/lib/mock-data';
+import { mockDeals, mockEvents, mockBusinesses, mockCommunityLeaders, featuredBusinesses } from '@/lib/mock-data';
 import { DealCard } from '@/components/features/DealCard';
 import { EventCard } from '@/components/features/EventCard';
 import { BusinessCard } from '@/components/features/BusinessCard';
@@ -297,7 +297,7 @@ export default function Home() {
               </Button>
             </div>
             <Carousel
-              opts={{ align: "start", loop: mockBusinesses.slice(0, 9).length > 2 }}
+ opts={{ align: "start", loop: featuredBusinesses.length > 2 }}
               plugins={[bizAutoplayPlugin.current]}
               setApi={setBizApi}
               className="w-full"
@@ -305,7 +305,7 @@ export default function Home() {
               onMouseLeave={bizAutoplayPlugin.current.reset}
             >
               <CarouselContent>
-                {mockBusinesses.slice(0, 9).map(business => (
+ {featuredBusinesses.map(business => (
                   <CarouselItem key={business.id} className="basis-full sm:basis-1/2 lg:basis-1/3">
                     <div className="p-1 h-full">
                       <BusinessCard business={business} />
