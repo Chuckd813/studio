@@ -53,7 +53,7 @@ export const featuredBusinesses: Business[] = [
     name: 'ConnectWise',
     category: 'Technology',
     imageUrl: 'https://www.connectwise.com/-/media/images/connectwise/logos/connectwise-logo.png',
-    dataAiHint: generateBusinessDataAiHint('Technology'),
+    dataAiHint: 'company logo technology',
     description: 'Leading provider of technology solutions for IT businesses.',
     address: '1 ConnectWise Way, Tampa, FL 33607', // Placeholder address
     phone: generatePhoneNumber(), // Use existing generator for placeholder
@@ -64,7 +64,7 @@ export const featuredBusinesses: Business[] = [
     name: 'Moffitt Cancer Center',
     category: 'Healthcare',
     imageUrl: 'https://moffitt.org/media/1234/moffitt-logo.png',
-    dataAiHint: generateBusinessDataAiHint('Healthcare'),
+    dataAiHint: 'hospital logo healthcare',
     description: 'Nationally ranked cancer center providing comprehensive care and research.',
     address: '12902 USF Magnolia Dr, Tampa, FL 33612', // Placeholder address
     phone: generatePhoneNumber(), // Use existing generator for placeholder
@@ -75,7 +75,7 @@ export const featuredBusinesses: Business[] = [
     name: 'Columbia Restaurant',
     category: 'Food & Beverage',
     imageUrl: 'https://www.columbiarestaurant.com/images/logo.png',
-    dataAiHint: generateBusinessDataAiHint('Food & Beverage'),
+    dataAiHint: 'restaurant logo spanish food',
     description: 'Historic Spanish restaurant with multiple locations, famous for its 1905 salad and Cuban bread.',
     address: '2117 E 7th Ave, Tampa, FL 33605', // Placeholder address
     phone: generatePhoneNumber(), // Use existing generator for placeholder
@@ -86,7 +86,7 @@ export const featuredBusinesses: Business[] = [
     name: 'International Plaza',
     category: 'Retail',
     imageUrl: 'https://www.shopinternationalplaza.com/images/logo.png',
-    dataAiHint: generateBusinessDataAiHint('Retail'),
+    dataAiHint: 'shopping mall logo retail',
     description: 'Upscale shopping mall with a wide range of retailers and dining options.',
     address: '2223 N Westshore Blvd, Tampa, FL 33607', // Placeholder address
     phone: generatePhoneNumber(), // Use existing generator for placeholder
@@ -97,7 +97,7 @@ export const featuredBusinesses: Business[] = [
     name: 'PwC Tampa',
     category: 'Professional Services',
     imageUrl: 'https://www.pwc.com/gx/en/images/pwc-logo.png',
-    dataAiHint: generateBusinessDataAiHint('Professional Services'),
+    dataAiHint: 'consulting firm logo',
     description: 'Provides industry-focused assurance, tax, and advisory services.',
     address: '420 S Tampa St #3100, Tampa, FL 33602', // Placeholder address
     phone: generatePhoneNumber(), // Use existing generator for placeholder
@@ -108,7 +108,7 @@ export const featuredBusinesses: Business[] = [
     name: 'Tampa Museum of Art',
     category: 'Arts & Culture',
     imageUrl: 'https://assets.simpleviewinc.com/simpleview/image/upload/q_75/v1/crm/tampabay/Museum_Building_West_Lobby_2023-11_33E8478B-F407-4F92-8FB47A205BFF629E_ec657852-e7e8-46ab-b305ed9eafcbefff.jpg',
-    dataAiHint: generateBusinessDataAiHint('Arts & Culture'),
+    dataAiHint: 'art museum building',
     description: 'Showcases a diverse collection of ancient and contemporary art.',
     address: '120 W Gasparilla Plaza, Tampa, FL 33602', // Placeholder address
     phone: generatePhoneNumber(), // Use existing generator for placeholder
@@ -119,7 +119,7 @@ export const featuredBusinesses: Business[] = [
     name: 'University of South Florida (USF)',
     category: 'Education',
     imageUrl: 'https://www.usf.edu/images/usf-logo.png',
-    dataAiHint: generateBusinessDataAiHint('Education'),
+    dataAiHint: 'university logo education',
     description: 'Large public research university with a major campus in Tampa.',
     address: '4202 E Fowler Ave, Tampa, FL 33620', // Placeholder address
     phone: generatePhoneNumber(), // Use existing generator for placeholder
@@ -130,7 +130,7 @@ export const featuredBusinesses: Business[] = [
     name: 'Smith & Associates Real Estate',
     category: 'Real Estate',
     imageUrl: 'https://www.smithandassociates.com/images/logo.png',
-    dataAiHint: generateBusinessDataAiHint('Real Estate'),
+    dataAiHint: 'real estate logo',
     description: 'Premier real estate firm specializing in luxury properties in the Tampa Bay area.',
     address: '3901 W Bay to Bay Blvd, Tampa, FL 33629', // Placeholder address
     phone: generatePhoneNumber(), // Use existing generator for placeholder
@@ -141,7 +141,7 @@ export const featuredBusinesses: Business[] = [
     name: 'Ferman Automotive Group',
     category: 'Automotive',
     imageUrl: 'https://www.fermanauto.com/images/logo.png',
-    dataAiHint: generateBusinessDataAiHint('Automotive'),
+    dataAiHint: 'car dealership logo',
     description: 'Family-owned automotive group with a wide selection of new and used vehicles.',
     address: '12801 N Florida Ave, Tampa, FL 33612', // Placeholder address
     phone: generatePhoneNumber(), // Use existing generator for placeholder
@@ -152,13 +152,13 @@ export const featuredBusinesses: Business[] = [
     name: 'The Tampa EDITION',
     category: 'Travel & Hospitality',
     imageUrl: 'https://editionhotels.com/tampa/wp-content/uploads/sites/7/2021/01/edition-logo.png',
-    dataAiHint: generateBusinessDataAiHint('Travel & Hospitality'),
+    dataAiHint: 'luxury hotel logo',
     description: 'Luxury hotel located in the Water Street Tampa district.',
     address: '510 Channelside Dr, Tampa, FL 33602', // Placeholder address
     phone: generatePhoneNumber(), // Use existing generator for placeholder
     website: 'https://editionhotels.com/tampa/',
   },
-]; // Ensure featuredBusinesses array is properly closed
+];
 
 // Static data for the ten specific businesses
 const realBusinesses: Business[] = [
@@ -167,7 +167,7 @@ const realBusinesses: Business[] = [
     name: 'ConnectWise',
     category: 'Technology',
     imageUrl: 'https://www.connectwise.com/-/media/images/connectwise/logos/connectwise-logo.png',
-    dataAiHint: generateBusinessDataAiHint('Technology'),
+    dataAiHint: 'company logo technology',
     description: 'Leading provider of technology solutions for IT businesses.',
     address: '1 ConnectWise Way, Tampa, FL 33607',
     phone: '813-555-1212',
@@ -178,7 +178,7 @@ const realBusinesses: Business[] = [
     name: 'Moffitt Cancer Center',
     category: 'Healthcare',
     imageUrl: 'https://moffitt.org/media/1234/moffitt-logo.png',
-    dataAiHint: generateBusinessDataAiHint('Healthcare'),
+    dataAiHint: 'hospital logo healthcare',
     description: 'Nationally ranked cancer center providing comprehensive care and research.',
     address: '12902 USF Magnolia Dr, Tampa, FL 33612',
     phone: '813-555-1313',
@@ -189,7 +189,7 @@ const realBusinesses: Business[] = [
     name: 'Columbia Restaurant',
     category: 'Food & Beverage',
     imageUrl: 'https://www.columbiarestaurant.com/images/logo.png',
-    dataAiHint: generateBusinessDataAiHint('Food & Beverage'),
+    dataAiHint: 'restaurant logo spanish food',
     description: 'Historic Spanish restaurant with multiple locations, famous for its 1905 salad and Cuban bread.',
     address: '2117 E 7th Ave, Tampa, FL 33605',
     phone: '813-555-1414',
@@ -200,7 +200,7 @@ const realBusinesses: Business[] = [
     name: 'International Plaza',
     category: 'Retail',
     imageUrl: 'https://www.shopinternationalplaza.com/images/logo.png',
-    dataAiHint: generateBusinessDataAiHint('Retail'),
+    dataAiHint: 'shopping mall logo retail',
     description: 'Upscale shopping mall with a wide range of retailers and dining options.',
     address: '2223 N Westshore Blvd, Tampa, FL 33607',
     phone: '813-555-1515',
@@ -211,7 +211,7 @@ const realBusinesses: Business[] = [
     name: 'PwC Tampa',
     category: 'Professional Services',
     imageUrl: 'https://www.pwc.com/gx/en/images/pwc-logo.png',
-    dataAiHint: generateBusinessDataAiHint('Professional Services'),
+    dataAiHint: 'consulting firm logo',
     description: 'Provides industry-focused assurance, tax, and advisory services.',
     address: '420 S Tampa St #3100, Tampa, FL 33602',
     phone: '813-555-1616',
@@ -222,7 +222,7 @@ const realBusinesses: Business[] = [
     name: 'Tampa Museum of Art',
     category: 'Arts & Culture',
     imageUrl: 'https://assets.simpleviewinc.com/simpleview/image/upload/q_75/v1/crm/tampabay/Museum_Building_West_Lobby_2023-11_33E8478B-F407-4F92-8FB47A205BFF629E_ec657852-e7e8-46ab-b305ed9eafcbefff.jpg',
-    dataAiHint: generateBusinessDataAiHint('Arts & Culture'),
+    dataAiHint: 'art museum building',
     description: 'Showcases a diverse collection of ancient and contemporary art.',
     address: '120 W Gasparilla Plaza, Tampa, FL 33602',
     phone: '813-555-1717',
@@ -233,7 +233,7 @@ const realBusinesses: Business[] = [
     name: 'University of South Florida (USF)',
     category: 'Education',
     imageUrl: 'https://www.usf.edu/images/usf-logo.png',
-    dataAiHint: generateBusinessDataAiHint('Education'),
+    dataAiHint: 'university logo education',
     description: 'Large public research university with a major campus in Tampa.',
     address: '4202 E Fowler Ave, Tampa, FL 33620',
     phone: '813-555-1818',
@@ -244,7 +244,7 @@ const realBusinesses: Business[] = [
     name: 'Smith & Associates Real Estate',
     category: 'Real Estate',
     imageUrl: 'https://www.smithandassociates.com/images/logo.png',
-    dataAiHint: generateBusinessDataAiHint('Real Estate'),
+    dataAiHint: 'real estate logo',
     description: 'Premier real estate firm specializing in luxury properties in the Tampa Bay area.',
     address: '3901 W Bay to Bay Blvd, Tampa, FL 33629',
     phone: '813-555-1919',
@@ -255,7 +255,7 @@ const realBusinesses: Business[] = [
     name: 'Ferman Automotive Group',
     category: 'Automotive',
     imageUrl: 'https://www.fermanauto.com/images/logo.png',
-    dataAiHint: generateBusinessDataAiHint('Automotive'),
+    dataAiHint: 'car dealership logo',
     description: 'Family-owned automotive group with a wide selection of new and used vehicles.',
     address: '12801 N Florida Ave, Tampa, FL 33612',
     phone: '813-555-2020',
@@ -266,7 +266,7 @@ const realBusinesses: Business[] = [
     name: 'The Tampa EDITION',
     category: 'Travel & Hospitality',
     imageUrl: 'https://editionhotels.com/tampa/wp-content/uploads/sites/7/2021/01/edition-logo.png',
-    dataAiHint: generateBusinessDataAiHint('Travel & Hospitality'),
+    dataAiHint: 'luxury hotel logo',
     description: 'Luxury hotel located in the Water Street Tampa district.',
     address: '510 Channelside Dr, Tampa, FL 33602',
     phone: '813-555-2121',
@@ -483,3 +483,6 @@ export const mockCommunityLeaders: CommunityLeader[] = [
 export const businessCategories = ['All', ...industries];
 export const eventCategories = ['All', ...new Set(mockEvents.map(e => e.category))];
 export const dealCategories = ['All', ...new Set(mockDeals.map(d => d.category))];
+
+
+    
