@@ -34,9 +34,15 @@ export function Header() {
   if (!isMounted) {
     // Render a minimal header or null during SSR to avoid hydration issues with pathname
     return (
-      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-cover bg-center text-white"
+
+      >
+
         <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Logo />
+          <div className="flex items-center gap-2"> {/* Add text-white here */}
+ <Logo />
+ <span className="text-xl font-semibold hidden sm:block title-gradient-wave dark:title-gradient-wave-dark">What's In Tampa</span>
+ </div>
           <div className="lg:hidden">
             <Button variant="ghost" size="icon" disabled>
               <Menu className="h-6 w-6" />
@@ -62,9 +68,13 @@ export function Header() {
   );
   
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+    >
       <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Logo />
+        <div className="flex items-center gap-2"> {/* Add text-white here */}
+          <Logo />
+ <span className="text-xl font-bold hidden sm:block title-gradient-wave dark:title-gradient-wave-dark">What's In Tampa</span>
+ </div>
         <div className="hidden lg:flex items-center gap-3">
           <nav className="flex items-center gap-1">
             {navLinks.map((link) => (
@@ -109,8 +119,8 @@ export function Header() {
                 </SheetDescription>
               </SheetHeader>
               <div className="flex flex-col h-full">
-                <div className="flex items-center justify-between mb-6">
-                  <Logo />
+ <div className="flex items-center justify-between mb-6 gap-2">
+                     <Logo />
                   <SheetClose asChild>
                      <Button variant="ghost" size="icon">
                         <X className="h-6 w-6" />

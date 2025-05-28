@@ -31,10 +31,8 @@ export default function RootLayout({
         <meta name="msapplication-tap-highlight" content="no" />
         <meta name="theme-color" content="#0056B3" />
 
-        <link rel="apple-touch-icon" href="/icons/apple-touch-icon-180x180.png" data-ai-hint="app logo" />
-        <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152x152.png" data-ai-hint="app logo" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180x180.png" data-ai-hint="app logo" />
-        <link rel="apple-touch-icon" sizes="167x167" href="/icons/apple-touch-icon-167x167.png" data-ai-hint="app logo" />
+ <link rel="apple-touch-icon" href="/images/wit-logo.png" data-ai-hint="app logo" />
+        
         
         <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" data-ai-hint="app logo small" />
         <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" data-ai-hint="app logo small" />

@@ -16,7 +16,7 @@ interface BusinessCardProps {
 export const BusinessCard = React.memo(function BusinessCard({ business }: BusinessCardProps) {
   return (
     <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 rounded-lg">
-      <CardHeader className="p-0">
+      <div className="relative w-full h-48"> {/* Image Container */}
         <div className="relative w-full h-48">
           <Image
             src={business.imageUrl}
@@ -27,7 +27,7 @@ export const BusinessCard = React.memo(function BusinessCard({ business }: Busin
             data-ai-hint={business.dataAiHint}
           />
         </div>
-      </CardHeader>
+      </div>
       <CardContent className="p-6 flex-grow">
         <Badge variant="secondary" className="mb-2">{business.category}</Badge>
         <CardTitle className="text-xl mb-2 line-clamp-1">{business.name}</CardTitle>

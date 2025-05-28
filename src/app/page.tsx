@@ -140,15 +140,14 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 bg-gradient-to-br from-primary to-accent text-primary-foreground overflow-hidden">
         <div className="absolute inset-0">
-          <Image src="https://images.unsplash.com/photo-1594602729519-ba24058355b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
-            alt="Tampa Bay Skyline during the day"
-            fill
-            style={{ objectFit: 'cover' }}
-            className="opacity-20 dark:opacity-10"
-            data-ai-hint="tampa skyline day"
+ <Image src="https://images.unsplash.com/photo-1594602729519-ba24058355b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" // Tampa skyline image
+ alt="Tampa Bay Skyline during the day"
+ fill
+            className="opacity-50 dark:opacity-30 z-0" // Increased opacity and added z-index
+ data-ai-hint="tampa skyline day"
             priority
           />
-        </div>
+ </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-md text-primary-foreground">
             Discover What's In Tampa
@@ -173,6 +172,49 @@ export default function Home() {
       
       <HomepageWitWheel />
       <AdSlideshow />
+
+      {!isMounted || featuredBusinesses.length === 0 ? null : ( // Render nothing if not mounted or no featured businesses
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center mb-8">
+              <h2 className="text-3xl font-bold text-primary flex items-center">
+                <Building2 className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Featured Businesses</span>
+              </h2>
+              <Button variant="link" asChild className="text-primary hover:text-accent">
+                <Link href="/businesses">Explore All Businesses <ArrowRight className="ml-1 h-4 w-4" /></Link>
+              </Button>
+            </div>
+            <Carousel
+ opts={{ align: "start", loop: featuredBusinesses.length > 2 }}
+              plugins={[bizAutoplayPlugin.current]}
+              setApi={setBizApi}
+              className="w-full"
+              onMouseEnter={bizAutoplayPlugin.current.stop}
+              onMouseLeave={bizAutoplayPlugin.current.reset}
+            >
+              <CarouselContent>
+ {featuredBusinesses.map(business => (
+                  <CarouselItem key={business.id} className="basis-full sm:basis-1/2 lg:basis-1/3">
+                    <div className="p-1 h-full">
+                      <BusinessCard business={business} />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              {isMounted && bizCount > 0 && (
+                <>
+                  <CarouselPrevious className="hidden sm:flex -left-4" />
+                  <CarouselNext className="hidden sm:flex -right-4" />
+                  <CarouselDots className="mt-6" />
+                  <div className="py-2 text-center text-sm text-muted-foreground">
+                    Slide {bizCurrent} of {bizCount}
+                  </div>
+                </>
+              )}
+            </Carousel>
+          </div>
+        </section>
+      )}
 
       {!isMounted ? renderLoadingPlaceholder("Hot Deals", Sparkles) : (
         <section className="py-16 bg-background">
@@ -277,49 +319,6 @@ export default function Home() {
                   <CarouselDots className="mt-6" />
                    <div className="py-2 text-center text-sm text-muted-foreground">
                     Slide {eventsCurrent} of {eventsCount}
-                  </div>
-                </>
-              )}
-            </Carousel>
-          </div>
-        </section>
-      )}
-
-      {!isMounted ? renderLoadingPlaceholder("Featured Businesses", Building2) : (
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center mb-8">
-              <h2 className="text-3xl font-bold text-primary flex items-center">
-                <Building2 className="mr-3 h-8 w-8 text-accent" /> <span className="title-gradient-wave dark:title-gradient-wave-dark">Featured Businesses</span>
-              </h2>
-              <Button variant="link" asChild className="text-primary hover:text-accent">
-                <Link href="/businesses">Explore All Businesses <ArrowRight className="ml-1 h-4 w-4" /></Link>
-              </Button>
-            </div>
-            <Carousel
- opts={{ align: "start", loop: featuredBusinesses.length > 2 }}
-              plugins={[bizAutoplayPlugin.current]}
-              setApi={setBizApi}
-              className="w-full"
-              onMouseEnter={bizAutoplayPlugin.current.stop}
-              onMouseLeave={bizAutoplayPlugin.current.reset}
-            >
-              <CarouselContent>
- {featuredBusinesses.map(business => (
-                  <CarouselItem key={business.id} className="basis-full sm:basis-1/2 lg:basis-1/3">
-                    <div className="p-1 h-full">
-                      <BusinessCard business={business} />
-                    </div>
-                  </CarouselItem>
-                ))}
-              </CarouselContent>
-              {isMounted && bizCount > 0 && (
-                <>
-                  <CarouselPrevious className="hidden sm:flex -left-4" />
-                  <CarouselNext className="hidden sm:flex -right-4" />
-                  <CarouselDots className="mt-6" />
-                  <div className="py-2 text-center text-sm text-muted-foreground">
-                    Slide {bizCurrent} of {bizCount}
                   </div>
                 </>
               )}
