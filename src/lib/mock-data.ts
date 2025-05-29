@@ -15,13 +15,13 @@ let businessIdCounter: number = 1;
 export interface Business {
   id: string;
   name: string;
-  industry: string; 
+  industry: string;
   imageUrl: string;
   dataAiHint: string;
   description: string;
   address: string;
   phone: string;
-  category: string; 
+  category: string;
   website: string;
 }
 
@@ -61,15 +61,13 @@ const generateBusinessDataAiHint = (category: string): string => {
   return categoryHints.join(' ');
 }
 
-// Static data for the ten specific businesses featured in the spotlight
-// Ensure imageUrl points to public/images/businessname.jpg (or .png, etc.)
 export const featuredBusinesses: Business[] = [
   {
     id: 'featured-b1',
     name: 'ConnectWise',
-    category: 'Technology', 
- imageUrl: '/images/connectwise.jpg',
-    dataAiHint: 'ConnectWise office logo',
+    category: 'Technology',
+    imageUrl: '/images/connectwise.jpg', // Ensure this file in public/images/ is actually ConnectWise
+    dataAiHint: 'ConnectWise office building or logo',
     description: 'Leading provider of technology solutions for IT businesses.',
     address: '1 ConnectWise Way, Tampa, FL 33607',
     industry: 'Technology',
@@ -79,8 +77,8 @@ export const featuredBusinesses: Business[] = [
   {
     id: 'featured-b2',
     name: 'Moffitt Cancer Center',
-    category: 'Healthcare', 
-    imageUrl: '/images/moffit.jpg',
+    category: 'Healthcare',
+    imageUrl: '/images/moffitt.jpg', // Ensure this file in public/images/ is actually Moffitt
     dataAiHint: 'Moffitt Cancer Center building exterior',
     description: 'Nationally ranked cancer center providing comprehensive care and research.',
     address: '12902 USF Magnolia Dr, Tampa, FL 33612',
@@ -91,9 +89,9 @@ export const featuredBusinesses: Business[] = [
   {
     id: 'featured-b3',
     name: 'Columbia Restaurant',
-    category: 'Food & Beverage', 
-    imageUrl: '/images/colombia resturant.jpg',
-    dataAiHint: 'colombia restaurant exterior historic building',
+    category: 'Food & Beverage',
+    imageUrl: '/images/columbia-restaurant.jpg',
+    dataAiHint: 'Columbia Restaurant historic building exterior',
     description: 'Historic Spanish restaurant with multiple locations, famous for its 1905 salad and Cuban bread.',
     address: '2117 E 7th Ave, Tampa, FL 33605',
     industry: 'Food & Beverage',
@@ -103,9 +101,9 @@ export const featuredBusinesses: Business[] = [
   {
     id: 'featured-b4',
     name: 'International Plaza',
-    category: 'Retail', 
-    imageUrl: '/images/internationalplaza.jpg',
-    dataAiHint: 'international plaza shopping mall interior',
+    category: 'Retail',
+    imageUrl: '/images/international-plaza.jpg',
+    dataAiHint: 'International Plaza shopping mall interior',
     description: 'Upscale shopping mall with a wide range of retailers and dining options.',
     address: '2223 N Westshore Blvd, Tampa, FL 33607',
     industry: 'Retail',
@@ -115,9 +113,9 @@ export const featuredBusinesses: Business[] = [
   {
     id: 'featured-b5',
     name: 'PwC Tampa',
-    category: 'Professional Services', 
-    imageUrl: '/images/pwctampa.jpg',
-    dataAiHint: 'pwc tampa office building modern',
+    category: 'Professional Services',
+    imageUrl: '/images/pwc-tampa.jpg',
+    dataAiHint: 'PwC Tampa office building modern architecture',
     description: 'Provides industry-focused assurance, tax, and advisory services.',
     address: '420 S Tampa St #3100, Tampa, FL 33602',
     industry: 'Professional Services',
@@ -127,21 +125,21 @@ export const featuredBusinesses: Business[] = [
   {
     id: 'featured-b6',
     name: 'Tampa Museum of Art',
-    category: 'Arts & Culture', 
-    imageUrl: '/images/tampa skyline.jpg', // Using Tampa skyline image as a placeholder for Arts & Culture
-    dataAiHint: 'tampa skyline museum art',
+    category: 'Arts & Culture',
+    imageUrl: '/images/tampa-museum-of-art.jpg', // Ensure this file in public/images/ is the image you provided
+    dataAiHint: 'Tampa Museum of Art exterior building art display',
     description: 'Showcases a diverse collection of ancient and contemporary art.',
-    address: '120 W Gasparilla Plaza, Tampa, FL 33602', 
+    address: '120 W Gasparilla Plaza, Tampa, FL 33602',
     industry: 'Arts & Culture',
     phone: generatePhoneNumber(),
-    website: 'https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_468,q_75,w_702/v1/clients/tampabay/TMA_960x640_77888870-3218-49f0-8079-0196d0ac2ebc.jpg', // Example, replace with local if available
+    website: 'https://tampamuseum.org/', // Official website
   },
   {
     id: 'featured-b7',
     name: 'University of South Florida (USF)',
-    category: 'Education', 
-    imageUrl: '/images/UniversityOfSouthFL.jpg',
-    dataAiHint: 'university of south florida usf campus building',
+    category: 'Education',
+    imageUrl: '/images/university-of-south-florida.jpg',
+    dataAiHint: 'University of South Florida USF campus building',
     description: 'Large public research university with a major campus in Tampa.',
     address: '4202 E Fowler Ave, Tampa, FL 33620',
     industry: 'Education',
@@ -151,9 +149,9 @@ export const featuredBusinesses: Business[] = [
   {
     id: 'featured-b8',
     name: 'Smith & Associates Real Estate',
-    category: 'Real Estate', 
-    imageUrl: '/images/smithassociates4thst.jpg',
-    dataAiHint: 'smith associates real estate luxury home',
+    category: 'Real Estate',
+    imageUrl: '/images/smith-and-associates.jpg',
+    dataAiHint: 'Smith & Associates Real Estate luxury home property',
     description: 'Premier real estate firm specializing in luxury properties in the Tampa Bay area.',
     address: '3901 W Bay to Bay Blvd, Tampa, FL 33629',
     industry: 'Real Estate',
@@ -163,9 +161,9 @@ export const featuredBusinesses: Business[] = [
   {
     id: 'featured-b9',
     name: 'Ferman Automotive Group',
-    category: 'Automotive', 
-    imageUrl: '/images/Dimmitt_Automotive_Group_1.jpg',
-    dataAiHint: 'ferman automotive car dealership showroom',
+    category: 'Automotive',
+    imageUrl: '/images/ferman-automotive.jpg',
+    dataAiHint: 'Ferman Automotive car dealership showroom cars',
     description: 'Family-owned automotive group with a wide selection of new and used vehicles.',
     address: '12801 N Florida Ave, Tampa, FL 33612',
     industry: 'Automotive',
@@ -175,9 +173,9 @@ export const featuredBusinesses: Business[] = [
   {
     id: 'featured-b10',
     name: 'The Tampa EDITION',
-    category: 'Travel & Hospitality', 
-    imageUrl: '/images/EDITION_Tampa-26-scaled.jpg',
-    dataAiHint: 'the tampa edition luxury hotel night view',
+    category: 'Travel & Hospitality',
+    imageUrl: '/images/the-tampa-edition.jpg',
+    dataAiHint: 'The Tampa EDITION luxury hotel night view architecture',
     description: 'Luxury hotel located in the Water Street Tampa district.',
     address: '510 Channelside Dr, Tampa, FL 33602',
     industry: 'Travel & Hospitality',
@@ -187,14 +185,13 @@ export const featuredBusinesses: Business[] = [
 ];
 
 
-// Static data for the ten specific businesses, ensuring their imageUrls match featuredBusinesses
 const realBusinesses: Business[] = [
   {
     id: 'real-b1',
     name: 'ConnectWise',
     industry: 'Technology',
     imageUrl: '/images/connectwise.jpg',
-    dataAiHint: 'ConnectWise office logo',
+    dataAiHint: 'ConnectWise office logo building',
     description: 'Leading provider of technology solutions for IT businesses.',
     category: 'Technology',
     address: '1 ConnectWise Way, Tampa, FL 33607',
@@ -204,8 +201,8 @@ const realBusinesses: Business[] = [
   {
     id: 'real-b2',
     name: 'Moffitt Cancer Center',
-    industry: 'Healthcare', 
-    imageUrl: '/images/moffit.jpg',
+    industry: 'Healthcare',
+    imageUrl: '/images/moffitt.jpg',
     dataAiHint: 'Moffitt Cancer Center building exterior',
     description: 'Nationally ranked cancer center providing comprehensive care and research.',
     category: 'Healthcare',
@@ -216,9 +213,9 @@ const realBusinesses: Business[] = [
   {
     id: 'real-b3',
     name: 'Columbia Restaurant',
-    industry: 'Food & Beverage', 
-    imageUrl: '/images/colombia resturant.jpg',
-    dataAiHint: 'colombia restaurant exterior historic building',
+    industry: 'Food & Beverage',
+    imageUrl: '/images/columbia-restaurant.jpg',
+    dataAiHint: 'Columbia Restaurant historic building exterior',
     description: 'Historic Spanish restaurant with multiple locations, famous for its 1905 salad and Cuban bread.',
     category: 'Food & Beverage',
     address: '2117 E 7th Ave, Tampa, FL 33605',
@@ -228,9 +225,9 @@ const realBusinesses: Business[] = [
   {
     id: 'real-b4',
     name: 'International Plaza',
-    industry: 'Retail', 
-    imageUrl: '/images/internationalplaza.jpg',
-    dataAiHint: 'international plaza shopping mall interior',
+    industry: 'Retail',
+    imageUrl: '/images/international-plaza.jpg',
+    dataAiHint: 'International Plaza shopping mall interior',
     description: 'Upscale shopping mall with a wide range of retailers and dining options.',
     category: 'Retail',
     address: '2223 N Westshore Blvd, Tampa, FL 33607',
@@ -240,9 +237,9 @@ const realBusinesses: Business[] = [
   {
     id: 'real-b5',
     name: 'PwC Tampa',
-    industry: 'Professional Services', 
-    imageUrl: '/images/pwctampa.jpg',
-    dataAiHint: 'pwc tampa office building modern',
+    industry: 'Professional Services',
+    imageUrl: '/images/pwc-tampa.jpg',
+    dataAiHint: 'PwC Tampa office building modern architecture',
     description: 'Provides industry-focused assurance, tax, and advisory services.',
     category: 'Professional Services',
     address: '420 S Tampa St #3100, Tampa, FL 33602',
@@ -252,21 +249,21 @@ const realBusinesses: Business[] = [
   {
     id: 'real-b6',
     name: 'Tampa Museum of Art',
-    industry: 'Arts & Culture', 
-    imageUrl: '/images/tampa skyline.jpg', // Using Tampa skyline image as a placeholder for Arts & Culture
-    dataAiHint: 'tampa skyline museum art',
+    industry: 'Arts & Culture',
+    imageUrl: '/images/tampa-museum-of-art.jpg',
+    dataAiHint: 'Tampa Museum of Art exterior building art display',
     description: 'Showcases a diverse collection of ancient and contemporary art.',
-    category: 'Arts & Culture', 
+    category: 'Arts & Culture',
     address: '120 W Gasparilla Plaza, Tampa, FL 33602',
     phone: '813-555-1717',
-    website: 'https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,h_468,q_75,w_702/v1/clients/tampabay/TMA_960x640_77888870-3218-49f0-8079-0196d0ac2ebc.jpg', // Example, replace with local if available
+    website: 'https://tampamuseum.org/',
   },
   {
     id: 'real-b7',
     name: 'University of South Florida (USF)',
-    industry: 'Education', 
-    imageUrl: '/images/UniversityOfSouthFL.jpg',
-    dataAiHint: 'university of south florida usf campus building',
+    industry: 'Education',
+    imageUrl: '/images/university-of-south-florida.jpg',
+    dataAiHint: 'University of South Florida USF campus building',
     description: 'Large public research university with a major campus in Tampa.',
     category: 'Education',
     address: '4202 E Fowler Ave, Tampa, FL 33620',
@@ -276,9 +273,9 @@ const realBusinesses: Business[] = [
   {
     id: 'real-b8',
     name: 'Smith & Associates Real Estate',
-    industry: 'Real Estate', 
-    imageUrl: '/images/smithassociates4thst.jpg',
-    dataAiHint: 'smith associates real estate luxury home',
+    industry: 'Real Estate',
+    imageUrl: '/images/smith-and-associates.jpg',
+    dataAiHint: 'Smith & Associates Real Estate luxury home property',
     description: 'Premier real estate firm specializing in luxury properties in the Tampa Bay area.',
     category: 'Real Estate',
     address: '3901 W Bay to Bay Blvd, Tampa, FL 33629',
@@ -288,9 +285,9 @@ const realBusinesses: Business[] = [
   {
     id: 'real-b9',
     name: 'Ferman Automotive Group',
-    industry: 'Automotive', 
-    imageUrl: '/images/Dimmitt_Automotive_Group_1.jpg',
-    dataAiHint: 'ferman automotive car dealership showroom',
+    industry: 'Automotive',
+    imageUrl: '/images/ferman-automotive.jpg',
+    dataAiHint: 'Ferman Automotive car dealership showroom cars',
     description: 'Family-owned automotive group with a wide selection of new and used vehicles.',
     category: 'Automotive',
     address: '12801 N Florida Ave, Tampa, FL 33612',
@@ -300,9 +297,9 @@ const realBusinesses: Business[] = [
   {
     id: 'real-b10',
     name: 'The Tampa EDITION',
-    industry: 'Travel & Hospitality', 
-    imageUrl: '/images/EDITION_Tampa-26-scaled.jpg',
-    dataAiHint: 'the tampa edition luxury hotel night view',
+    industry: 'Travel & Hospitality',
+    imageUrl: '/images/the-tampa-edition.jpg',
+    dataAiHint: 'The Tampa EDITION luxury hotel night view architecture',
     description: 'Luxury hotel located in the Water Street Tampa district.',
     category: 'Travel & Hospitality',
     address: '510 Channelside Dr, Tampa, FL 33602',
@@ -311,13 +308,12 @@ const realBusinesses: Business[] = [
   },
 ];
 
-export const mockBusinesses: Business[] = [...realBusinesses]; 
+export let mockBusinesses: Business[] = [...realBusinesses];
 
 industries.forEach(industry => {
   const industrySlug = industry.toLowerCase().replace(/\s+/g, '-');
-  // Check if a real business already covers this industry to avoid too many similar generated ones
   if (!realBusinesses.some(rb => rb.industry === industry)) {
-    for (let i = 0; i < 10; i++) { // Generating fewer to keep total manageable after adding real ones
+    for (let i = 0; i < 10; i++) {
       const area = tampaAreas[Math.floor(Math.random() * tampaAreas.length)];
       const baseName = `${industrySlug}-${area.toLowerCase().replace(/\s+/g, '-')}-${i + 1}`;
       const businessName = `${industry.split(' ')[0]} ${area} Center ${i + 1}`;
@@ -326,7 +322,7 @@ industries.forEach(industry => {
         id: `b${businessIdCounter++}`,
         name: businessName,
         industry: industry,
-        category: industry, 
+        category: industry,
         imageUrl: `https://placehold.co/600x400.png?text=${encodeURIComponent(businessName.substring(0,20))}`,
         dataAiHint: generateBusinessDataAiHint(industry),
         description: generateDescription(businessName, industry, area),
@@ -340,7 +336,6 @@ industries.forEach(industry => {
     }
   }
 });
-// Ensure the realBusinesses are part of mockBusinesses, adding them if not already present (idempotent)
 realBusinesses.forEach(rb => {
     if (!mockBusinesses.find(mb => mb.id === rb.id)) {
         mockBusinesses.push(rb);
@@ -409,7 +404,6 @@ export const mockEvents: Event[] = [
 ];
 
 const getBusinessDetailsForDeal = (industry: string): { name: string; id: string | undefined } => {
-  // Prefer featured businesses for deals if available for that industry
   const featuredForIndustry = featuredBusinesses.find(fb => fb.industry === industry);
   if (featuredForIndustry) {
     return { name: featuredForIndustry.name, id: featuredForIndustry.id };
@@ -480,7 +474,7 @@ export const mockDeals: Deal[] = industries.map((industry, index) => {
     description: dealDescriptions[industry] || `An amazing deal from a local ${industry.toLowerCase()} business. Don't miss out!`,
     imageUrl: `https://placehold.co/600x400.png?text=${encodeURIComponent(industry)}+Deal`,
     dataAiHint: generateDealDataAiHint(industry),
-    confidence: Math.random() * 0.2 + 0.8, 
+    confidence: Math.random() * 0.2 + 0.8,
     category: industry,
     expiryDate: new Date(Date.now() + (10 + index * 5) * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
   };
@@ -541,3 +535,19 @@ export const mockCommunityLeaders: CommunityLeader[] = [
 export const businessCategories = ['All', ...industries];
 export const eventCategories = ['All', ...new Set(mockEvents.map(e => e.category))];
 export const dealCategories = ['All', ...new Set(mockDeals.map(d => d.category))];
+
+// Ensure specific website for Tampa Museum of Art is correct
+const tmaIndexFeatured = featuredBusinesses.findIndex(b => b.name === 'Tampa Museum of Art');
+if (tmaIndexFeatured !== -1) {
+  featuredBusinesses[tmaIndexFeatured].website = 'https://tampamuseum.org/';
+}
+const tmaIndexReal = realBusinesses.findIndex(b => b.name === 'Tampa Museum of Art');
+if (tmaIndexReal !== -1) {
+  realBusinesses[tmaIndexReal].website = 'https://tampamuseum.org/';
+}
+// Update mockBusinesses if Tampa Museum of Art is present
+const tmaIndexMock = mockBusinesses.findIndex(b => b.name === 'Tampa Museum of Art');
+if (tmaIndexMock !== -1) {
+  mockBusinesses[tmaIndexMock].website = 'https://tampamuseum.org/';
+}
+
