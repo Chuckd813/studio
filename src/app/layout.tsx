@@ -35,16 +35,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable} dark`}> {/* Apply dark class globally */}
+    <html lang="en" className={`${GeistSans.variable} dark`}>
       <head>
         {/* MS specific PWA tags from original, ensure theme color matches */}
         <meta name="msapplication-config" content="/icons/browserconfig.xml" />
-        <meta name="msapplication-TileColor" content="#2579FF" /> 
+        <meta name="msapplication-TileColor" content="#2579FF" />
         <meta name="msapplication-tap-highlight" content="no" />
-        
+
         {/* Apple Touch Icon already using wit-logo.png */}
         <link rel="apple-touch-icon" href="/images/wit-logo.png" data-ai-hint="app logo" />
-        
+
         {/* Standard Favicons (ensure these exist or remove if only relying on manifest) */}
         <link rel="icon" type="image/png" sizes="32x32" href="/images/wit-logo.png" data-ai-hint="app logo small" />
         <link rel="icon" type="image/png" sizes="16x16" href="/images/wit-logo.png" data-ai-hint="app logo small" />
