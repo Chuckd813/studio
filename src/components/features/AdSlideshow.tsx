@@ -16,7 +16,7 @@ import {
   type CarouselApi
 } from '@/components/ui/carousel';
 import Autoplay from "embla-carousel-autoplay";
-import { featuredBusinesses } from '@/lib/mock-data'; // Import featuredBusinesses directly
+import { featuredBusinesses } from '@/lib/mock-data';
 import type { Business } from '@/types';
 import { ArrowRight } from 'lucide-react';
 
@@ -34,7 +34,7 @@ export function AdSlideshow() {
     setIsMounted(true);
   }, []);
 
-  // Use featuredBusinesses directly
+  
   const businessesToShow: Business[] = featuredBusinesses; 
 
   React.useEffect(() => {
@@ -100,11 +100,29 @@ export function AdSlideshow() {
                     <CardContent className="flex-grow pt-2">
                       <p className="text-sm text-muted-foreground line-clamp-3">{business.description}</p>
                     </CardContent>
-                    <div className="p-4 pt-0 mt-auto">
-                      <Button asChild size="sm" className="w-full rounded-full">
-                        <Link href={`/businesses/${business.id}`}>
-                          Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                        </Link>
+                    <div className="p-4 pt-0 mt-auto flex flex-col items-center gap-2">
+                      {business.socialMedia && Object.keys(business.socialMedia).length > 0 && (
+                        <div className="flex justify-center space-x-4 w-full">
+                          {business.socialMedia.facebook && (
+                            <a href={business.socialMedia.facebook} target="_blank" rel="noopener noreferrer" aria-label={`${business.name} on Facebook`}>
+                              <Image src="/path/to/facebook-icon.svg" alt="Facebook" width={20} height={20} />
+                            </a>
+                          )}
+                          {business.socialMedia.twitter && (
+                            <a href={business.socialMedia.twitter} target="_blank" rel="noopener noreferrer" aria-label={`${business.name} on Twitter`}>
+                              <Image src="/path/to/twitter-icon.svg" alt="Twitter" width={20} height={20} />
+                            </a>
+                          )}
+                          {business.socialMedia.instagram && (
+                            <a href={business.socialMedia.instagram} target="_blank" rel="noopener noreferrer" aria-label={`${business.name} on Instagram`}>
+                              <Image src="/path/to/instagram-icon.svg" alt="Instagram" width={20} height={20} />
+                            </a>
+                          )}
+                          
+                        </div>
+                      )}
+                      <Button size="sm" className="w-full rounded-full">
+                        Follow 
                       </Button>
                     </div>
                   </Card>
