@@ -6,10 +6,27 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Toaster } from "@/components/ui/toaster";
 
+const APP_NAME = "What's In Tampa";
+const APP_DESCRIPTION = "Discover businesses, events, and hot deals in Tampa. Your ultimate local guide.";
+
 export const metadata: Metadata = {
-  title: "What's In Tampa - Your Guide to Tampa Bay",
-  description: 'Discover businesses, events, and hot deals in Tampa. Your ultimate local guide.',
-  manifest: '/manifest.json', // Link to the manifest file
+  applicationName: APP_NAME,
+  title: {
+    default: APP_NAME,
+    template: `%s - ${APP_NAME}`,
+  },
+  description: APP_DESCRIPTION,
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: APP_NAME,
+    // startUpImage: [], // You can add startup images here
+  },
+  formatDetection: {
+    telephone: false,
+  },
+  themeColor: "#2579FF", // From new dark theme's primary
 };
 
 export default function RootLayout({
@@ -18,26 +35,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable}`}>
+    <html lang="en" className={`${GeistSans.variable} dark`}> {/* Apply dark class globally */}
       <head>
-        <meta name="application-name" content="What's In Tampa" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="WITampa" />
-        <meta name="format-detection" content="telephone=no" />
-        <meta name="mobile-web-app-capable" content="yes" />
+        {/* MS specific PWA tags from original, ensure theme color matches */}
         <meta name="msapplication-config" content="/icons/browserconfig.xml" />
-        <meta name="msapplication-TileColor" content="#0056B3" />
+        <meta name="msapplication-TileColor" content="#2579FF" /> 
         <meta name="msapplication-tap-highlight" content="no" />
-        <meta name="theme-color" content="#0056B3" />
-
- <link rel="apple-touch-icon" href="/images/wit-logo.png" data-ai-hint="app logo" />
         
+        {/* Apple Touch Icon already using wit-logo.png */}
+        <link rel="apple-touch-icon" href="/images/wit-logo.png" data-ai-hint="app logo" />
         
-        <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" data-ai-hint="app logo small" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" data-ai-hint="app logo small" />
+        {/* Standard Favicons (ensure these exist or remove if only relying on manifest) */}
+        <link rel="icon" type="image/png" sizes="32x32" href="/images/wit-logo.png" data-ai-hint="app logo small" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/images/wit-logo.png" data-ai-hint="app logo small" />
       </head>
-      <body className="antialiased flex flex-col min-h-screen">
+      <body className="antialiased flex flex-col min-h-screen bg-background text-foreground">
         <Header />
         <main className="flex-grow">
           {children}

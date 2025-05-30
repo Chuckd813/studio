@@ -4,7 +4,7 @@
 import React, { useEffect, useRef, useState, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
-import { ArrowRight, Sparkles, CalendarDays, Building2, Users, Loader2, Zap, ShoppingBag, Palette, Lightbulb } from 'lucide-react';
+import { ArrowRight, Sparkles, CalendarDays, Building2, Users, Loader2, Zap, ShoppingBag, Palette, Lightbulb, Download, Smartphone } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { mockDeals, mockEvents, featuredBusinesses, mockCommunityLeaders } from '@/lib/mock-data';
@@ -113,39 +113,71 @@ export default function Home() {
     });
   }, [leadersApi]);
 
-  // renderLoadingPlaceholder function was here, removed as it's not used in the main return.
-
   return (
     <div className="flex flex-col">
-      {/* Hero Section */}
-      <section className="relative py-20 md:py-32 bg-gradient-to-br from-primary to-accent text-primary-foreground overflow-hidden">
-        <div className="absolute inset-0">
-          <Image src="https://images.unsplash.com/photo-1594602729519-ba24058355b1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
-            alt="Tampa Bay Skyline during the day"
+      {/* New Hero Section */}
+      <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center justify-center text-primary-foreground overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="https://images.unsplash.com/photo-1602509839193-9967f8201b57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" // Tampa night skyline
+            alt="Tampa Bay Skyline at Night"
             fill
             priority
-            className="opacity-50 dark:opacity-30 z-0 object-cover"
-            data-ai-hint="tampa skyline day"
+            className="object-cover opacity-40 dark:opacity-30"
+            data-ai-hint="tampa skyline night"
           />
+          <div className="absolute inset-0 bg-black/30"></div> {/* Darkening overlay for better text contrast */}
         </div>
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h1 className="text-4xl md:text-6xl font-extrabold mb-6 drop-shadow-md text-primary-foreground">
-            Discover What's In Tampa
-          </h1>
-          <p className="text-lg md:text-xl mb-8 max-w-2xl mx-auto drop-shadow-sm">
-            Your ultimate guide to the best businesses, exciting events, and unbeatable deals in Tampa Bay.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button size="lg" asChild className="rounded-full text-lg px-8 py-6 shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out bg-tertiary text-tertiary-foreground hover:bg-tertiary/90">
-              <Link href="/businesses">
-                Explore Businesses <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button variant="outline" size="lg" asChild className="rounded-full text-lg px-8 py-6 bg-background/20 border-primary-foreground text-primary-foreground hover:bg-background/30 shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out">
-              <Link href="/events">
-                View Events <CalendarDays className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+            {/* Left Text Content */}
+            <div className="bg-background/70 dark:bg-background/80 backdrop-blur-md p-6 sm:p-8 rounded-xl shadow-2xl text-center md:text-left">
+              <div className="inline-block mb-4">
+                 <Image src="/images/wit-logo.png" alt="WIT Logo" width={80} height={80} data-ai-hint="app logo" />
+              </div>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 text-foreground">
+                INVEST IN WIT – <br className="hidden sm:block" />YOUR GATEWAY TO TAMPA'S <br className="hidden sm:block" /> <span className="text-primary">$8.4B+</span> LOCAL MARKET
+              </h1>
+              <p className="text-lg md:text-xl mb-6 text-foreground/80">
+                The Future of Tampa Discovery
+              </p>
+              <p className="text-sm text-foreground/60">
+                {/* Consider if this email should be displayed or be a link */}
+                MrTampaFL • themrtampaflggmail.com 
+              </p>
+            </div>
+
+            {/* Right Phone Mockup & Add to Homescreen */}
+            <div className="flex flex-col items-center">
+              <div className="relative w-[280px] h-[580px] sm:w-[300px] sm:h-[620px] bg-neutral-800 rounded-[40px] shadow-2xl p-4 border-4 border-neutral-700 overflow-hidden">
+                <Image 
+                  src="https://placehold.co/400x800.png?text=App+Preview" 
+                  alt="App Preview on Phone"
+                  fill
+                  className="object-cover rounded-[25px]"
+                  data-ai-hint="app interface mobile"
+                />
+                 {/* Notch (optional visual detail) */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-6 bg-neutral-800 rounded-b-xl"></div>
+              </div>
+              <div className="mt-6 text-center bg-background/70 dark:bg-background/80 backdrop-blur-sm p-4 rounded-lg shadow-lg">
+                <div className="flex items-center justify-center mb-2">
+                    <Smartphone className="h-6 w-6 mr-2 text-primary"/>
+                    <h3 className="text-lg font-semibold text-foreground">Get the WIT App Experience!</h3>
+                </div>
+                <p className="text-sm text-foreground/80 mb-3">Add What's In Tampa to your homescreen for quick access.</p>
+                <Button 
+                    variant="default" 
+                    size="lg" 
+                    className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-md"
+                    onClick={() => alert("To add to homescreen, tap the share button in your browser and select 'Add to Home Screen'.")}
+                >
+                  <Download className="mr-2 h-5 w-5" />
+                  Add to Homescreen
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -422,8 +454,8 @@ export default function Home() {
       </section>
 
       {/* Final Call to Action Section */}
-      <section className="relative py-20 bg-primary text-primary-foreground overflow-hidden">
-         <div className="absolute inset-0 opacity-10" style={{backgroundImage: "url('https://placehold.co/1920x400.png')", backgroundSize: 'cover', backgroundPosition: 'center', filter: 'grayscale(50%)'}} data-ai-hint="abstract pattern"></div>
+      <section className="relative py-20 bg-primary/80 text-primary-foreground overflow-hidden">
+         <div className="absolute inset-0 opacity-10" style={{backgroundImage: "url('https://images.unsplash.com/photo-1562403792-39e3055osae?auto=format&fit=crop&w=1920&q=60')", backgroundSize: 'cover', backgroundPosition: 'center', filter: 'grayscale(50%)'}} data-ai-hint="abstract pattern"></div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Are you a Tampa Business Owner?
@@ -441,5 +473,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
