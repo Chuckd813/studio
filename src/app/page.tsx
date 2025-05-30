@@ -116,7 +116,7 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       {/* New Hero Section */}
-      <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center justify-center text-primary-foreground overflow-hidden">
+      <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center justify-center text-primary-foreground overflow-hidden py-12 md:py-20">
         <div className="absolute inset-0 z-0">
           <Image 
             src="https://images.unsplash.com/photo-1602509839193-9967f8201b57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" // Tampa night skyline
@@ -126,42 +126,25 @@ export default function Home() {
             className="object-cover opacity-40 dark:opacity-30"
             data-ai-hint="tampa skyline night"
           />
-          <div className="absolute inset-0 bg-black/30"></div> {/* Darkening overlay for better text contrast */}
+          <div className="absolute inset-0 bg-black/30"></div> {/* Darkening overlay */}
         </div>
         
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
-            {/* Left Text Content */}
-            <div className="bg-background/70 dark:bg-background/80 backdrop-blur-md p-6 sm:p-8 rounded-xl shadow-2xl text-center md:text-left">
-              <div className="inline-block mb-4">
-                 <Image src="/images/wit-logo.png" alt="WIT Logo" width={80} height={80} data-ai-hint="app logo" />
-              </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 text-foreground">
-                INVEST IN WIT – <br className="hidden sm:block" />YOUR GATEWAY TO TAMPA'S <br className="hidden sm:block" /> <span className="text-primary">$8.4B+</span> LOCAL MARKET
-              </h1>
-              <p className="text-lg md:text-xl mb-6 text-foreground/80">
-                The Future of Tampa Discovery
-              </p>
-              <p className="text-sm text-foreground/60">
-                {/* Consider if this email should be displayed or be a link */}
-                MrTampaFL • themrtampaflggmail.com 
-              </p>
-            </div>
-
-            {/* Right Phone Mockup & Add to Homescreen */}
+          <div className="flex flex-col items-center justify-center">
+            {/* Phone Mockup & Add to Homescreen */}
             <div className="flex flex-col items-center">
               <div className="relative w-[280px] h-[580px] sm:w-[300px] sm:h-[620px] bg-neutral-800 rounded-[40px] shadow-2xl p-4 border-4 border-neutral-700 overflow-hidden">
                 <Image 
-                  src="https://placehold.co/400x800.png?text=App+Preview" 
+                  src="https://placehold.co/375x812.png?text=What%27s+In+Tampa" 
                   alt="App Preview on Phone"
                   fill
                   className="object-cover rounded-[25px]"
-                  data-ai-hint="app interface mobile"
+                  data-ai-hint="app interface mobile Tampa"
                 />
                  {/* Notch (optional visual detail) */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-6 bg-neutral-800 rounded-b-xl"></div>
               </div>
-              <div className="mt-6 text-center bg-background/70 dark:bg-background/80 backdrop-blur-sm p-4 rounded-lg shadow-lg">
+              <div className="mt-6 text-center bg-background/70 dark:bg-background/80 backdrop-blur-sm p-4 rounded-lg shadow-lg max-w-xs sm:max-w-sm">
                 <div className="flex items-center justify-center mb-2">
                     <Smartphone className="h-6 w-6 mr-2 text-primary"/>
                     <h3 className="text-lg font-semibold text-foreground">Get the WIT App Experience!</h3>
