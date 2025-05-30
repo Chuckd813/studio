@@ -8,8 +8,10 @@ const googleAiApiKey = process.env.GOOGLE_API_KEY;
 
 if (!googleAiApiKey) {
   console.warn(
-    'GOOGLE_API_KEY is not set. Genkit will attempt to use Application Default Credentials or other mechanisms if available, but this may not work for all environments or may lead to permission issues like API_KEY_SERVICE_BLOCKED if the wrong key/credentials are picked up.'
+    '🔴 GOOGLE_API_KEY is not set in your environment variables. Genkit will not be able to connect to Google AI services. Please ensure it is set in your .env file and that your server has been restarted.'
   );
+} else {
+  console.log('🟢 GOOGLE_API_KEY is set. Genkit will attempt to use this key for Google AI services.');
 }
 
 export const ai = genkit({
@@ -18,5 +20,5 @@ export const ai = genkit({
       apiKey: googleAiApiKey, // Explicitly pass the API key
     }),
   ],
-  model: 'googleai/gemini-2.0-flash', // Corrected and completed model name
+  model: 'googleai/gemini-2.0-flash',
 });
