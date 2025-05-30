@@ -118,57 +118,83 @@ export default function Home() {
       {/* New Hero Section */}
       <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center justify-center text-primary-foreground overflow-hidden py-12 md:py-20">
         <div className="absolute inset-0 z-0">
-          <Image 
-            src="https://images.unsplash.com/photo-1602509839193-9967f8201b57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80" // Tampa night skyline
+          <Image
+            src="https://images.unsplash.com/photo-1602509839193-9967f8201b57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
             alt="Tampa Bay Skyline at Night"
             fill
             priority
             className="object-cover opacity-40 dark:opacity-30"
             data-ai-hint="tampa skyline night"
           />
-          <div className="absolute inset-0 bg-black/30"></div> {/* Darkening overlay */}
+          <div className="absolute inset-0 bg-black/40 dark:bg-black/50"></div> {/* Darkening overlay */}
         </div>
-        
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="flex flex-col items-center justify-center">
-            {/* Phone Mockup & Add to Homescreen */}
-            <div className="flex flex-col items-center">
-              <div className="relative w-[280px] h-[580px] sm:w-[300px] sm:h-[620px] bg-neutral-800 rounded-[40px] shadow-2xl p-4 border-4 border-neutral-700 overflow-hidden">
-                <Image 
-                  src="https://placehold.co/375x812.png?text=What%27s+In+Tampa" 
-                  alt="App Preview on Phone"
-                  fill
-                  className="object-cover rounded-[25px]"
-                  data-ai-hint="app interface mobile Tampa"
-                />
-                 {/* Notch (optional visual detail) */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-6 bg-neutral-800 rounded-b-xl"></div>
-              </div>
-              <div className="mt-6 text-center bg-background/70 dark:bg-background/80 backdrop-blur-sm p-4 rounded-lg shadow-lg max-w-xs sm:max-w-sm">
-                <div className="flex items-center justify-center mb-2">
-                    <Smartphone className="h-6 w-6 mr-2 text-primary"/>
-                    <h3 className="text-lg font-semibold text-foreground">Get the WIT App Experience!</h3>
-                </div>
-                <p className="text-sm text-foreground/80 mb-3">Add What's In Tampa to your homescreen for quick access.</p>
-                <Button 
-                    variant="default" 
-                    size="lg" 
-                    className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-md"
-                    onClick={() => alert("To add to homescreen, tap the share button in your browser and select 'Add to Home Screen'.")}
-                >
-                  <Download className="mr-2 h-5 w-5" />
-                  Add to Homescreen
-                </Button>
-              </div>
-            </div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 title-gradient-white-blue">
+            Tampa's Best, At Your Fingertips.
+          </h1>
+          <p className="text-lg sm:text-xl md:text-2xl text-primary-foreground/90 mb-10 max-w-3xl mx-auto">
+            Discover top businesses, exciting events, and unbeatable deals across the Bay.
+          </p>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <Button size="lg" asChild className="rounded-full text-lg px-8 py-6 bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out w-full sm:w-auto">
+              <Link href="/businesses">
+                <Building2 className="mr-2 h-5 w-5" /> Explore Businesses
+              </Link>
+            </Button>
+            <Button size="lg" variant="secondary" asChild className="rounded-full text-lg px-8 py-6 text-secondary-foreground hover:bg-secondary/80 shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out w-full sm:w-auto">
+              <Link href="/events">
+                <CalendarDays className="mr-2 h-5 w-5" /> Find Events
+              </Link>
+            </Button>
+            <Button size="lg" variant="outline" asChild className="rounded-full text-lg px-8 py-6 border-primary-foreground/50 text-primary-foreground hover:bg-primary-foreground/10 shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out w-full sm:w-auto">
+              <Link href="/deals">
+                <Sparkles className="mr-2 h-5 w-5" /> Discover Deals
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
-      
+
       <HomepageWitWheel />
 
-      {/* Featured Businesses Section */}
+      {/* New "Get the App" Section with Phone Mockup */}
       <section className="py-16 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center justify-center text-center">
+             <Smartphone className="h-12 w-12 text-primary mb-4" />
+            <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+               <span className="title-gradient-wave dark:title-gradient-wave-dark">Get the Full WIT Experience!</span>
+            </h2>
+            <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+              Add What's In Tampa to your homescreen for quick and easy access to everything local.
+            </p>
+            <div className="relative w-[280px] h-[580px] sm:w-[300px] sm:h-[620px] bg-neutral-800 rounded-[40px] shadow-2xl p-4 border-4 border-neutral-700 overflow-hidden mb-6">
+              <Image
+                src="https://placehold.co/375x812.png?text=What%27s+In+Tampa"
+                alt="App Preview on Phone"
+                fill
+                className="object-cover rounded-[25px]"
+                data-ai-hint="app interface mobile Tampa"
+              />
+              {/* Notch (optional visual detail) */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-6 bg-neutral-800 rounded-b-xl"></div>
+            </div>
+            <Button
+              variant="default"
+              size="lg"
+              className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-md"
+              onClick={() => alert("To add to homescreen, tap the share button in your browser and select 'Add to Home Screen'.")}
+            >
+              <Download className="mr-2 h-5 w-5" />
+              Add to Homescreen
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Businesses Section */}
+      <section className="py-16 bg-secondary/50 dark:bg-secondary/20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-bold text-primary flex items-center">
@@ -262,7 +288,7 @@ export default function Home() {
           )}
         </div>
       </section>
-      
+
       {/* Ad Placeholder 1 */}
       <section className="py-8 bg-muted/30 dark:bg-muted/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -338,7 +364,7 @@ export default function Home() {
       </section>
 
       {/* Tampa Tip of the Day Section */}
-      <section className="py-12 bg-secondary/50 dark:bg-secondary/20">
+      <section className="py-12 bg-background"> {/* Changed background for contrast */}
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <Card className="shadow-lg border-2 border-primary/30 bg-gradient-to-r from-primary/5 to-accent/5 dark:from-primary/10 dark:to-accent/10">
             <CardHeader className="text-center pb-3">
@@ -366,7 +392,7 @@ export default function Home() {
       </section>
 
       {/* Featured Community Leaders Section */}
-      <section className="py-16 bg-background">
+      <section className="py-16 bg-secondary/50 dark:bg-secondary/20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-10">
             <h2 className="text-3xl font-bold text-primary flex items-center">
@@ -409,7 +435,7 @@ export default function Home() {
           )}
         </div>
       </section>
-      
+
       {/* Ad Placeholder 2 */}
       <section className="py-8 bg-muted/30 dark:bg-muted/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -456,3 +482,5 @@ export default function Home() {
     </div>
   );
 }
+
+    
