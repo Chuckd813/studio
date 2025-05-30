@@ -82,7 +82,7 @@ const nextConfig: NextConfig = {
         hostname: 'drive.google.com',
         port: '',
         pathname: '/**',
-      },
+      }, // Corrected: Added missing comma
       {
         protocol: 'https',
         hostname: 'moffitt.org',

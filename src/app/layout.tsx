@@ -1,5 +1,5 @@
 
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { GeistSans } from 'geist/font/sans';
 import './globals.css';
 import { Header } from '@/components/layout/Header';
@@ -26,7 +26,10 @@ export const metadata: Metadata = {
   formatDetection: {
     telephone: false,
   },
-  themeColor: "#2579FF", // From new dark theme's primary
+};
+
+export const viewport: Viewport = {
+  themeColor: "#2579FF", // From new dark theme's primary (Moved from metadata)
 };
 
 export default function RootLayout({

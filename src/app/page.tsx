@@ -171,11 +171,12 @@ export default function Home() {
             </p>
             <div className="relative w-[280px] h-[580px] sm:w-[300px] sm:h-[620px] bg-neutral-800 rounded-[40px] shadow-2xl p-4 border-4 border-neutral-700 overflow-hidden mb-6">
               <Image
-                src="https://placehold.co/375x812.png?text=What%27s+In+Tampa"
+                src="https://placehold.co/375x812.png"
                 alt="App Preview on Phone"
                 fill
+                sizes="(max-width: 640px) 280px, 300px"
                 className="object-cover rounded-[25px]"
-                data-ai-hint="app interface mobile Tampa"
+                data-ai-hint="app interface mobile"
               />
               {/* Notch (optional visual detail) */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-6 bg-neutral-800 rounded-b-xl"></div>
@@ -294,7 +295,7 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
            <Card className="p-4 md:p-6 rounded-lg shadow-md text-center border-2 border-dashed border-primary/30 bg-gradient-to-br from-accent/5 to-primary/5">
             <div className="relative w-full h-32 sm:h-40 mb-3 rounded-md overflow-hidden">
-              <Image src="https://placehold.co/728x90.png?text=Your+Business+Ad+Here" alt="Advertise your business" fill style={{ objectFit: 'contain' }} data-ai-hint="advertisement banner" />
+              <Image src="https://placehold.co/728x90.png" alt="Advertise your business" fill style={{ objectFit: 'contain' }} data-ai-hint="advertisement banner" />
             </div>
             <CardHeader className="p-0 pb-3">
               <ShoppingBag className="mx-auto h-8 w-8 text-primary mb-2" />
@@ -441,7 +442,7 @@ export default function Home() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
            <Card className="p-4 md:p-6 rounded-lg shadow-md text-center border-2 border-dashed border-accent/30 bg-gradient-to-br from-primary/5 to-accent/5">
             <div className="relative w-full h-32 sm:h-40 mb-3 rounded-md overflow-hidden">
-                <Image src="https://placehold.co/728x90.png?text=Your+Event+Ad+Here" alt="Advertise your event or venue" fill style={{ objectFit: 'contain' }} data-ai-hint="advertisement banner" />
+                <Image src="https://placehold.co/728x90.png" alt="Advertise your event or venue" fill style={{ objectFit: 'contain' }} data-ai-hint="advertisement banner" />
             </div>
             <CardHeader className="p-0 pb-3">
               <Palette className="mx-auto h-8 w-8 text-accent mb-2" />
@@ -482,4 +483,3 @@ export default function Home() {
     </div>
   );
 }
-
