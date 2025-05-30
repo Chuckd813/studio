@@ -23,7 +23,7 @@ export interface Business {
   phone: string;
   category: string;
   website: string;
-  socialMedia?: { // Added for potential AdSlideshow use
+  socialMedia?: {
     facebook?: string;
     twitter?: string;
     instagram?: string;
@@ -76,7 +76,7 @@ export const featuredBusinesses: Business[] = [
     description: 'Leading provider of technology solutions for IT businesses.',
     address: '1 ConnectWise Way, Tampa, FL 33607',
     industry: 'Technology',
-    phone: generatePhoneNumber(),
+    phone: '813-555-1212',
     website: 'https://www.connectwise.com/',
   },
   {
@@ -88,7 +88,7 @@ export const featuredBusinesses: Business[] = [
     description: 'Nationally ranked cancer center providing comprehensive care and research.',
     address: '12902 USF Magnolia Dr, Tampa, FL 33612',
     industry: 'Healthcare',
-    phone: generatePhoneNumber(),
+    phone: '813-555-1313',
     website: 'https://moffitt.org/',
   },
   {
@@ -100,7 +100,7 @@ export const featuredBusinesses: Business[] = [
     description: 'Historic Spanish restaurant with multiple locations, famous for its 1905 salad and Cuban bread.',
     address: '2117 E 7th Ave, Tampa, FL 33605',
     industry: 'Food & Beverage',
-    phone: generatePhoneNumber(),
+    phone: '813-555-1414',
     website: 'https://www.columbiarestaurant.com/',
   },
   {
@@ -108,11 +108,11 @@ export const featuredBusinesses: Business[] = [
     name: 'International Plaza',
     category: 'Retail',
     imageUrl: '/images/international-plaza.jpg',
-    dataAiHint: 'International Plaza shopping mall interior with stores',
+    dataAiHint: 'International Plaza shopping mall interior stores',
     description: 'Upscale shopping mall with a wide range of retailers and dining options.',
     address: '2223 N Westshore Blvd, Tampa, FL 33607',
     industry: 'Retail',
-    phone: generatePhoneNumber(),
+    phone: '813-555-1515',
     website: 'https://www.shopinternationalplaza.com/',
   },
   {
@@ -120,11 +120,11 @@ export const featuredBusinesses: Business[] = [
     name: 'PwC Tampa',
     category: 'Professional Services',
     imageUrl: '/images/pwc-tampa.jpg',
-    dataAiHint: 'PwC Tampa office building downtown',
+    dataAiHint: 'PwC Tampa office building city',
     description: 'Provides industry-focused assurance, tax, and advisory services.',
     address: '420 S Tampa St #3100, Tampa, FL 33602',
     industry: 'Professional Services',
-    phone: generatePhoneNumber(),
+    phone: '813-555-1616',
     website: 'https://www.pwc.com/us/en/locations/tampa.html',
   },
   {
@@ -132,11 +132,11 @@ export const featuredBusinesses: Business[] = [
     name: 'Tampa Museum of Art',
     category: 'Arts & Culture',
     imageUrl: '/images/tampa-museum-of-art.jpg',
-    dataAiHint: 'Tampa Museum of Art exterior building night',
+    dataAiHint: 'Tampa Museum of Art modern exterior',
     description: 'Showcases a diverse collection of ancient and contemporary art.',
     address: '120 W Gasparilla Plaza, Tampa, FL 33602',
     industry: 'Arts & Culture',
-    phone: generatePhoneNumber(),
+    phone: '813-555-1717',
     website: 'https://tampamuseum.org/',
   },
   {
@@ -144,11 +144,11 @@ export const featuredBusinesses: Business[] = [
     name: 'University of South Florida (USF)',
     category: 'Education',
     imageUrl: '/images/university-of-south-florida.jpg',
-    dataAiHint: 'University of South Florida campus building and students',
+    dataAiHint: 'University South Florida campus building',
     description: 'Large public research university with a major campus in Tampa.',
     address: '4202 E Fowler Ave, Tampa, FL 33620',
     industry: 'Education',
-    phone: generatePhoneNumber(),
+    phone: '813-555-1818',
     website: 'https://www.usf.edu/',
   },
   {
@@ -156,11 +156,11 @@ export const featuredBusinesses: Business[] = [
     name: 'Smith & Associates Real Estate',
     category: 'Real Estate',
     imageUrl: '/images/smith-and-associates.jpg',
-    dataAiHint: 'Smith & Associates Real Estate luxury home modern',
+    dataAiHint: 'Smith Associates Real Estate luxury home',
     description: 'Premier real estate firm specializing in luxury properties in the Tampa Bay area.',
     address: '3901 W Bay to Bay Blvd, Tampa, FL 33629',
     industry: 'Real Estate',
-    phone: generatePhoneNumber(),
+    phone: '813-555-1919',
     website: 'https://www.smithandassociates.com/',
   },
   {
@@ -168,11 +168,11 @@ export const featuredBusinesses: Business[] = [
     name: 'Ferman Automotive Group',
     category: 'Automotive',
     imageUrl: '/images/ferman-automotive.jpg',
-    dataAiHint: 'Ferman Automotive car dealership showroom with cars',
+    dataAiHint: 'Ferman Automotive car dealership showroom',
     description: 'Family-owned automotive group with a wide selection of new and used vehicles.',
     address: '12801 N Florida Ave, Tampa, FL 33612',
     industry: 'Automotive',
-    phone: generatePhoneNumber(),
+    phone: '813-555-2020',
     website: 'https://www.fermanauto.com/',
   },
   {
@@ -180,11 +180,11 @@ export const featuredBusinesses: Business[] = [
     name: 'The Tampa EDITION',
     category: 'Travel & Hospitality',
     imageUrl: '/images/the-tampa-edition.jpg',
-    dataAiHint: 'The Tampa EDITION luxury hotel modern interior',
+    dataAiHint: 'The Tampa EDITION luxury hotel interior',
     description: 'Luxury hotel located in the Water Street Tampa district.',
     address: '510 Channelside Dr, Tampa, FL 33602',
     industry: 'Travel & Hospitality',
-    phone: generatePhoneNumber(),
+    phone: '813-555-2121',
     website: 'https://editionhotels.com/tampa/',
   },
 ];
@@ -232,7 +232,7 @@ const realBusinesses: Business[] = [
     name: 'International Plaza',
     industry: 'Retail',
     imageUrl: '/images/international-plaza.jpg',
-    dataAiHint: 'International Plaza shopping mall interior with stores',
+    dataAiHint: 'International Plaza shopping mall interior stores',
     description: 'Upscale shopping mall with a wide range of retailers and dining options.',
     category: 'Retail',
     address: '2223 N Westshore Blvd, Tampa, FL 33607',
@@ -244,7 +244,7 @@ const realBusinesses: Business[] = [
     name: 'PwC Tampa',
     industry: 'Professional Services',
     imageUrl: '/images/pwc-tampa.jpg',
-    dataAiHint: 'PwC Tampa office building downtown',
+    dataAiHint: 'PwC Tampa office building city',
     description: 'Provides industry-focused assurance, tax, and advisory services.',
     category: 'Professional Services',
     address: '420 S Tampa St #3100, Tampa, FL 33602',
@@ -256,7 +256,7 @@ const realBusinesses: Business[] = [
     name: 'Tampa Museum of Art',
     industry: 'Arts & Culture',
     imageUrl: '/images/tampa-museum-of-art.jpg',
-    dataAiHint: 'Tampa Museum of Art exterior building night',
+    dataAiHint: 'Tampa Museum of Art modern exterior',
     description: 'Showcases a diverse collection of ancient and contemporary art.',
     category: 'Arts & Culture',
     address: '120 W Gasparilla Plaza, Tampa, FL 33602',
@@ -268,7 +268,7 @@ const realBusinesses: Business[] = [
     name: 'University of South Florida (USF)',
     industry: 'Education',
     imageUrl: '/images/university-of-south-florida.jpg',
-    dataAiHint: 'University of South Florida campus building and students',
+    dataAiHint: 'University South Florida campus building',
     description: 'Large public research university with a major campus in Tampa.',
     category: 'Education',
     address: '4202 E Fowler Ave, Tampa, FL 33620',
@@ -280,7 +280,7 @@ const realBusinesses: Business[] = [
     name: 'Smith & Associates Real Estate',
     industry: 'Real Estate',
     imageUrl: '/images/smith-and-associates.jpg',
-    dataAiHint: 'Smith & Associates Real Estate luxury home modern',
+    dataAiHint: 'Smith Associates Real Estate luxury home',
     description: 'Premier real estate firm specializing in luxury properties in the Tampa Bay area.',
     category: 'Real Estate',
     address: '3901 W Bay to Bay Blvd, Tampa, FL 33629',
@@ -292,7 +292,7 @@ const realBusinesses: Business[] = [
     name: 'Ferman Automotive Group',
     industry: 'Automotive',
     imageUrl: '/images/ferman-automotive.jpg',
-    dataAiHint: 'Ferman Automotive car dealership showroom with cars',
+    dataAiHint: 'Ferman Automotive car dealership showroom',
     description: 'Family-owned automotive group with a wide selection of new and used vehicles.',
     category: 'Automotive',
     address: '12801 N Florida Ave, Tampa, FL 33612',
@@ -304,24 +304,24 @@ const realBusinesses: Business[] = [
     name: 'The Tampa EDITION',
     industry: 'Travel & Hospitality',
     imageUrl: '/images/the-tampa-edition.jpg',
-    dataAiHint: 'The Tampa EDITION luxury hotel modern interior',
+    dataAiHint: 'The Tampa EDITION luxury hotel interior',
     description: 'Luxury hotel located in the Water Street Tampa district.',
     category: 'Travel & Hospitality',
     address: '510 Channelside Dr, Tampa, FL 33602',
     phone: '813-555-2121',
     website: 'https://editionhotels.com/tampa/',
   },
-  { // Adding Glenn Cummings example with a placeholder website if one isn't known.
-    id: 'real-gcm', // Example ID
+  {
+    id: 'real-gcm',
     name: 'Glenn Cummings Media',
-    industry: 'Professional Services', // Example, can be adjusted
+    industry: 'Professional Services',
     imageUrl: 'https://drive.google.com/uc?id=1hD0nBwJ9bS0L1wD6ZkXp8fN7Y_iI2xQY',
     dataAiHint: 'Glenn Cummings Media logo advertisement',
     description: 'Full-service media and advertising solutions.',
     category: 'Professional Services',
     address: '123 Media Way, Tampa, FL 33602',
     phone: '813-555-2222',
-    website: 'https://www.glenncummings.com', // Placeholder, replace if known
+    website: 'https://www.glenncummings.com',
   }
 ];
 
@@ -329,7 +329,7 @@ export let mockBusinesses: Business[] = [...realBusinesses];
 
 industries.forEach(industry => {
   const industrySlug = industry.toLowerCase().replace(/\s+/g, '-');
-  if (!realBusinesses.some(rb => rb.industry === industry)) {
+  if (!realBusinesses.some(rb => rb.industry === industry && rb.name !== 'Glenn Cummings Media')) { // Ensure we don't overwrite Glenn Cummings
     for (let i = 0; i < 10; i++) {
       const area = tampaAreas[Math.floor(Math.random() * tampaAreas.length)];
       const baseName = `${industrySlug}-${area.toLowerCase().replace(/\s+/g, '-')}-${i + 1}`;
@@ -353,6 +353,7 @@ industries.forEach(industry => {
     }
   }
 });
+// Ensure real businesses are always present in mockBusinesses
 realBusinesses.forEach(rb => {
     if (!mockBusinesses.find(mb => mb.id === rb.id)) {
         mockBusinesses.push(rb);
@@ -552,18 +553,3 @@ export const mockCommunityLeaders: CommunityLeader[] = [
 export const businessCategories = ['All', ...industries];
 export const eventCategories = ['All', ...new Set(mockEvents.map(e => e.category))];
 export const dealCategories = ['All', ...new Set(mockDeals.map(d => d.category))];
-
-// Ensure specific website for Tampa Museum of Art is correct
-const tmaIndexFeatured = featuredBusinesses.findIndex(b => b.name === 'Tampa Museum of Art');
-if (tmaIndexFeatured !== -1) {
-  featuredBusinesses[tmaIndexFeatured].website = 'https://tampamuseum.org/';
-}
-const tmaIndexReal = realBusinesses.findIndex(b => b.name === 'Tampa Museum of Art');
-if (tmaIndexReal !== -1) {
-  realBusinesses[tmaIndexReal].website = 'https://tampamuseum.org/';
-}
-// Update mockBusinesses if Tampa Museum of Art is present
-const tmaIndexMock = mockBusinesses.findIndex(b => b.name === 'Tampa Museum of Art');
-if (tmaIndexMock !== -1) {
-  mockBusinesses[tmaIndexMock].website = 'https://tampamuseum.org/';
-}
