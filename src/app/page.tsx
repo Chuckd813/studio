@@ -120,17 +120,17 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <Image
             src="/images/tampa-skyline-hero.jpg" 
-            alt="Tampa Bay Skyline with bridge and reflections"
+            alt="Tampa Bay Skyline with bridge and reflections at night"
             fill
             priority
             className="object-cover opacity-40 dark:opacity-30"
-            data-ai-hint="tampa skyline bridge"
+            data-ai-hint="tampa skyline bridge night"
           />
           <div className="absolute inset-0 bg-black/40 dark:bg-black/50"></div> {/* Darkening overlay */}
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 title-gradient-white-blue">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 title-gradient-white-blue leading-tight sm:leading-snug md:leading-snug">
             Tampa's Best, At Your Fingertips.
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-primary-foreground/90 mb-10 max-w-3xl mx-auto">
@@ -482,3 +482,4 @@ export default function Home() {
     </div>
   );
 }
+
