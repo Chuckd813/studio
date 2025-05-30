@@ -119,12 +119,12 @@ export default function Home() {
       <section className="relative min-h-[70vh] md:min-h-[80vh] flex items-center justify-center text-primary-foreground overflow-hidden py-12 md:py-20">
         <div className="absolute inset-0 z-0">
           <Image
-            src="https://images.unsplash.com/photo-1602509839193-9967f8201b57?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80"
-            alt="Tampa Bay Skyline at Night"
+            src="/images/tampa-skyline-hero.jpg" 
+            alt="Tampa Bay Skyline with bridge and reflections"
             fill
             priority
             className="object-cover opacity-40 dark:opacity-30"
-            data-ai-hint="tampa skyline night"
+            data-ai-hint="tampa skyline bridge"
           />
           <div className="absolute inset-0 bg-black/40 dark:bg-black/50"></div> {/* Darkening overlay */}
         </div>
@@ -147,7 +147,7 @@ export default function Home() {
                 <CalendarDays className="mr-2 h-5 w-5" /> Find Events
               </Link>
             </Button>
-            <Button size="lg" variant="outline" asChild className="rounded-full text-lg px-8 py-6 border-primary-foreground/50 text-primary-foreground hover:bg-primary-foreground/10 shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out w-full sm:w-auto">
+            <Button size="lg" variant="outline" asChild className="rounded-full text-lg px-8 py-6 border-foreground/50 text-foreground hover:bg-foreground/10 shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out w-full sm:w-auto">
               <Link href="/deals">
                 <Sparkles className="mr-2 h-5 w-5" /> Discover Deals
               </Link>
@@ -482,5 +482,3 @@ export default function Home() {
     </div>
   );
 }
-
-    
