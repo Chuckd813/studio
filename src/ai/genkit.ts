@@ -18,4 +18,5 @@ export const ai = genkit({
       apiKey: googleAiApiKey, // Explicitly pass the API key
     }),
   ],
-  model: 'googleai/gemini-2.
+  model: 'googleai/gemini-2.0-flash', // Corrected and completed model name
+});
