@@ -24,20 +24,48 @@ let db: Firestore;
 // let analytics: Analytics; // Uncomment if needed
 
 if (!getApps().length) {
-  app = initializeApp(firebaseConfig);
+  // Ensure all required config values are present before initializing
+  if (
+    firebaseConfig.apiKey &&
+    firebaseConfig.authDomain &&
+    firebaseConfig.projectId &&
+    firebaseConfig.appId
+  ) {
+    app = initializeApp(firebaseConfig);
+  } else {
+    console.error(
+      'Firebase configuration is missing. Ensure all NEXT_PUBLIC_FIREBASE_ environment variables are set.'
+    );
+    // You might want to throw an error here or handle this case appropriately
+    // For now, we'll let it proceed, but Firebase services will likely fail.
+    // A dummy app could be created to prevent crashes if getAuth/getFirestore are called.
+    // However, it's better to ensure config is present.
+  }
 } else {
   app = getApp();
 }
 
-auth = getAuth(app);
-db = getFirestore(app);
-// storage = getStorage(app); // Uncomment if needed
+// Initialize services only if app was successfully initialized
+if (app!) {
+  auth = getAuth(app);
+  db = getFirestore(app);
+  // storage = getStorage(app); // Uncomment if needed
 
-// Ensure Analytics is only initialized on the client side
-// if (typeof window !== 'undefined') {
-//   if (firebaseConfig.measurementId) {
-//     analytics = getAnalytics(app);
-//   }
-// }
+  // Ensure Analytics is only initialized on the client side
+  // if (typeof window !== 'undefined') {
+  //   if (firebaseConfig.measurementId) {
+  //     analytics = getAnalytics(app);
+  //   }
+  // }
+} else {
+  // Fallback for auth and db if app is not initialized to prevent runtime errors
+  // This is a basic fallback; ideally, the app should not run without proper Firebase config.
+  console.warn("Firebase app not initialized. Auth and Firestore services will not be available.");
+  // @ts-ignore
+  auth = undefined;
+  // @ts-ignore
+  db = undefined;
+}
+
 
 export { app, auth, db /*, storage, analytics */ };
