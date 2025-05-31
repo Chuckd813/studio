@@ -17,20 +17,17 @@ export const BusinessCard = React.memo(function BusinessCard({ business }: Busin
   return (
     <Card className="flex flex-col h-full overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:-translate-y-1 rounded-lg">
       <div className="relative w-full h-48"> {/* Image Container */}
-        <div className="relative w-full h-48">
-          <Image
-            src={business.imageUrl}
-            alt={business.name}
-            fill
-            style={{ objectFit: 'cover' }}
-            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-            data-ai-hint={business.dataAiHint}
+        <Image
+          src={business.imageUrl}
+          alt={business.name}
+          fill
+          style={{ objectFit: 'cover' }}
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
           />
-        </div>
       </div>
       <CardContent className="p-6 flex-grow">
         <Badge variant="secondary" className="mb-2">{business.category}</Badge>
-        <CardTitle className="text-xl mb-2 line-clamp-1">{business.name}</CardTitle>
+ <CardTitle className="text-xl mb-2 line-clamp-1">{business.name}</CardTitle>
         <p className="text-muted-foreground text-sm mb-3 line-clamp-3">{business.description}</p>
         <div className="space-y-1 text-sm text-muted-foreground">
           <div className="flex items-start">
