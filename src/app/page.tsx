@@ -13,6 +13,7 @@ import { generateTampaTip, type GenerateTampaTipOutput } from '@/ai/flows/genera
 import { useEffect, useState, useRef, useCallback } from 'react';
 import { Loader2, Lightbulb, Sparkles, Users, CalendarDays, ArrowRight, ShoppingBag, Utensils, Map } from 'lucide-react';
 import { mockEvents, mockDeals, mockCommunityLeaders } from '@/lib/mock-data';
+import { mockBusinesses, type Business } from '@/lib/mock-data'; // Import mockBusinesses and Business type
 import { EventCard } from '@/components/features/EventCard';
 import { DealCard } from '@/components/features/DealCard';
 import { PersonCard } from '@/components/features/PersonCard';
@@ -20,6 +21,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import Autoplay from "embla-carousel-autoplay";
 
 export default function HomePage() {
+
   const [tampaTip, setTampaTip] = useState<string | null>(null);
   const [isLoadingTip, setIsLoadingTip] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
@@ -93,6 +95,16 @@ export default function HomePage() {
   const allEvents = mockEvents;
   const allDeals = mockDeals;
   const allCommunityLeaders = mockCommunityLeaders;
+  
+  // Define categories and their corresponding mock business categories
+  const categories = [
+    { name: "Restaurants", icon: Utensils, businessCategory: "Food & Beverage" },
+    { name: "Shopping", icon: ShoppingBag, businessCategory: "Retail" },
+    // Note: Nightlife href points to events page, so we won't show businesses for it here
+    // { name: "Nightlife", icon: Sparkles, businessCategory: "" }, 
+    { name: "Arts & Culture", icon: Users, businessCategory: "Arts & Culture" },
+    { name: "Services", icon: Users, businessCategory: "Professional Services" },
+  ];
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -121,7 +133,7 @@ export default function HomePage() {
           </div>
           <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
             <Button size="lg" asChild className="rounded-full shadow-lg transform hover:scale-105 transition-transform">
-              <Link href="/businesses" className="flex items-center">
+              <Link href="/businesses" className="flex items-center"> {/* Changed href to /businesses */}
                 <Map className="mr-2 h-5 w-5" /> Explore Businesses
               </Link>
             </Button>

@@ -1,7 +1,6 @@
-
 import React from 'react';
 import { BusinessCard } from '@/components/features/BusinessCard';
-import { type Business, mockBusinesses, industries } from '@/lib/mock-data';
+import { mockBusinesses, industries } from '@/lib/mock-data';
 import { Building2, SearchX } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -14,13 +13,10 @@ interface CategoryPageProps {
 }
 
 export async function generateStaticParams() {
-  // Use the 'industries' array from mock-data as the source for categories
-  // This ensures consistency with how businesses are generated.
   return industries.map((industry) => ({
-    category: encodeURIComponent(industry), // Category names are URL encoded
+    category: encodeURIComponent(industry),
   }));
 }
-
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
   const category = decodeURIComponent(params.category);
@@ -38,7 +34,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </Link>
         </Button>
         <h1 className="text-3xl lg:text-4xl font-extrabold text-primary mb-3 flex items-center">
-          <Building2 className="mr-3 h-8 w-8" /> 
+          <Building2 className="mr-3 h-8 w-8" />
           <span className="title-gradient-wave dark:title-gradient-wave-dark">{category}</span> Businesses
         </h1>
         <p className="text-lg text-muted-foreground">
@@ -68,6 +64,3 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     </div>
   );
 }
-
-
-    

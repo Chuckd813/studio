@@ -55,7 +55,7 @@ export const BusinessCard = React.memo(function BusinessCard({ business }: Busin
             </Button>
           )}
           <Button size="sm" asChild className="rounded-full flex-1 min-w-0">
-            <Link href={`/businesses/${business.id}`} className="truncate">View Details</Link>
+            <Link href={`/businesses/${encodeURIComponent(business.category)}/business/${business.id}`} className="truncate">View Details</Link>
           </Button>
         </div>
       </CardFooter>

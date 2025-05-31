@@ -1,86 +1,100 @@
 
 'use client';
+
+import React from 'react';
 import { useState, useEffect } from 'react';
-import { businessCategories as allCategoriesFromMock } from '@/lib/mock-data';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
 import Link from 'next/link';
-import { Building2, ArrowRight, Search, PackageX } from 'lucide-react';
+import { mockBusinesses, type Business } from '@/lib/mock-data'; // Assuming mock data for now
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { BusinessCard } from '@/components/features/BusinessCard';
+import { Separator } from '@/components/ui/separator'; // For visual separation between categories
 
-export default function BusinessesPage() {
+
+
+// Group businesses by category outside the component
+const businessesByCategory: Record<string, Business[]> = mockBusinesses.reduce(
+    (acc, business) => {
+      const category = business.category || 'Other'; // Handle businesses without a category
+      if (!acc[category]) {
+        acc[category] = [];
+      }
+      acc[category].push(business);
+      return acc;
+    },
+    {} as Record<string, Business[]>
+  );
+
+  // Get the list of categories
+const categories = Object.keys(businessesByCategory);
+
+export default function BusinessesIndexPage() {
+  const [isMounted, setIsMounted] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
-  const [displayCategories, setDisplayCategories] = useState<string[]>([]);
+  // Initialize displayCategories with all categories that have businesses
+  const [displayCategories, setDisplayCategories] = useState<string[]>(
+    []
+  );
 
-  // Filter out "All" and sort categories for display
-  const categoriesForDisplay = allCategoriesFromMock.filter(cat => cat !== 'All').sort((a, b) => a.localeCompare(b));
+  // Filter displayCategories based on search term
+  useEffect(() => {
+    const filteredCategories = categories.filter((category) =>
+ category.toLowerCase().includes(searchTerm.toLowerCase()),
+ );
+
+    // Sort filtered categories alphabetically
+    filteredCategories.sort((a, b) => a.localeCompare(b));
+
+    // Filter again to include only categories with businesses and sort businesses within them
+    const categoriesWithSortedBusinesses = filteredCategories
+ .filter(cat => businessesByCategory[cat]?.length > 0)
+ .map(category => {
+        const sortedBusinesses = [...businessesByCategory[category]].sort((a, b) => a.name.localeCompare(b.name));
+ return { category, businesses: sortedBusinesses };
+ });
+
+ setDisplayCategories(categoriesWithSortedBusinesses.map(item => item.category));
+ }, [searchTerm]); // Depend only on searchTerm
 
   useEffect(() => {
-    if (searchTerm === '') {
-      setDisplayCategories(categoriesForDisplay);
-    } else {
-      setDisplayCategories(
-        categoriesForDisplay.filter(category =>
-          category.toLowerCase().includes(searchTerm.toLowerCase())
-        )
-      );
-    }
-  }, [searchTerm, categoriesForDisplay]);
-
+    setIsMounted(true);
+  }, []);
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <header className="mb-10 text-center">
-        <h1 className="text-4xl lg:text-5xl font-extrabold text-primary mb-4 flex items-center justify-center">
-          <Building2 className="mr-3 h-10 w-10" />{' '}
-          <span className="title-gradient-wave dark:title-gradient-wave-dark">Explore Business Categories</span>
-        </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Browse businesses in Tampa by category to find exactly what you need.
-        </p>
-      </header>
+    <div className="container mx-auto px-4 py-12">
+      <h1 className="text-4xl font-bold text-center text-primary mb-12">Explore Businesses by Category</h1>
 
-      <div className="mb-10 max-w-xl mx-auto">
-        <div className="relative">
-          <Input
-            type="search"
-            placeholder="Search categories (e.g., Technology, Food)"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="pr-10 h-11 rounded-full text-base bg-card border-input focus:ring-primary focus-visible:ring-primary"
-          />
-          <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-        </div>
-      </div>
+      {/* Iterate over displayCategories to render sections */}
+      {displayCategories.map(category => (
+        businessesByCategory[category].length > 0 && ( // Only render if there are businesses in the category
+          <section key={category} className="mb-12">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-2xl font-bold text-foreground">{category}</h2>
+              {/* Optional: Add a "View All" link for the category */}
+              {/* <Link href={`/businesses/${encodeURIComponent(category)}`} className="text-primary hover:underline">
+                View All {category}
+              </Link> */}
+            </div>
 
-      {displayCategories.length > 0 ? (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {displayCategories.map((category) => (
-            <Link key={category} href={`/businesses/${encodeURIComponent(category)}`}>
-              <Card className="h-full flex flex-col justify-between transition-transform transform hover:scale-105 hover:shadow-lg rounded-lg">
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-lg font-medium text-primary">{category}</CardTitle>
-                  <ArrowRight className="h-5 w-5 text-muted-foreground" />
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-muted-foreground line-clamp-2">
-                    Explore businesses in the {category} sector.
-                  </p>
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
-        </div>
-      ) : (
-        <div className="text-center py-12">
-          <PackageX className="mx-auto h-16 w-16 text-muted-foreground mb-4" />
-          <h3 className="text-xl font-semibold text-foreground mb-2">No Categories Found</h3>
-          <p className="text-muted-foreground">
-            Your search for "{searchTerm}" did not match any business categories.
-          </p>
-        </div>
-      )}
+            <Carousel opts={{ align: "start" }} className="w-full">
+              <CarouselContent>
+                {businessesByCategory[category].map(business => (
+                  <CarouselItem key={business.id} className="sm:basis-1/2 lg:basis-1/3">
+
+
+                    <div className="p-1 h-full">
+                      {/* Render the BusinessCard component */}
+                      <BusinessCard business={business} />
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+            <Separator className="mt-8" />
+          </section>
+        )
+      ))}
     </div>
   );
 }
-
-    
