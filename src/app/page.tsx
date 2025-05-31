@@ -110,10 +110,10 @@ export default function HomePage() {
           />
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 drop-shadow-lg">
-            <span className="title-gradient-white-blue">Discover What's In Tampa</span>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6">
+            <span className="title-gradient-white-blue drop-shadow-lg">Discover What's In Tampa</span>
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-gray-100/90 drop-shadow-md">
+          <p className="text-lg sm:text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-slate-100 drop-shadow-md">
             Your ultimate guide to businesses, events, and exclusive deals across Tampa Bay.
           </p>
           <div className="max-w-xl mx-auto mb-10">
@@ -306,3 +306,5 @@ export default function HomePage() {
     </div>
   );
 }
+
+    

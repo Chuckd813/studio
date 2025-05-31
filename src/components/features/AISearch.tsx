@@ -100,7 +100,12 @@ export function AISearch() {
           onBlur={handleInputBlur}
           className="pr-12 rounded-full h-11 text-base bg-white text-slate-900 placeholder:text-slate-500 border-slate-300 focus:ring-primary focus-visible:ring-primary"
         />
-        <Button type="submit" size="icon" className="absolute right-1.5 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full bg-primary hover:bg-primary/90" aria-label="Search">
+        <Button
+          type="submit"
+          size="icon"
+          className="absolute right-2 top-1/2 transform -translate-y-1/2 h-8 w-8 rounded-full bg-primary hover:bg-primary/90 flex items-center justify-center"
+          aria-label="Search"
+        >
           {isLoading ? <Loader2 className="h-4 w-4 animate-spin text-primary-foreground" /> : <Search className="h-4 w-4 text-primary-foreground" />}
         </Button>
       </div>
@@ -122,3 +127,5 @@ export function AISearch() {
     </form>
   );
 }
+
+    
