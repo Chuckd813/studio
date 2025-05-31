@@ -71,7 +71,7 @@ export const featuredBusinesses: Business[] = [
     id: 'featured-b1',
     name: 'ConnectWise',
     category: 'Technology',
-    imageUrl: '/images/connectwise.jpg',
+    imageUrl: '/images/Connectwise.jpg', // Corrected case
     dataAiHint: 'ConnectWise logo office building',
     description: 'Leading provider of technology solutions for IT businesses.',
     address: '1 ConnectWise Way, Tampa, FL 33607',
@@ -83,7 +83,7 @@ export const featuredBusinesses: Business[] = [
     id: 'featured-b2',
     name: 'Moffitt Cancer Center',
     category: 'Healthcare',
-    imageUrl: '/images/moffitt.jpg',
+    imageUrl: '/images/moffit.jpg', // Corrected to match file
     dataAiHint: 'Moffitt Cancer Center building exterior',
     description: 'Nationally ranked cancer center providing comprehensive care and research.',
     address: '12902 USF Magnolia Dr, Tampa, FL 33612',
@@ -95,7 +95,7 @@ export const featuredBusinesses: Business[] = [
     id: 'featured-b3',
     name: 'Columbia Restaurant',
     category: 'Food & Beverage',
-    imageUrl: '/images/columbia-restaurant.jpg',
+    imageUrl: '/images/colombia resturant.jpg', // Corrected to match file
     dataAiHint: 'Columbia Restaurant Ybor City historic building',
     description: 'Historic Spanish restaurant with multiple locations, famous for its 1905 salad and Cuban bread.',
     address: '2117 E 7th Ave, Tampa, FL 33605',
@@ -107,7 +107,7 @@ export const featuredBusinesses: Business[] = [
     id: 'featured-b4',
     name: 'International Plaza',
     category: 'Retail',
-    imageUrl: '/images/international-plaza.jpg',
+    imageUrl: '/images/internationalplaza.jpg', // Matches file
     dataAiHint: 'International Plaza shopping mall interior stores',
     description: 'Upscale shopping mall with a wide range of retailers and dining options.',
     address: '2223 N Westshore Blvd, Tampa, FL 33607',
@@ -118,7 +118,8 @@ export const featuredBusinesses: Business[] = [
   {
     id: 'featured-b5',
     name: 'PwC Tampa',
-    category: 'Professional Services',    imageUrl: '/images/pwctampa.jpg',
+    category: 'Professional Services',
+    imageUrl: '/images/pwctampa.jpg', // Stated as correct
     dataAiHint: 'PwC Tampa office building city',
     description: 'Provides industry-focused assurance, tax, and advisory services.',
     address: '420 S Tampa St #3100, Tampa, FL 33602',
@@ -130,7 +131,7 @@ export const featuredBusinesses: Business[] = [
     id: 'featured-b6',
     name: 'Tampa Museum of Art',
     category: 'Arts & Culture',
-    imageUrl: '/images/tampa-museum-of-art.jpg',
+    imageUrl: '/images/Tampa Museum Of Art.jpg', // Corrected to match file
     dataAiHint: 'Tampa Museum of Art modern exterior',
     description: 'Showcases a diverse collection of ancient and contemporary art.',
     address: '120 W Gasparilla Plaza, Tampa, FL 33602',
@@ -142,7 +143,7 @@ export const featuredBusinesses: Business[] = [
     id: 'featured-b7',
     name: 'University of South Florida (USF)',
     category: 'Education',
-    imageUrl: '/images/university-of-south-florida.jpg',
+    imageUrl: '/images/UniversityOfSouthFL.jpg', // Corrected to match file
     dataAiHint: 'University South Florida campus building',
     description: 'Large public research university with a major campus in Tampa.',
     address: '4202 E Fowler Ave, Tampa, FL 33620',
@@ -154,7 +155,7 @@ export const featuredBusinesses: Business[] = [
     id: 'featured-b8',
     name: 'Smith & Associates Real Estate',
     category: 'Real Estate',
-    imageUrl: '/images/smith-and-associates.jpg',
+    imageUrl: '/images/smithassociates4thst.jpg', // Corrected to match file
     dataAiHint: 'Smith Associates Real Estate luxury home',
     description: 'Premier real estate firm specializing in luxury properties in the Tampa Bay area.',
     address: '3901 W Bay to Bay Blvd, Tampa, FL 33629',
@@ -166,7 +167,7 @@ export const featuredBusinesses: Business[] = [
     id: 'featured-b9',
     name: 'Ferman Automotive Group',
     category: 'Automotive',
-    imageUrl: '/images/ferman-automotive.jpg',
+    imageUrl: '/images/Dimmitt_Automotive_Group_1.jpg', // Corrected to use available Dimmit image for Ferman
     dataAiHint: 'Ferman Automotive car dealership showroom',
     description: 'Family-owned automotive group with a wide selection of new and used vehicles.',
     address: '12801 N Florida Ave, Tampa, FL 33612',
@@ -178,7 +179,7 @@ export const featuredBusinesses: Business[] = [
     id: 'featured-b10',
     name: 'The Tampa EDITION',
     category: 'Travel & Hospitality',
-    imageUrl: '/images/the-tampa-edition.jpg',
+    imageUrl: '/images/EDITION_Tampa-26-scaled.jpg', // Corrected to match file
     dataAiHint: 'The Tampa EDITION luxury hotel interior',
     description: 'Luxury hotel located in the Water Street Tampa district.',
     address: '510 Channelside Dr, Tampa, FL 33602',
@@ -194,7 +195,7 @@ const realBusinesses: Business[] = [
     id: 'real-b1',
     name: 'ConnectWise',
     industry: 'Technology',
-    imageUrl: '/images/connectwise.jpg',
+    imageUrl: '/images/Connectwise.jpg', // Corrected case
     dataAiHint: 'ConnectWise logo office building',
     description: 'Leading provider of technology solutions for IT businesses.',
     category: 'Technology',
@@ -206,7 +207,7 @@ const realBusinesses: Business[] = [
     id: 'real-b2',
     name: 'Moffitt Cancer Center',
     industry: 'Healthcare',
-    imageUrl: '/images/moffitt.jpg',
+    imageUrl: '/images/moffit.jpg', // Corrected to match file
     dataAiHint: 'Moffitt Cancer Center building exterior',
     description: 'Nationally ranked cancer center providing comprehensive care and research.',
     category: 'Healthcare',
@@ -218,7 +219,7 @@ const realBusinesses: Business[] = [
     id: 'real-b3',
     name: 'Columbia Restaurant',
     industry: 'Food & Beverage',
-    imageUrl: '/images/columbia-restaurant.jpg',
+    imageUrl: '/images/colombia resturant.jpg', // Corrected to match file
     dataAiHint: 'Columbia Restaurant Ybor City historic building',
     description: 'Historic Spanish restaurant with multiple locations, famous for its 1905 salad and Cuban bread.',
     category: 'Food & Beverage',
@@ -230,7 +231,7 @@ const realBusinesses: Business[] = [
     id: 'real-b4',
     name: 'International Plaza',
     industry: 'Retail',
-    imageUrl: '/images/international-plaza.jpg',
+    imageUrl: '/images/internationalplaza.jpg', // Matches file
     dataAiHint: 'International Plaza shopping mall interior stores',
     description: 'Upscale shopping mall with a wide range of retailers and dining options.',
     category: 'Retail',
@@ -241,7 +242,8 @@ const realBusinesses: Business[] = [
   {
     id: 'real-b5',
     name: 'PwC Tampa',
-    industry: 'Professional Services',    imageUrl: '/images/pwctampa.jpg',
+    industry: 'Professional Services',
+    imageUrl: '/images/pwctampa.jpg', // Stated as correct
     dataAiHint: 'PwC Tampa office building city',
     description: 'Provides industry-focused assurance, tax, and advisory services.',
     category: 'Professional Services',
@@ -253,7 +255,7 @@ const realBusinesses: Business[] = [
     id: 'real-b6',
     name: 'Tampa Museum of Art',
     industry: 'Arts & Culture',
-    imageUrl: '/images/tampa-museum-of-art.jpg',
+    imageUrl: '/images/Tampa Museum Of Art.jpg', // Corrected to match file
     dataAiHint: 'Tampa Museum of Art modern exterior',
     description: 'Showcases a diverse collection of ancient and contemporary art.',
     category: 'Arts & Culture',
@@ -265,7 +267,7 @@ const realBusinesses: Business[] = [
     id: 'real-b7',
     name: 'University of South Florida (USF)',
     industry: 'Education',
-    imageUrl: '/images/university-of-south-florida.jpg',
+    imageUrl: '/images/UniversityOfSouthFL.jpg', // Corrected to match file
     dataAiHint: 'University South Florida campus building',
     description: 'Large public research university with a major campus in Tampa.',
     category: 'Education',
@@ -277,7 +279,7 @@ const realBusinesses: Business[] = [
     id: 'real-b8',
     name: 'Smith & Associates Real Estate',
     industry: 'Real Estate',
-    imageUrl: '/images/smith-and-associates.jpg',
+    imageUrl: '/images/smithassociates4thst.jpg', // Corrected to match file
     dataAiHint: 'Smith Associates Real Estate luxury home',
     description: 'Premier real estate firm specializing in luxury properties in the Tampa Bay area.',
     category: 'Real Estate',
@@ -289,7 +291,7 @@ const realBusinesses: Business[] = [
     id: 'real-b9',
     name: 'Ferman Automotive Group',
     industry: 'Automotive',
-    imageUrl: '/images/ferman-automotive.jpg',
+    imageUrl: '/images/Dimmitt_Automotive_Group_1.jpg', // Corrected to use available Dimmit image for Ferman
     dataAiHint: 'Ferman Automotive car dealership showroom',
     description: 'Family-owned automotive group with a wide selection of new and used vehicles.',
     category: 'Automotive',
@@ -301,7 +303,7 @@ const realBusinesses: Business[] = [
     id: 'real-b10',
     name: 'The Tampa EDITION',
     industry: 'Travel & Hospitality',
-    imageUrl: '/images/the-tampa-edition.jpg',
+    imageUrl: '/images/EDITION_Tampa-26-scaled.jpg', // Corrected to match file
     dataAiHint: 'The Tampa EDITION luxury hotel interior',
     description: 'Luxury hotel located in the Water Street Tampa district.',
     category: 'Travel & Hospitality',
@@ -551,3 +553,4 @@ export const mockCommunityLeaders: CommunityLeader[] = [
 export const businessCategories = ['All', ...industries];
 export const eventCategories = ['All', ...new Set(mockEvents.map(e => e.category))];
 export const dealCategories = ['All', ...new Set(mockDeals.map(d => d.category))];
+
