@@ -12,21 +12,14 @@ import { curateHotDeals, type CurateHotDealsInput, type CurateHotDealsOutput, ty
 import { useToast } from '@/hooks/use-toast';
 
 export default function DealsPage() {
-  const [allDeals, setAllDeals] = useState<Deal[]>(mockDeals.map(deal => ({ ...deal, confidence: undefined }))); // Start with undefined confidence
-  const [filteredDeals, setFilteredDeals] = useState<Deal[]>([]);
+  // Initialize allDeals with mock data; confidence will be updated by AI curation.
+  const [allDeals, setAllDeals] = useState<Deal[]>(() => mockDeals.map(deal => ({ ...deal, confidence: undefined })));
+  const [filteredDeals, setFilteredDeals] = useState<Deal[]>([]); // Initialize as empty, will be populated by filter effect
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
-  const [isLoadingCuration, setIsLoadingCuration] = useState(true); // Specifically for AI curation
+  const [isLoadingCuration, setIsLoadingCuration] = useState(true);
   const [isMounted, setIsMounted] = useState(false);
   const { toast } = useToast();
-
-  useEffect(() => {
-    setIsMounted(true);
-    // Display initial mock deals immediately
-    setFilteredDeals(mockDeals.map(deal => ({ ...deal, confidence: undefined })));
-    // Then, start AI curation
-    runAICuration(mockDeals);
-  }, []); // Removed runAICuration from dependency array to prevent re-triggering from itself
 
   const runAICuration = useCallback(async (dealsToCurate: Deal[]) => {
     setIsLoadingCuration(true);
@@ -39,12 +32,11 @@ export default function DealsPage() {
         const matchedAiDeal = aiOutput.find(aiDeal => aiDeal.title === originalDeal.title && aiDeal.description === originalDeal.description);
         return {
           ...originalDeal,
-          confidence: matchedAiDeal ? matchedAiDeal.confidence : 0.5, // Default confidence if not matched, or 0
+          confidence: matchedAiDeal ? matchedAiDeal.confidence : 0.5,
         };
       }).sort((a, b) => (b.confidence || 0) - (a.confidence || 0));
 
-      setAllDeals(newlyCuratedDeals); // Update allDeals with curated results
-      // Filtering will be re-applied in the other useEffect due to allDeals changing
+      setAllDeals(newlyCuratedDeals);
       toast({
         title: "Deals Curated!",
         description: "Hot deals have been updated with AI insights.",
@@ -57,18 +49,30 @@ export default function DealsPage() {
         description: "Could not curate deals at this time. Displaying default deals.",
         variant: "destructive",
       });
-      // Fallback to original mock deals with some mocked confidence if AI fails
       const fallbackDeals = dealsToCurate.map(d => ({ ...d, confidence: Math.random() * 0.3 + 0.7 }));
       setAllDeals(fallbackDeals);
     } finally {
       setIsLoadingCuration(false);
     }
-  }, [toast]); // Only toast as dependency, as dealsToCurate is passed in
+  }, [toast]);
   
+  // Effect to handle initial mount and trigger AI curation
+  useEffect(() => {
+    setIsMounted(true);
+    // Set initial allDeals so UI has something before curation completes
+    // This also ensures allDeals has a base state for runAICuration if mockDeals is empty.
+    // Note: allDeals is already initialized in useState with mockDeals.
+    // If you need to re-initialize or ensure it's set before runAICuration, you can do:
+    // setAllDeals(mockDeals.map(deal => ({ ...deal, confidence: undefined })));
+    runAICuration(mockDeals);
+  }, [runAICuration]); // runAICuration is memoized and its dependency (toast) is stable.
+                       // This effect should run once after mount.
+
+  // Effect for filtering deals whenever dependencies change
   useEffect(() => {
     if (!isMounted) return; 
 
-    let result = allDeals; // Use allDeals (which gets updated by AI) as the source
+    let result = allDeals;
 
     if (selectedCategory !== 'All') {
       result = result.filter(deal => deal.category === selectedCategory);
@@ -85,7 +89,7 @@ export default function DealsPage() {
   }, [searchTerm, selectedCategory, allDeals, isMounted]);
 
 
-  if (!isMounted) {
+  if (!isMounted && !filteredDeals.length) { // Show loader if not mounted AND no deals are ready to be shown
      return (
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 className="text-3xl font-bold mb-8 text-primary flex items-center">
@@ -156,7 +160,7 @@ export default function DealsPage() {
             <DealCard key={deal.id} deal={deal} />
           ))}
         </div>
-      ) : isLoadingCuration ? ( // Show loading if still curating and no deals yet
+      ) : isLoadingCuration ? ( 
         <div className="flex justify-center items-center py-20">
           <Loader2 className="h-12 w-12 text-primary animate-spin mr-4" />
           <p className="text-xl text-muted-foreground">Curating the best deals for you...</p>
