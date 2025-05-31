@@ -10,7 +10,7 @@ const tampaAreas = ["Downtown", "Ybor City", "Hyde Park", "Seminole Heights", "W
 const streetNames = ["Main St", "Bay Ave", "Florida Ave", "Dale Mabry Hwy", "Kennedy Blvd", "Fowler Ave", "Channelside Dr", "Howard Ave", "Bayshore Blvd", "Armenia Ave"];
 const zipCodes = ["33602", "33603", "33605", "33606", "33607", "33609", "33611", "33629", "33647"];
 
-let businessIdCounter: number = 1;
+let businessIdCounter: number = 1; // Used for generating unique IDs for mock businesses
 
 export interface Business {
   id: string;
@@ -21,7 +21,7 @@ export interface Business {
   description: string;
   address: string;
   phone: string;
-  category: string;
+  category: string; // In our case, category is the same as industry
   website: string;
   socialMedia?: {
     facebook?: string;
@@ -67,11 +67,11 @@ const generateBusinessDataAiHint = (category: string): string => {
 }
 
 export const featuredBusinesses: Business[] = [
-  {
+   {
     id: 'featured-b1',
     name: 'ConnectWise',
     category: 'Technology',
-    imageUrl: '/images/Connectwise.jpg', // Corrected case
+    imageUrl: '/images/Connectwise.jpg',
     dataAiHint: 'ConnectWise logo office building',
     description: 'Leading provider of technology solutions for IT businesses.',
     address: '1 ConnectWise Way, Tampa, FL 33607',
@@ -83,7 +83,7 @@ export const featuredBusinesses: Business[] = [
     id: 'featured-b2',
     name: 'Moffitt Cancer Center',
     category: 'Healthcare',
-    imageUrl: '/images/moffit.jpg', // Corrected to match file
+    imageUrl: '/images/moffit.jpg',
     dataAiHint: 'Moffitt Cancer Center building exterior',
     description: 'Nationally ranked cancer center providing comprehensive care and research.',
     address: '12902 USF Magnolia Dr, Tampa, FL 33612',
@@ -95,7 +95,7 @@ export const featuredBusinesses: Business[] = [
     id: 'featured-b3',
     name: 'Columbia Restaurant',
     category: 'Food & Beverage',
-    imageUrl: '/images/colombia resturant.jpg', // Corrected to match file
+    imageUrl: '/images/colombia resturant.jpg',
     dataAiHint: 'Columbia Restaurant Ybor City historic building',
     description: 'Historic Spanish restaurant with multiple locations, famous for its 1905 salad and Cuban bread.',
     address: '2117 E 7th Ave, Tampa, FL 33605',
@@ -107,7 +107,7 @@ export const featuredBusinesses: Business[] = [
     id: 'featured-b4',
     name: 'International Plaza',
     category: 'Retail',
-    imageUrl: '/images/internationalplaza.jpg', // Matches file
+    imageUrl: '/images/internationalplaza.jpg',
     dataAiHint: 'International Plaza shopping mall interior stores',
     description: 'Upscale shopping mall with a wide range of retailers and dining options.',
     address: '2223 N Westshore Blvd, Tampa, FL 33607',
@@ -119,7 +119,7 @@ export const featuredBusinesses: Business[] = [
     id: 'featured-b5',
     name: 'PwC Tampa',
     category: 'Professional Services',
-    imageUrl: '/images/pwctampa.jpg', // Stated as correct
+    imageUrl: '/images/pwctampa.jpg',
     dataAiHint: 'PwC Tampa office building city',
     description: 'Provides industry-focused assurance, tax, and advisory services.',
     address: '420 S Tampa St #3100, Tampa, FL 33602',
@@ -131,7 +131,7 @@ export const featuredBusinesses: Business[] = [
     id: 'featured-b6',
     name: 'Tampa Museum of Art',
     category: 'Arts & Culture',
-    imageUrl: '/images/Tampa Museum Of Art.jpg', // Corrected to match file
+    imageUrl: '/images/Tampa Museum Of Art.jpg',
     dataAiHint: 'Tampa Museum of Art modern exterior',
     description: 'Showcases a diverse collection of ancient and contemporary art.',
     address: '120 W Gasparilla Plaza, Tampa, FL 33602',
@@ -143,7 +143,7 @@ export const featuredBusinesses: Business[] = [
     id: 'featured-b7',
     name: 'University of South Florida (USF)',
     category: 'Education',
-    imageUrl: '/images/UniversityOfSouthFL.jpg', // Corrected to match file
+    imageUrl: '/images/UniversityOfSouthFL.jpg',
     dataAiHint: 'University South Florida campus building',
     description: 'Large public research university with a major campus in Tampa.',
     address: '4202 E Fowler Ave, Tampa, FL 33620',
@@ -155,7 +155,7 @@ export const featuredBusinesses: Business[] = [
     id: 'featured-b8',
     name: 'Smith & Associates Real Estate',
     category: 'Real Estate',
-    imageUrl: '/images/smithassociates4thst.jpg', // Corrected to match file
+    imageUrl: '/images/smithassociates4thst.jpg',
     dataAiHint: 'Smith Associates Real Estate luxury home',
     description: 'Premier real estate firm specializing in luxury properties in the Tampa Bay area.',
     address: '3901 W Bay to Bay Blvd, Tampa, FL 33629',
@@ -167,7 +167,7 @@ export const featuredBusinesses: Business[] = [
     id: 'featured-b9',
     name: 'Ferman Automotive Group',
     category: 'Automotive',
-    imageUrl: '/images/Dimmitt_Automotive_Group_1.jpg', // Corrected to use available Dimmit image for Ferman
+    imageUrl: '/images/Dimmitt_Automotive_Group_1.jpg',
     dataAiHint: 'Ferman Automotive car dealership showroom',
     description: 'Family-owned automotive group with a wide selection of new and used vehicles.',
     address: '12801 N Florida Ave, Tampa, FL 33612',
@@ -179,7 +179,7 @@ export const featuredBusinesses: Business[] = [
     id: 'featured-b10',
     name: 'The Tampa EDITION',
     category: 'Travel & Hospitality',
-    imageUrl: '/images/EDITION_Tampa-26-scaled.jpg', // Corrected to match file
+    imageUrl: '/images/EDITION_Tampa-26-scaled.jpg',
     dataAiHint: 'The Tampa EDITION luxury hotel interior',
     description: 'Luxury hotel located in the Water Street Tampa district.',
     address: '510 Channelside Dr, Tampa, FL 33602',
@@ -195,7 +195,7 @@ const realBusinesses: Business[] = [
     id: 'real-b1',
     name: 'ConnectWise',
     industry: 'Technology',
-    imageUrl: '/images/Connectwise.jpg', // Corrected case
+    imageUrl: '/images/Connectwise.jpg',
     dataAiHint: 'ConnectWise logo office building',
     description: 'Leading provider of technology solutions for IT businesses.',
     category: 'Technology',
@@ -207,7 +207,7 @@ const realBusinesses: Business[] = [
     id: 'real-b2',
     name: 'Moffitt Cancer Center',
     industry: 'Healthcare',
-    imageUrl: '/images/moffit.jpg', // Corrected to match file
+    imageUrl: '/images/moffit.jpg',
     dataAiHint: 'Moffitt Cancer Center building exterior',
     description: 'Nationally ranked cancer center providing comprehensive care and research.',
     category: 'Healthcare',
@@ -219,7 +219,7 @@ const realBusinesses: Business[] = [
     id: 'real-b3',
     name: 'Columbia Restaurant',
     industry: 'Food & Beverage',
-    imageUrl: '/images/colombia resturant.jpg', // Corrected to match file
+    imageUrl: '/images/colombia resturant.jpg',
     dataAiHint: 'Columbia Restaurant Ybor City historic building',
     description: 'Historic Spanish restaurant with multiple locations, famous for its 1905 salad and Cuban bread.',
     category: 'Food & Beverage',
@@ -231,7 +231,7 @@ const realBusinesses: Business[] = [
     id: 'real-b4',
     name: 'International Plaza',
     industry: 'Retail',
-    imageUrl: '/images/internationalplaza.jpg', // Matches file
+    imageUrl: '/images/internationalplaza.jpg',
     dataAiHint: 'International Plaza shopping mall interior stores',
     description: 'Upscale shopping mall with a wide range of retailers and dining options.',
     category: 'Retail',
@@ -243,7 +243,7 @@ const realBusinesses: Business[] = [
     id: 'real-b5',
     name: 'PwC Tampa',
     industry: 'Professional Services',
-    imageUrl: '/images/pwctampa.jpg', // Stated as correct
+    imageUrl: '/images/pwctampa.jpg',
     dataAiHint: 'PwC Tampa office building city',
     description: 'Provides industry-focused assurance, tax, and advisory services.',
     category: 'Professional Services',
@@ -255,7 +255,7 @@ const realBusinesses: Business[] = [
     id: 'real-b6',
     name: 'Tampa Museum of Art',
     industry: 'Arts & Culture',
-    imageUrl: '/images/Tampa Museum Of Art.jpg', // Corrected to match file
+    imageUrl: '/images/Tampa Museum Of Art.jpg',
     dataAiHint: 'Tampa Museum of Art modern exterior',
     description: 'Showcases a diverse collection of ancient and contemporary art.',
     category: 'Arts & Culture',
@@ -267,7 +267,7 @@ const realBusinesses: Business[] = [
     id: 'real-b7',
     name: 'University of South Florida (USF)',
     industry: 'Education',
-    imageUrl: '/images/UniversityOfSouthFL.jpg', // Corrected to match file
+    imageUrl: '/images/UniversityOfSouthFL.jpg',
     dataAiHint: 'University South Florida campus building',
     description: 'Large public research university with a major campus in Tampa.',
     category: 'Education',
@@ -279,7 +279,7 @@ const realBusinesses: Business[] = [
     id: 'real-b8',
     name: 'Smith & Associates Real Estate',
     industry: 'Real Estate',
-    imageUrl: '/images/smithassociates4thst.jpg', // Corrected to match file
+    imageUrl: '/images/smithassociates4thst.jpg',
     dataAiHint: 'Smith Associates Real Estate luxury home',
     description: 'Premier real estate firm specializing in luxury properties in the Tampa Bay area.',
     category: 'Real Estate',
@@ -291,7 +291,7 @@ const realBusinesses: Business[] = [
     id: 'real-b9',
     name: 'Ferman Automotive Group',
     industry: 'Automotive',
-    imageUrl: '/images/Dimmitt_Automotive_Group_1.jpg', // Corrected to use available Dimmit image for Ferman
+    imageUrl: '/images/Dimmitt_Automotive_Group_1.jpg',
     dataAiHint: 'Ferman Automotive car dealership showroom',
     description: 'Family-owned automotive group with a wide selection of new and used vehicles.',
     category: 'Automotive',
@@ -303,7 +303,7 @@ const realBusinesses: Business[] = [
     id: 'real-b10',
     name: 'The Tampa EDITION',
     industry: 'Travel & Hospitality',
-    imageUrl: '/images/EDITION_Tampa-26-scaled.jpg', // Corrected to match file
+    imageUrl: '/images/EDITION_Tampa-26-scaled.jpg',
     dataAiHint: 'The Tampa EDITION luxury hotel interior',
     description: 'Luxury hotel located in the Water Street Tampa district.',
     category: 'Travel & Hospitality',
@@ -325,21 +325,26 @@ const realBusinesses: Business[] = [
   }
 ];
 
-export let mockBusinesses: Business[] = [...realBusinesses];
+let tempMockBusinesses: Business[] = [...realBusinesses];
 
 industries.forEach(industry => {
   const industrySlug = industry.toLowerCase().replace(/\s+/g, '-');
-  if (!realBusinesses.some(rb => rb.industry === industry && rb.name !== 'Glenn Cummings Media')) { // Ensure we don't overwrite Glenn Cummings
-    for (let i = 0; i < 10; i++) {
+  const existingBusinessesInIndustry = tempMockBusinesses.filter(b => b.industry === industry);
+  let businessesToGenerate = 10 - existingBusinessesInIndustry.length;
+
+  if (businessesToGenerate > 0) {
+    for (let i = 0; i < businessesToGenerate; i++) {
       const area = tampaAreas[Math.floor(Math.random() * tampaAreas.length)];
-      const baseName = `${industrySlug}-${area.toLowerCase().replace(/\s+/g, '-')}-${i + 1}`;
-      const businessName = `${industry.split(' ')[0]} ${area} Center ${i + 1}`;
+      // Ensure unique names if possible, or handle it if name uniqueness is critical
+      const currentCountInIndustry = existingBusinessesInIndustry.length + i;
+      const businessName = `${industry.split(' ')[0]} ${area} Sample ${currentCountInIndustry + 1}`;
+      const baseName = `${industrySlug}-${area.toLowerCase().replace(/\s+/g, '-')}-sample-${currentCountInIndustry + 1}`;
 
       const newBusiness: Business = {
-        id: `b${businessIdCounter++}`,
+        id: `b-gen-${businessIdCounter++}`, // Ensure unique ID for generated businesses
         name: businessName,
         industry: industry,
-        category: industry,
+        category: industry, // category and industry are the same here
         imageUrl: `https://placehold.co/600x400.png?text=${encodeURIComponent(businessName.substring(0,20))}`,
         dataAiHint: generateBusinessDataAiHint(industry),
         description: generateDescription(businessName, industry, area),
@@ -347,18 +352,11 @@ industries.forEach(industry => {
         phone: generatePhoneNumber(),
         website: `https://${baseName.replace(/[^a-z0-9-]/gi, '')}.example.com`
       };
-      if (!mockBusinesses.some(b => b.name === newBusiness.name)) {
-          mockBusinesses.push(newBusiness);
-      }
+      tempMockBusinesses.push(newBusiness);
     }
   }
 });
-// Ensure real businesses are always present in mockBusinesses
-realBusinesses.forEach(rb => {
-    if (!mockBusinesses.find(mb => mb.id === rb.id)) {
-        mockBusinesses.push(rb);
-    }
-});
+export let mockBusinesses: Business[] = tempMockBusinesses;
 
 
 export const mockEvents: Event[] = [
@@ -427,14 +425,10 @@ const getBusinessDetailsForDeal = (industry: string): { name: string; id: string
     return { name: featuredForIndustry.name, id: featuredForIndustry.id };
   }
 
+  // Use the updated mockBusinesses which now ensures 10 per industry
   const businessesInIndustry = mockBusinesses.filter(b => b.category === industry);
   if (businessesInIndustry.length === 0) {
-     const realBizInIndustry = realBusinesses.filter(b => b.category === industry);
-     if(realBizInIndustry.length === 0) {
-        return { name: `A Great ${industry} Business`, id: undefined };
-     }
-     const business = realBizInIndustry[Math.floor(Math.random() * realBizInIndustry.length)];
-     return { name: business.name, id: business.id };
+     return { name: `A Great ${industry} Business`, id: undefined };
   }
   const business = businessesInIndustry[Math.floor(Math.random() * businessesInIndustry.length)];
   return { name: business.name, id: business.id };
@@ -492,7 +486,7 @@ export const mockDeals: Deal[] = industries.map((industry, index) => {
     description: dealDescriptions[industry] || `An amazing deal from a local ${industry.toLowerCase()} business. Don't miss out!`,
     imageUrl: `https://placehold.co/600x400.png?text=${encodeURIComponent(industry)}+Deal`,
     dataAiHint: generateDealDataAiHint(industry),
-    confidence: Math.random() * 0.2 + 0.8,
+    confidence: Math.random() * 0.2 + 0.8, // Mock confidence
     category: industry,
     expiryDate: new Date(Date.now() + (10 + index * 5) * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
   };
@@ -550,7 +544,9 @@ export const mockCommunityLeaders: CommunityLeader[] = [
 ];
 
 
-export const businessCategories = ['All', ...industries];
+export const businessCategories = ['All', ...industries]; // "All" is kept for potential filtering use, but will be excluded from display on businesses page.
 export const eventCategories = ['All', ...new Set(mockEvents.map(e => e.category))];
 export const dealCategories = ['All', ...new Set(mockDeals.map(d => d.category))];
 
+
+    

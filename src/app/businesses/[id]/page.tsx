@@ -1,4 +1,3 @@
-
 // Placeholder for individual business detail page
 import { mockBusinesses } from '@/lib/mock-data';
 import Image from 'next/image';
@@ -43,8 +42,9 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
               <Image
                 src={business.imageUrl}
                 alt={business.name}
-                layout="fill"
-                objectFit="cover"
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 67vw, 50vw"
                 data-ai-hint={business.dataAiHint}
                 priority
               />
@@ -90,7 +90,7 @@ export default function BusinessDetailPage({ params }: { params: { id: string } 
         <aside className="lg:col-span-1 space-y-6">
           <Card className="p-4 text-center border-2 border-dashed border-accent/30 shadow-lg bg-gradient-to-br from-accent/5 to-primary/5">
             <div className="relative w-full h-40 sm:h-48 mb-3 rounded-md overflow-hidden">
-                <Image src="https://placehold.co/300x250.png?text=Your+Ad+Here" alt="Advertise your business" layout="fill" objectFit="cover" data-ai-hint="advertisement placeholder" />
+                <Image src="https://placehold.co/300x250.png?text=Your+Ad+Here" alt="Advertise your business" fill style={{objectFit: "cover"}} sizes="(max-width: 640px) 100vw, 300px" data-ai-hint="advertisement placeholder" />
             </div>
             <CardHeader className="p-0 pb-3">
                <Sparkles className="mx-auto h-8 w-8 text-accent mb-2" />

@@ -1,6 +1,7 @@
 export interface Business {
   id: string;
   name: string;
+  industry: string; // Added industry
   category: string;
   imageUrl: string;
   dataAiHint?: string;
@@ -8,6 +9,11 @@ export interface Business {
   address: string;
   phone?: string;
   website?: string;
+  socialMedia?: { // Added socialMedia
+    facebook?: string;
+    twitter?: string;
+    instagram?: string;
+  };
 }
 
 export interface Event {
