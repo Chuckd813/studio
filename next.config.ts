@@ -130,7 +130,7 @@ hostname: 'www.pwc.com',
         hostname: 'drive.google.com',
         port: '',
         pathname: '/**',
-      }
+      },
       {
         protocol: 'https',
         hostname: 'moffitt.org',

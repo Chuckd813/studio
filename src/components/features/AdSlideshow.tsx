@@ -60,7 +60,7 @@ export function AdSlideshow() {
     return <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12"><p className="text-center">Loading Business Spotlight...</p></div>;
   }
 
-
+'use client';
   return (
     <section className="py-12 bg-muted/30 dark:bg-muted/10">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -87,7 +87,7 @@ export function AdSlideshow() {
                     <div className="relative w-full h-48">
                       <Image
                         src={business.imageUrl}
-                        alt={business.name}
+                        alt={business.name} 
                         fill
                         style={{ objectFit: 'cover' }}
                         data-ai-hint={business.dataAiHint || 'business image'}
@@ -105,7 +105,7 @@ export function AdSlideshow() {
                         <div className="flex justify-center space-x-4 w-full">
                           {business.socialMedia.facebook && (
                             <a href={business.socialMedia.facebook} target="_blank" rel="noopener noreferrer" aria-label={`${business.name} on Facebook`}>
-                              <Image src="/path/to/facebook-icon.svg" alt="Facebook" width={20} height={20} />
+                              <Image src="/images/pwctampa.jpg" alt="Facebook" width={20} height={20} />
                             </a>
                           )}
                           {business.socialMedia.twitter && (

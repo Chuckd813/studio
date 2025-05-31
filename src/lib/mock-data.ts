@@ -118,8 +118,7 @@ export const featuredBusinesses: Business[] = [
   {
     id: 'featured-b5',
     name: 'PwC Tampa',
-    category: 'Professional Services',
-    imageUrl: '/images/pwc-tampa.jpg',
+    category: 'Professional Services',    imageUrl: '/images/pwctampa.jpg',
     dataAiHint: 'PwC Tampa office building city',
     description: 'Provides industry-focused assurance, tax, and advisory services.',
     address: '420 S Tampa St #3100, Tampa, FL 33602',
@@ -242,8 +241,7 @@ const realBusinesses: Business[] = [
   {
     id: 'real-b5',
     name: 'PwC Tampa',
-    industry: 'Professional Services',
-    imageUrl: '/images/pwc-tampa.jpg',
+    industry: 'Professional Services',    imageUrl: '/images/pwctampa.jpg',
     dataAiHint: 'PwC Tampa office building city',
     description: 'Provides industry-focused assurance, tax, and advisory services.',
     category: 'Professional Services',
