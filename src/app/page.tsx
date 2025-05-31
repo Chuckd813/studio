@@ -122,13 +122,13 @@ export default function HomePage() {
       <section className="relative py-20 md:py-32 bg-gradient-to-br from-primary/80 via-primary to-secondary/80 text-primary-foreground overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <Image
-            src="https://placehold.co/1920x1080.png"
-            alt="Tampa Background"
+            src="/images/tampa skyline.jpg"
+            alt="Tampa skyline background"
             fill
             style={{objectFit: "cover"}}
             sizes="100vw"
             priority
-            data-ai-hint="tampa skyline abstract"
+            data-ai-hint="tampa skyline aerial"
           />
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
