@@ -59,14 +59,9 @@ export default function DealsPage() {
   // Effect to handle initial mount and trigger AI curation
   useEffect(() => {
     setIsMounted(true);
-    // Set initial allDeals so UI has something before curation completes
-    // This also ensures allDeals has a base state for runAICuration if mockDeals is empty.
-    // Note: allDeals is already initialized in useState with mockDeals.
-    // If you need to re-initialize or ensure it's set before runAICuration, you can do:
-    // setAllDeals(mockDeals.map(deal => ({ ...deal, confidence: undefined })));
     runAICuration(mockDeals);
-  }, [runAICuration]); // runAICuration is memoized and its dependency (toast) is stable.
-                       // This effect should run once after mount.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Changed dependency array to empty to run once on mount
 
   // Effect for filtering deals whenever dependencies change
   useEffect(() => {
