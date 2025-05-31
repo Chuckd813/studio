@@ -116,7 +116,7 @@ export function AISearch() {
               <button
                 type="button"
                 onClick={() => handleSuggestionClick(suggestion)}
-                className="w-full text-left px-4 py-2 hover:bg-accent hover:text-accent-foreground transition-colors"
+                className="w-full text-left px-4 py-2 text-accent hover:bg-accent hover:text-accent-foreground transition-colors"
               >
                 {suggestion}
               </button>
@@ -127,5 +127,3 @@ export function AISearch() {
     </form>
   );
 }
-
-    
