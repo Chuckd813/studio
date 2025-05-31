@@ -139,9 +139,9 @@ export default function HomePage() {
         </div>
       </section>
       
-      <HomepageWitWheel />
-      
       <AdSlideshow />
+      
+      <HomepageWitWheel />
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
         {allEvents.length > 0 && (
@@ -174,8 +174,8 @@ export default function HomePage() {
                   <CarouselPrevious className="hidden sm:flex -left-4" />
                   <CarouselNext className="hidden sm:flex -right-4" />
                   <CarouselDots className="mt-4" />
-                   <div className="pt-2 text-center text-sm text-muted-foreground">
-                     Slide {currentEventSlide} of {eventSlideCount}
+                   <div className="pt-2 text-center text-sm text-muted-foreground" style={{minHeight: '1.25rem'}}>
+                     {currentEventSlide > 0 && eventSlideCount > 0 ? `Slide ${currentEventSlide} of ${eventSlideCount}` : <>&nbsp;</>}
                    </div>
                 </>
               )}
@@ -229,8 +229,8 @@ export default function HomePage() {
                   <CarouselPrevious className="hidden sm:flex -left-4" />
                   <CarouselNext className="hidden sm:flex -right-4" />
                   <CarouselDots className="mt-4" />
-                  <div className="pt-2 text-center text-sm text-muted-foreground">
-                     Slide {currentDealSlide} of {dealSlideCount}
+                  <div className="pt-2 text-center text-sm text-muted-foreground" style={{minHeight: '1.25rem'}}>
+                     {currentDealSlide > 0 && dealSlideCount > 0 ? `Slide ${currentDealSlide} of ${dealSlideCount}` : <>&nbsp;</>}
                    </div>
                 </>
               )}
@@ -283,8 +283,8 @@ export default function HomePage() {
                   <CarouselPrevious className="hidden sm:flex -left-4" />
                   <CarouselNext className="hidden sm:flex -right-4" />
                   <CarouselDots className="mt-4" />
-                  <div className="pt-2 text-center text-sm text-muted-foreground">
-                     Slide {currentLeaderSlide} of {leaderSlideCount}
+                  <div className="pt-2 text-center text-sm text-muted-foreground" style={{minHeight: '1.25rem'}}>
+                     {currentLeaderSlide > 0 && leaderSlideCount > 0 ? `Slide ${currentLeaderSlide} of ${leaderSlideCount}` : <>&nbsp;</>}
                    </div>
                 </>
               )}
