@@ -176,7 +176,7 @@ export default function HomePage() {
                 {allEvents.map(event => (
                   <CarouselItem key={event.id} className="sm:basis-1/2 lg:basis-1/3">
                     <div className="p-1 h-full">
-                      <EventCard event={event} />
+                      <EventCard event={event} isHomepageContext={true} />
                     </div>
                   </CarouselItem>
                 ))}

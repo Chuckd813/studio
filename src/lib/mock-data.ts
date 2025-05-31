@@ -71,7 +71,7 @@ const realBusinesses: Business[] = [
     id: 'connectwise-real',
     name: 'ConnectWise',
     industry: 'Technology',
-    imageUrl: '/images/connectwise.jpg', // Corrected
+    imageUrl: '/images/connectwise.jpg',
     dataAiHint: 'ConnectWise logo office building',
     description: 'Leading provider of technology solutions for IT businesses.',
     category: 'Technology',
@@ -84,7 +84,7 @@ const realBusinesses: Business[] = [
     id: 'moffitt-real',
     name: 'Moffitt Cancer Center',
     industry: 'Healthcare',
-    imageUrl: '/images/moffit.jpg', // Corrected
+    imageUrl: '/images/moffit.jpg',
     dataAiHint: 'Moffitt Cancer Center building exterior',
     description: 'World-renowned cancer treatment and research center.',
     category: 'Healthcare',
@@ -97,7 +97,7 @@ const realBusinesses: Business[] = [
     id: 'columbia-restaurant-real',
     name: 'Columbia Restaurant',
     industry: 'Food & Beverage',
-    imageUrl: '/images/colombiaresturant.jpg', // Corrected (colombia)
+    imageUrl: '/images/colombiaresturant.jpg',
     dataAiHint: 'Columbia Restaurant Ybor City historic building',
     description: 'Historic Spanish restaurant, famous for its 1905 salad and Cuban bread.',
     category: 'Food & Beverage',
@@ -110,7 +110,7 @@ const realBusinesses: Business[] = [
     id: 'international-plaza-real',
     name: 'International Plaza and Bay Street',
     industry: 'Retail',
-    imageUrl: '/images/internationalplaza.jpg', // Corrected
+    imageUrl: '/images/internationalplaza.jpg',
     dataAiHint: 'International Plaza shopping mall interior stores',
     description: 'Upscale shopping mall with a wide range of retailers and dining options.',
     category: 'Retail',
@@ -123,7 +123,7 @@ const realBusinesses: Business[] = [
     id: 'pwc-tampa-real',
     name: 'PwC Tampa',
     industry: 'Professional Services',
-    imageUrl: '/images/pwctampa.jpg', // Corrected
+    imageUrl: '/images/pwctampa.jpg',
     dataAiHint: 'PwC Tampa office building city',
     description: 'Provides industry-focused assurance, tax, and advisory services.',
     category: 'Professional Services',
@@ -136,7 +136,7 @@ const realBusinesses: Business[] = [
     id: 'tampa-museum-art-real',
     name: 'Tampa Museum of Art',
     industry: 'Arts & Culture',
-    imageUrl: '/images/tampamuseummofart.jpg', // Corrected
+    imageUrl: '/images/tampamuseummofart.jpg',
     dataAiHint: 'Tampa Museum of Art modern exterior',
     description: 'Showcases a diverse collection of ancient and contemporary art.',
     category: 'Arts & Culture',
@@ -149,7 +149,7 @@ const realBusinesses: Business[] = [
     id: 'usf-real',
     name: 'University of South Florida (USF)',
     industry: 'Education',
-    imageUrl: '/images/universityofsouthfl.jpg', // Corrected
+    imageUrl: '/images/universityofsouthfl.jpg',
     dataAiHint: 'University South Florida campus building',
     description: 'Large public research university with a major campus in Tampa.',
     category: 'Education',
@@ -162,7 +162,7 @@ const realBusinesses: Business[] = [
     id: 'smith-associates-real',
     name: 'Smith & Associates Real Estate',
     industry: 'Real Estate',
-    imageUrl: '/images/smithassociates.jpg', // Corrected
+    imageUrl: '/images/smithassociates.jpg',
     dataAiHint: 'Smith Associates Real Estate luxury home',
     description: 'Premier real estate firm specializing in luxury properties in the Tampa Bay area.',
     category: 'Real Estate',
@@ -175,7 +175,7 @@ const realBusinesses: Business[] = [
     id: 'dimmitt-auto-real',
     name: 'Dimmitt Automotive Group', // Changed name to match image
     industry: 'Automotive',
-    imageUrl: '/images/dimmitautogroup.jpg', // Corrected
+    imageUrl: '/images/dimmitautogroup.jpg',
     dataAiHint: 'Dimmitt Automotive car dealership showroom',
     description: 'Luxury and exotic car dealership group with a strong presence in Tampa Bay.',
     category: 'Automotive',
@@ -188,7 +188,7 @@ const realBusinesses: Business[] = [
     id: 'tampa-edition-real',
     name: 'The Tampa EDITION',
     industry: 'Travel & Hospitality',
-    imageUrl: '/images/editiontampa.jpg', // Corrected
+    imageUrl: '/images/editiontampa.jpg',
     dataAiHint: 'The Tampa EDITION luxury hotel interior',
     description: 'Luxury hotel located in the Water Street Tampa district, offering sophisticated accommodations and dining.',
     category: 'Travel & Hospitality',
@@ -201,13 +201,13 @@ const realBusinesses: Business[] = [
     id: 'glenn-cummings-media-real',
     name: 'Glenn Cummings Media',
     industry: 'Professional Services',
-    imageUrl: '/images/yourbusinesshere.png', // No specific image provided
+    imageUrl: '/images/yourbusinesshere.png', 
     dataAiHint: 'Glenn Cummings Media logo advertisement',
     description: 'Full-service media and advertising solutions.',
     category: 'Professional Services',
     address: '123 Media Way, Tampa, FL 33602', // Example address
     phone: '813-579-8482',
-    website: 'https://www.glenncummings.com', // This seems to be a real site, will keep
+    website: 'https://www.glenncummings.com',
      socialMedia: { facebook: '#', twitter: '#', instagram: '#' },
   }
 ];
@@ -329,9 +329,9 @@ export const mockEvents: Event[] = [
     date: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
     time: '7:00 PM - 11:00 PM',
     venue: 'Curtis Hixon Waterfront Park',
-    imageUrl: '/images/yourbusinesshere.png', // Placeholder, update if specific event images exist
+    imageUrl: '/images/yourbusinesshere.png',
     dataAiHint: 'music festival concert',
-    description: 'Annual music festival featuring local and national bands. Food trucks and fun for all ages.',
+    description: "Don't miss Tampa's hottest music event! Experience electrifying performances. Click to explore more!",
     ticketUrl: 'https://tickets.example.com/downtownfest',
     category: 'Music Festival',
   },
@@ -341,9 +341,9 @@ export const mockEvents: Event[] = [
     date: new Date(Date.now() + 14 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
     time: '6:00 PM - 9:00 PM',
     venue: 'Tampa Bay Waters (Dock at Tampa Yacht Charters)',
-    imageUrl: '/images/yourbusinesshere.png', // Placeholder
+    imageUrl: '/images/yourbusinesshere.png',
     dataAiHint: 'yacht party sunset',
-    description: 'Enjoy a beautiful sunset cruise with music by Ybor City Nights DJs, drinks, and stunning views of the bay. Hosted by Tampa Yacht Charters.',
+    description: "Sail into the sunset! Unforgettable views, top DJs. Your Tampa Bay adventure starts here!",
     category: 'Nightlife',
   },
   {
@@ -352,9 +352,9 @@ export const mockEvents: Event[] = [
     date: new Date(Date.now() + 21 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
     time: '9:00 AM - 5:00 PM',
     venue: 'Tampa Convention Center',
-    imageUrl: '/images/yourbusinesshere.png', // Placeholder
+    imageUrl: '/images/yourbusinesshere.png',
     dataAiHint: 'conference tech presentation',
-    description: 'A premier tech conference with speakers from leading Technology businesses, workshops, and networking opportunities.',
+    description: "Connect with tech leaders! Discover groundbreaking innovations. See what Tampa offers!",
     ticketUrl: 'https://tickets.example.com/techconf',
     category: 'Conference',
   },
@@ -364,9 +364,9 @@ export const mockEvents: Event[] = [
     date: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
     time: '10:00 AM - 4:00 PM',
     venue: 'Hyde Park Village',
-    imageUrl: '/images/yourbusinesshere.png', // Placeholder
+    imageUrl: '/images/yourbusinesshere.png',
     dataAiHint: 'art festival outdoor',
-    description: 'Browse and purchase art from local artists in the beautiful Hyde Park Village. Featuring live music and food stalls.',
+    description: "Immerse yourself in art! Unique creations, vibrant atmosphere. Explore Tampa's creative side!",
     category: 'Arts & Culture',
   },
    {
@@ -375,9 +375,9 @@ export const mockEvents: Event[] = [
     date: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
     time: '5:00 PM - 9:00 PM',
     venue: 'Seminole Heights Garden Center',
-    imageUrl: '/images/yourbusinesshere.png', // Placeholder
+    imageUrl: '/images/yourbusinesshere.png',
     dataAiHint: 'food trucks event',
-    description: 'A gathering of Tampa\'s best food trucks offering a variety of cuisines. Family-friendly atmosphere.',
+    description: "Taste the best of Tampa! Diverse flavors, fun for everyone. Discover your next favorite meal!",
     category: 'Food & Beverage',
   },
 ];
@@ -510,3 +510,4 @@ export const mockCommunityLeaders: CommunityLeader[] = [
 export const businessCategories = ['All', ...industries];
 export const eventCategories = ['All', ...new Set(mockEvents.map(e => e.category))];
 export const dealCategories = ['All', ...new Set(mockDeals.map(d => d.category))];
+

@@ -12,9 +12,10 @@ import { CalendarDays, Clock, MapPin, Ticket } from 'lucide-react';
 
 interface EventCardProps {
   event: Event;
+  isHomepageContext?: boolean; // Added prop
 }
 
-export const EventCard = React.memo(function EventCard({ event }: EventCardProps) {
+export const EventCard = React.memo(function EventCard({ event, isHomepageContext = false }: EventCardProps) {
   const [formattedEventDate, setFormattedEventDate] = useState<string | null>(null);
 
   useEffect(() => {
@@ -47,34 +48,42 @@ export const EventCard = React.memo(function EventCard({ event }: EventCardProps
         <Badge variant="secondary" className="mb-2">{event.category}</Badge>
         <CardTitle className="text-xl mb-2 line-clamp-2">{event.name}</CardTitle>
         <p className="text-muted-foreground text-sm mb-3 line-clamp-3">{event.description}</p>
-        <div className="space-y-1.5 text-sm text-muted-foreground">
-          <div className="flex items-center">
-            <CalendarDays className="h-4 w-4 mr-2 shrink-0 text-primary/80" />
-            <span>{formattedEventDate || '...'}</span>
+        {!isHomepageContext && ( // Hide date/time/venue in homepage context
+          <div className="space-y-1.5 text-sm text-muted-foreground">
+            <div className="flex items-center">
+              <CalendarDays className="h-4 w-4 mr-2 shrink-0 text-primary/80" />
+              <span>{formattedEventDate || '...'}</span>
+            </div>
+            <div className="flex items-center">
+              <Clock className="h-4 w-4 mr-2 shrink-0 text-primary/80" />
+              <span>{event.time}</span>
+            </div>
+            <div className="flex items-start">
+              <MapPin className="h-4 w-4 mr-2 mt-0.5 shrink-0 text-primary/80" />
+              <span className="line-clamp-2">{event.venue}</span>
+            </div>
           </div>
-          <div className="flex items-center">
-            <Clock className="h-4 w-4 mr-2 shrink-0 text-primary/80" />
-            <span>{event.time}</span>
-          </div>
-          <div className="flex items-start">
-            <MapPin className="h-4 w-4 mr-2 mt-0.5 shrink-0 text-primary/80" />
-            <span className="line-clamp-2">{event.venue}</span>
-          </div>
-        </div>
+        )}
       </CardContent>
       <CardFooter className="p-6 pt-0">
-        <div className="flex items-center justify-between w-full space-x-2">
-          {event.ticketUrl && (
-            <Button variant="outline" size="sm" asChild className="rounded-full flex-1 min-w-0">
-              <a href={event.ticketUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 truncate">
-                <Ticket className="h-4 w-4" /> <span className="truncate">Get Tickets</span>
-              </a>
-            </Button>
-          )}
-          <Button size="sm" asChild className={`rounded-full flex-1 min-w-0 ${!event.ticketUrl ? 'w-full' : ''}`}>
-            <Link href={`/events/${event.id}`} className="truncate">View Details</Link>
+        {isHomepageContext ? (
+          <Button size="sm" asChild className="w-full rounded-full">
+            <Link href="/" className="truncate">Explore What's In Tampa</Link>
           </Button>
-        </div>
+        ) : (
+          <div className="flex items-center justify-between w-full space-x-2">
+            {event.ticketUrl && (
+              <Button variant="outline" size="sm" asChild className="rounded-full flex-1 min-w-0">
+                <a href={event.ticketUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 truncate">
+                  <Ticket className="h-4 w-4" /> <span className="truncate">Get Tickets</span>
+                </a>
+              </Button>
+            )}
+            <Button size="sm" asChild className={`rounded-full flex-1 min-w-0 ${!event.ticketUrl ? 'w-full' : ''}`}>
+              <Link href={`/events/${event.id}`} className="truncate">View Details</Link>
+            </Button>
+          </div>
+        )}
       </CardFooter>
     </Card>
   );
