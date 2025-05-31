@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
@@ -56,7 +57,6 @@ export function AISearch() {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchTerm.trim()) {
-      // Actual search navigation/action would go here
       console.log(`Searching for: ${searchTerm}`);
       setShowSuggestions(false);
        toast({
@@ -69,7 +69,6 @@ export function AISearch() {
   const handleSuggestionClick = (suggestion: string) => {
     setSearchTerm(suggestion);
     setShowSuggestions(false);
-    // Actual search navigation/action would go here
     console.log(`Searching for (from suggestion): ${suggestion}`);
     toast({
         title: "Search Initiated",
@@ -84,7 +83,6 @@ export function AISearch() {
   };
 
   const handleInputBlur = () => {
-    // Delay hiding suggestions to allow click on them
     setTimeout(() => {
       setShowSuggestions(false);
     }, 150);
@@ -100,10 +98,10 @@ export function AISearch() {
           onChange={(e) => setSearchTerm(e.target.value)}
           onFocus={handleInputFocus}
           onBlur={handleInputBlur}
-          className="pr-12 rounded-full h-10 text-base"
+          className="pr-12 rounded-full h-11 text-base bg-white text-slate-900 placeholder:text-slate-500 border-slate-300 focus:ring-primary focus-visible:ring-primary"
         />
-        <Button type="submit" size="icon" className="absolute right-1 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full" aria-label="Search">
-          {isLoading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
+        <Button type="submit" size="icon" className="absolute right-1.5 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full bg-primary hover:bg-primary/90" aria-label="Search">
+          {isLoading ? <Loader2 className="h-4 w-4 animate-spin text-primary-foreground" /> : <Search className="h-4 w-4 text-primary-foreground" />}
         </Button>
       </div>
       {showSuggestions && suggestions.length > 0 && (

@@ -155,12 +155,12 @@ body {
   }
 
   .title-gradient-white-blue {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-foreground via-secondary to-primary-foreground;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-sky-300 to-sky-500;
     background-size: 200% auto;
     animation: gradient-wave-animation 5s linear infinite;
   }
   .dark .title-gradient-white-blue {
-     @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-foreground via-primary to-primary-foreground;
+     @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-sky-300 to-sky-500;
     background-size: 200% auto;
     animation: gradient-wave-animation 5s linear infinite;
   }
