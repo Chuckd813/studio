@@ -36,8 +36,8 @@ export const EventCard = React.memo(function EventCard({ event, isHomepageContex
       <CardHeader className="p-0">
         <div className="relative w-full h-48">
           <Image
-            src={event.imageUrl}
-            alt={event.name}
+            src="/images/youreventhere.jpg"
+            alt="Image placeholder for event"
             fill
             style={{ objectFit: 'cover' }}
             data-ai-hint={event.dataAiHint}

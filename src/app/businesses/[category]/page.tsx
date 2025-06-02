@@ -33,7 +33,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             <ArrowLeft className="mr-2 h-4 w-4" /> Back to All Categories
           </Link>
         </Button>
-        <h1 className="text-3xl lg:text-4xl font-extrabold text-primary mb-3 flex items-center">
+        <h1 className="text-3xl lg:text-4xl font-extrabold title-gradient-wave dark:title-gradient-wave-dark mb-3 flex items-center">
           <Building2 className="mr-3 h-8 w-8" />
           <span className="title-gradient-wave dark:title-gradient-wave-dark">{category}</span> Businesses
         </h1>
