@@ -111,19 +111,20 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 bg-gradient-to-br from-primary/80 via-primary to-secondary/80 text-primary-foreground overflow-hidden">
         <div className="absolute inset-0 opacity-20">
-          <Image
-            src="/images/tampa skyline.jpg"
-            alt="Tampa skyline background aerial view"
-            fill
-            style={{objectFit: "cover"}}
-            sizes="100vw"
-            priority
-            data-ai-hint="tampa skyline aerial"
-          />
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover z-0"
+          >
+            <source src="/images/Tampa.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 text-white">
-            <span className="title-gradient-white-blue drop-shadow-lg">Discover What's In Tampa</span>
+            <span className="title-gradient-white-blue drop-shadow-lg">WHAT'S IN TAMPA</span>
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-slate-100 drop-shadow-md">
             Your ultimate guide to businesses, events, and exclusive deals across Tampa Bay.
