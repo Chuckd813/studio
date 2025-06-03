@@ -97,7 +97,7 @@ export default function HomePage() {
       {/* Hero */}
       <section className="relative py-20 md:py-32 bg-gradient-to-br from-primary/80 via-primary to-secondary/80 text-primary-foreground overflow-hidden">
         <div className="absolute inset-0 opacity-30 overflow-hidden">
-          <video src="/images/Tampa.mp4" autoPlay loop muted className="absolute inset-0 w-full h-full object-cover"></video>
+          <video src="/images/Tampa.mp4" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover"></video>
  </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 text-white">
