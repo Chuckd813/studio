@@ -1,7 +1,6 @@
 
 'use client';
 
-import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -110,14 +109,17 @@ export default function HomePage() {
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero Section */}
       <section className="relative py-20 md:py-32 bg-gradient-to-br from-primary/80 via-primary to-secondary/80 text-primary-foreground overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <Image
-            src="/images/tampa skyline.jpg"
-            alt="Tampa skyline background aerial view"
-            fill
-            style={{objectFit: "cover"}}
-            sizes="100vw"
-            priority
+        <div className="absolute inset-0 opacity-30"> {/* Increased opacity slightly for better visibility */}
+          <video
+            src="/images/Tampa.mp4"
+            className="absolute inset-0 w-full h-full object-cover"
+            autoPlay
+            loop
+            muted // Mute is important for autoplay in most browsers
+            playsInline // Recommended for mobile autoplay
+            poster="/images/tampa skyline.jpg" // Optional: use an image as a fallback/poster
+            preload="auto"
+            aria-hidden="true" // Hide from accessibility tree as it's purely decorative
             data-ai-hint="tampa skyline aerial"
           />
         </div>
