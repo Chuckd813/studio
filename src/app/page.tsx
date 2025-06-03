@@ -81,7 +81,7 @@ export default function HomePage() {
     return (
       <div className="fixed inset-0 flex flex-col items-center justify-center bg-background z-[100]">
         <Image src="/images/wit-logo.png" alt="What's In Tampa Logo" width={100} height={100} className="mb-4 rounded-xl shadow-lg" />
-        <h1 className="text-3xl font-bold text-primary mb-2 title-gradient-white-blue">What's In Tampa</h1>
+        <h1 className="text-3xl font-bold text-primary mb-2 title-gradient-white-blue">WHAT'S IN TAMPA</h1>
         <p className="text-lg text-muted-foreground">Discover Tampa Bay</p>
         <Loader2 className="h-8 w-8 text-primary animate-spin mt-6" />
       </div>
@@ -94,18 +94,14 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      {/* Hero */}
+      {/* Hero Section */}
       <section className="relative py-20 md:py-32 bg-gradient-to-br from-primary/80 via-primary to-secondary/80 text-primary-foreground overflow-hidden">
-        <div className="absolute inset-0 opacity-30 overflow-hidden">
-          <video src="/images/Tampa.mp4" autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover"></video>
- </div>
+        <div className="absolute inset-0 opacity-30">
+          <Image src="/images/tampa skyline.jpg" className="absolute inset-0 w-full h-full object-cover" width={1920} height={1080} alt="Tampa skyline" />
+        </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 text-white">
-            <span className="title-gradient-white-blue drop-shadow-lg">
-              Discover
-              <br className="sm:hidden" />
-              Discover <span className="block sm:inline">What's In Tampa</span>
-            </span>
+            <span className="title-gradient-white-blue drop-shadow-lg">WHAT'S IN TAMPA</span>
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-slate-100 drop-shadow-md">
             Your ultimate guide to businesses, events, and exclusive deals across Tampa Bay.
@@ -131,7 +127,7 @@ export default function HomePage() {
       <HomepageWitWheel />
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
-        {/* Events */}
+        {/* Upcoming Events */}
         {allEvents.length > 0 && (
           <section>
             <div className="flex flex-col sm:flex-row justify-between items-center mb-8">
@@ -164,7 +160,7 @@ export default function HomePage() {
           </section>
         )}
 
-        {/* Tip */}
+        {/* Tampa Tip */}
         <section className="py-10 bg-card border-b border-t border-border rounded-lg">
           <div className="text-center">
             <div className="flex items-center justify-center mb-2">
@@ -181,7 +177,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Deals */}
+        {/* Hot Deals */}
         {allDeals.length > 0 && (
           <section>
             <div className="flex flex-col sm:flex-row justify-between items-center mb-8">
@@ -243,7 +239,7 @@ export default function HomePage() {
         )}
       </div>
 
-      {/* Call to Action */}
+      {/* CTA */}
       <section className="py-16 bg-gradient-to-r from-accent to-primary text-accent-foreground text-center">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold mb-4">Are you a Tampa Business?</h2>
