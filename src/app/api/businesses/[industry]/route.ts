@@ -9,7 +9,7 @@ export async function GET(req: NextRequest, { params }: { params: { industry: st
   }
 
   const filteredBusinesses: Business[] = mockBusinesses.filter(
-    (business: Business) => business.industry.toLowerCase() === industry.toLowerCase()
+ (business: Business) => business.industry.toLowerCase() === industry.toLowerCase()
   );
 
   return NextResponse.json(filteredBusinesses);
