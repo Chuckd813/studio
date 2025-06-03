@@ -1,6 +1,5 @@
 
 'use client';
-
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
@@ -83,7 +82,7 @@ export default function HomePage() {
   if (!isMounted) {
     return (
       <div className="fixed inset-0 flex flex-col items-center justify-center bg-background z-[100]">
-        <Image src="/images/wit-logo.png" alt="What's In Tampa Logo" width={100} height={100} className="mb-4 rounded-xl shadow-lg" data-ai-hint="app logo loading" />
+        <img src="/images/wit-logo.png" alt="What's In Tampa Logo" width={100} height={100} className="mb-4 rounded-xl shadow-lg" />
         <h1 className="text-3xl font-bold text-primary mb-2 title-gradient-white-blue">What's In Tampa</h1>
         <p className="text-lg text-muted-foreground">Discover Tampa Bay</p>
         <Loader2 className="h-8 w-8 text-primary animate-spin mt-6" />
