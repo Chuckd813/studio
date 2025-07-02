@@ -243,7 +243,7 @@ export default function HomePage() {
       </section>
 
       {/* ==================== BUSINESS OF THE MONTH ==================== */}
-      <section className="mb-16 text-center px-4 py-12">
+      <section className="mb-1 text-center px-4 py-12">
         <h2 className="text-3xl font-bold text-primary mb-2">
           Business of the Month
         </h2>
@@ -279,7 +279,7 @@ export default function HomePage() {
       <HomepageWitWheel />
 
       {/* ==================== BUSINESS SPOTLIGHT + REST ============== */}
-      <section className="mb-16 text-center px-4">
+      <section className="text-center px-4">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
           {/* -------------------- EVENTS -------------------- */}
           {allEvents.length > 0 && (
