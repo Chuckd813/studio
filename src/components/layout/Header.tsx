@@ -16,6 +16,7 @@ const navLinks = [
   { href: '/events', label: 'Events', icon: CalendarDays },
   { href: '/deals', label: 'Deals', icon: Sparkles },
   { href: '/adventure-wheel', label: 'WIT Wheel', icon: Zap, labelClassName: 'text-xs', iconClassName: 'text-tertiary' },
+  { href: '/invest', label: 'Invest', icon: Briefcase }, // Added Invest link (using Briefcase icon as placeholder)
 ];
 
 const authLinks = [
