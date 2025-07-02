@@ -34,12 +34,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           </Link>
         </Button>
         <h1 className="text-3xl lg:text-4xl font-extrabold title-gradient-wave dark:title-gradient-wave-dark mb-3 flex items-center">
-          <Building2 className="mr-3 h-8 w-8" />
-          <span className="title-gradient-wave dark:title-gradient-wave-dark">{category}</span> Businesses
+ <Building2 className="mr-2 h-8 w-8" />
+ <span className="title-gradient-wave dark:title-gradient-wave-dark mr-1">{category}</span> Businesses
         </h1>
-        <p className="text-lg text-muted-foreground">
-          Explore businesses in the {category} category. We found {businessesForCategory.length} business(es).
-        </p>
       </header>
 
       {businessesForCategory.length > 0 ? (
