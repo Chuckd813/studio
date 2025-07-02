@@ -247,11 +247,20 @@ export default function HomePage() {
         <h2 className="text-3xl font-bold text-primary mb-2">
           Business of the Month
         </h2>
-        <p className="text-gray-400 mb-6 max-w-2xl mx-auto">
-          With over 30 years in financial services, Glenn&nbsp;P.&nbsp;Cummings,
-          co-founder of Big Financial Services, delivers tailored strategies with
-          a client-first approach.
+        <p className="text-gray-400 mb-6 max-w-2xl mx-auto text-lg">
+ The team behind Big Financial Services is made up of qualified financial professionals who are passionate about helping individuals and families work toward their ideal retirements.
         </p>
+
+        <Button asChild className="rounded-full mb-6">
+ <Link
+            href="https://bigfinancialsvc.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+ >
+            Visit Website
+ </Link>
+ </Button>
+
 
         <div className="w-full max-w-5xl mx-auto aspect-video mb-6">
           <video
@@ -263,16 +272,6 @@ export default function HomePage() {
             Your browser does not support the video tag.
           </video>
         </div>
-
-        <Button asChild className="rounded-full">
-          <Link
-            href="https://bigfinancialsvc.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Visit Website
-          </Link>
-        </Button>
       </section>
 
       {/* ==================== ADS + WIT WHEEL ========================= */}
